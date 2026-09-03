@@ -160,6 +160,23 @@
   .tiktok-grid{display:flex;gap:20px;flex-wrap:wrap}
   .cat-tag a{color:var(--blue)}
 
+  /* combo phác đồ */
+  .combo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+  .cbc{background:var(--card);border:2px solid #ffd9b3;border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:8px}
+  .cb-head{display:flex;gap:10px;align-items:center}
+  .cb-ic{font-size:28px}
+  .cb-head b{font-size:16px;display:block}
+  .cb-st{font-size:11.5px;font-weight:700;color:#e65100}
+  .cbi{display:flex;justify-content:space-between;align-items:baseline;gap:8px;border-top:1px dashed var(--line);padding-top:7px}
+  .cbi a{font-size:13.5px;font-weight:600;color:#2b3542;text-decoration:none}
+  .cbi a:hover{color:var(--blue)}
+  .cbi b{font-size:13px;color:#e65100;white-space:nowrap}
+  .cb-note{font-size:11.5px;color:var(--muted);margin:2px 0 0}
+  .cb-total{display:flex;justify-content:space-between;align-items:baseline;border-top:2px solid #ffd9b3;padding-top:8px;margin-top:auto}
+  .cb-total strong{font-size:20px;color:#e65100;font-weight:800}
+  .combo-btn{border:none;background:#e65100;color:#fff;font-weight:800;font-size:14px;padding:11px;border-radius:11px;cursor:pointer}
+  .combo-btn:hover{filter:brightness(1.1)}
+
   /* feedback / social proof */
   .proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:18px}
   .pf{background:linear-gradient(135deg,#eefaea,#fff);border:1px solid #b3e0aa;border-radius:14px;
@@ -296,6 +313,7 @@
     <a href="#benh">🍃 Trừ bệnh</a>
     <a href="#dd">🌱 Dinh dưỡng</a>
     <a href="#phacdo">📋 Phác đồ lúa</a>
+    <a href="#combo">🧺 Combo</a>
     <a href="#video">🎬 Video</a>
     <a href="#feedback">🤝 Tin dùng</a>
     <a href="to-roi-vochiron-a5.pdf" target="_blank" rel="noopener">📄 Tờ rơi A5</a>
@@ -333,8 +351,8 @@
       <div class="grid">
       <article class="card" id="card-EHA-1" data-target="cỏ lồng vực, đuôi phụng, chác lác thuốc trừ cỏ eha eurofit- sofit châu âu 1 lít">
         <div class="ribbon">★ BÁN CHẠY #9</div>
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-1.jpg" alt="EHA EUROFIT- SOFIT CHÂU ÂU 1 lít"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-EHA-1.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p021.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p022.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p020.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-1</span><span class="tier t-cc">Cao cấp</span></div>
           <h3>EHA EUROFIT- SOFIT CHÂU ÂU 1 lít</h3>
@@ -349,8 +367,8 @@
       </article>
       <article class="card" id="card-VCR-14" data-target="cỏ tiền nảy mầm thuốc trừ cỏ vcr diệt mầm mỹ 500ml tiêu mầm sofit">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-14.jpg" alt="VCR Diệt Mầm MỸ 500ml Tiêu Mầm sofit"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-14.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p055.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p054.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p056.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-14</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>VCR Diệt Mầm MỸ 500ml Tiêu Mầm sofit</h3>
@@ -376,8 +394,8 @@
       <div class="grid">
       <article class="card" id="card-VCR-3" data-target="sâu đục thân, cuốn lá, nhện gié, bọ trĩ, rầy nâu thuốc trừ sâu – rầy vcr ichibio sâu đục thân, cuốn lá, nhện gié, bọ trĩ, rầy nâu">
         <div class="ribbon">★ BÁN CHẠY #5</div>
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-3.jpg" alt="VCR ICHIBIO Sâu đục thân, cuốn lá, nhện gié, bọ trĩ, rầy nâu"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-3.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p085.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p083.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p084.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-3</span><span class="tier t-cc">Cao cấp</span></div>
           <h3>VCR ICHIBIO Sâu đục thân, cuốn lá, nhện gié, bọ trĩ, rầy nâu</h3>
@@ -392,8 +410,8 @@
       </article>
       <article class="card" id="card-EHA-10" data-target="sâu đục thân, cuốn lá, rầy nâu, bọ xít hôi thuốc trừ sâu – rầy eha f21 xông hơi sâu đục thân, rầy rệp bản mới f18">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-10.jpg" alt="EHA F21 xông hơi sâu đục thân, rầy rệp bản mới F18"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-EHA-10.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p002.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p003.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p001.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-10</span><span class="tier t-cc">Cao cấp</span></div>
           <h3>EHA F21 xông hơi sâu đục thân, rầy rệp bản mới F18</h3>
@@ -408,8 +426,8 @@
       </article>
       <article class="card" id="card-EHA-13" data-target="rầy nâu, rầy lưng trắng, rệp thuốc trừ sâu – rầy eha diệt sạch sâu rầy rệp, xông hơi lưu dẫn">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-13.jpg" alt="EHA DIỆT SẠCH sâu rầy rệp, xông hơi lưu dẫn"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-EHA-13.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p010.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p011.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-13</span></div>
           <h3>EHA DIỆT SẠCH sâu rầy rệp, xông hơi lưu dẫn</h3>
@@ -424,8 +442,8 @@
       </article>
       <article class="card" id="card-VCR-4" data-target="ốc bươu vàng thuốc trừ ốc vcr siêu 3.6 siêu diệt ốc">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-4.jpg" alt="VCR Siêu 3.6 siêu diệt ốc"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-4.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p087.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p086.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-4</span></div>
           <h3>VCR Siêu 3.6 siêu diệt ốc</h3>
@@ -440,8 +458,8 @@
       </article>
       <article class="card" id="card-VCR-20" data-target="sâu đục thân, cuốn lá, muỗi hành, rầy thuốc trừ sâu – rầy vcr usa- padan ledan usa ( cartap, imidac, sâu đục thân, cuốn lá) 100gr">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-20.jpg" alt="VCR USA- PADAN LEDAN USA ( cartap, imidac, sâu đục thân, cuốn lá) 100gr"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-20.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p073.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p072.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p071.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-20</span></div>
           <h3>VCR USA- PADAN LEDAN USA ( cartap, imidac, sâu đục thân, cuốn lá) 100gr</h3>
@@ -456,8 +474,8 @@
       </article>
       <article class="card" id="card-VCR-18" data-target="rầy nâu, bọ trĩ, sâu đục thân thuốc trừ sâu – rầy vcr sói xám 100g sói đỏ bản mới ( sâu đục thân, rầy nâu)">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-18.jpg" alt="VCR SÓI XÁM 100g Sói đỏ bản mới ( sâu đục thân, rầy nâu)"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-18.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p063.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p064.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p065.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-18</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>VCR SÓI XÁM 100g Sói đỏ bản mới ( sâu đục thân, rầy nâu)</h3>
@@ -483,8 +501,8 @@
       <div class="grid">
       <article class="card" id="card-EHA-15" data-target="đạo ôn nặng, tái đi tái lại trừ nấm · đặc trị đạo ôn eha- katana kiếm nhật bản 480cc đạo ôn">
         <div class="ribbon">★ BÁN CHẠY #2</div>
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-15.jpg" alt="EHA- Katana kiếm nhật bản 480cc đạo ôn"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-EHA-15.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p015.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p016.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p017.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-15</span><span class="tier t-cc">Cao cấp</span></div>
           <h3>EHA- Katana kiếm nhật bản 480cc đạo ôn</h3>
@@ -499,8 +517,8 @@
       </article>
       <article class="card" id="card-VCR-12" data-target="đạo ôn lá, cổ bông, cổ gié trừ nấm · đặc trị đạo ôn vcr bim usa 100gr đạo ôn">
         <div class="ribbon">★ BÁN CHẠY #3</div>
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-12.jpg" alt="VCR BIM USA 100gr đạo ôn"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-12.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p048.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p049.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p050.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-12</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>VCR BIM USA 100gr đạo ôn</h3>
@@ -515,8 +533,8 @@
       </article>
       <article class="card" id="card-EHA-3" data-target="đạo ôn, lem lép, vàng lá trừ nấm · phổ rộng eha help châu âu heppy top 400">
         <div class="ribbon">★ BÁN CHẠY #4</div>
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-3.jpg" alt="EHA Help Châu Âu Heppy top 400"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-EHA-3.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p024.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-3</span><span class="tier t-cc">Cao cấp</span></div>
           <h3>EHA Help Châu Âu Heppy top 400</h3>
@@ -531,8 +549,8 @@
       </article>
       <article class="card" id="card-EHA-6" data-target="khô vằn, lem lép, rỉ sắt, đốm nâu trừ nấm · phổ rộng eha topvil 50sc anvil ấn độ , công nghệ nano">
         <div class="ribbon">★ BÁN CHẠY #7</div>
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-6.jpg" alt="EHA TOPVIL 50SC anvil ấn độ , công nghệ nano"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-EHA-6.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p032.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p031.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p033.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-6</span></div>
           <h3>EHA TOPVIL 50SC anvil ấn độ , công nghệ nano</h3>
@@ -547,8 +565,8 @@
       </article>
       <article class="card" id="card-EHA-2" data-target="bạc lá, đốm sọc vi khuẩn, thối gốc thuốc trừ vi khuẩn eha siêu khuẩn usa 240cc">
         <div class="ribbon">★ BÁN CHẠY #10</div>
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-2.jpg" alt="EHA SIÊU KHUẨN USA 240cc"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-EHA-2.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p023.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-2</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>EHA SIÊU KHUẨN USA 240cc</h3>
@@ -563,8 +581,8 @@
       </article>
       <article class="card" id="card-VCR-13" data-target="đạo ôn, vàng lá chín sớm, lem lép, nấm phổ rộng trừ nấm · phổ rộng vcr thần y pirastar ( diệt sạch đạo ôn, vàng lá chín sớm, hơn 100 loại nấm bệnh)">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-13.jpg" alt="VCR Thần Y Pirastar ( diệt sạch đạo ôn, vàng lá chín sớm, hơn 100 loại nấm bệnh)"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-13.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p053.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p051.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p052.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-13</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>VCR Thần Y Pirastar ( diệt sạch đạo ôn, vàng lá chín sớm, hơn 100 loại nấm bệnh)</h3>
@@ -579,8 +597,8 @@
       </article>
       <article class="card" id="card-VCR-19" data-target="lem lép hạt, vàng lá, đạo ôn, khô vằn trừ nấm · phổ rộng vcr nativo mỹ 90gr">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-19.jpg" alt="VCR NATIVO MỸ 90gr"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-19.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p067.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p068.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p066.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-19</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>VCR NATIVO MỸ 90gr</h3>
@@ -595,8 +613,8 @@
       </article>
       <article class="card" id="card-EHA-7" data-target="lem lép, vàng lá, bảo vệ lá đòng trừ nấm · phổ rộng eha - til super 240ml">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-7.jpg" alt="EHA - Til super 240ml"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-EHA-7.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p034.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p035.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-7</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>EHA - Til super 240ml</h3>
@@ -611,8 +629,8 @@
       </article>
       <article class="card" id="card-VCR-7" data-target="đạo ôn lá, cổ bông, cổ gié trừ nấm · đặc trị đạo ôn vcr usa- x3 vochiron - đạo ôn 3 hoạt chất feno tricy sulfua">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-7.jpg" alt="VCR USA- X3 vochiron - Đạo ôn 3 hoạt chất feno tricy sulfua"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-7.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p094.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p096.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p095.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-7</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>VCR USA- X3 vochiron - Đạo ôn 3 hoạt chất feno tricy sulfua</h3>
@@ -627,8 +645,8 @@
       </article>
       <article class="card" id="card-VCR-8" data-target="đạo ôn lá, cổ bông trừ nấm · đặc trị đạo ôn vcr usa đạo ôn an nông nước">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-8.jpg" alt="VCR USA ĐẠO ÔN AN NÔNG NƯỚC"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-8.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p097.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-8</span></div>
           <h3>VCR USA ĐẠO ÔN AN NÔNG NƯỚC</h3>
@@ -643,8 +661,8 @@
       </article>
       <article class="card" id="card-VCR-23" data-target="đạo ôn lá, cổ bông trừ nấm · đặc trị đạo ôn vcr usa đạo ôn an nông nước">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-23.jpg" alt="VCR USA ĐẠO ÔN AN NÔNG NƯỚC"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-23.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p080.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-23</span></div>
           <h3>VCR USA ĐẠO ÔN AN NÔNG NƯỚC</h3>
@@ -659,8 +677,8 @@
       </article>
       <article class="card" id="card-EHA-16" data-target="đạo ôn + khô vằn + lem lép trừ nấm · đặc trị đạo ôn eha bim sữa nước">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-16.jpg" alt="EHA BIM SỮA NƯỚC"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-EHA-16.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p018.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p019.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-16</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>EHA BIM SỮA NƯỚC</h3>
@@ -675,8 +693,8 @@
       </article>
       <article class="card" id="card-EHA-14" data-target="bạc lá, héo rũ thuốc trừ vi khuẩn eha- khuẩn nhật nước 500ml">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-14.jpg" alt="EHA- KHUẨN NHẬT Nước 500ml"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-EHA-14.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p013.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p012.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p014.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-14</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>EHA- KHUẨN NHẬT Nước 500ml</h3>
@@ -691,8 +709,8 @@
       </article>
       <article class="card" id="card-EHA-9" data-target="đạo ôn lá và cổ bông trừ nấm · đặc trị đạo ôn eha fusione nhật fujione đạo ôn">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-9.jpg" alt="EHA FUSIONE NHẬT FUJIONE đạo ôn"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-EHA-9.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p039.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p041.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p040.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-9</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>EHA FUSIONE NHẬT FUJIONE đạo ôn</h3>
@@ -707,8 +725,8 @@
       </article>
       <article class="card" id="card-VCR-10" data-target="đạo ôn lá và cổ bông, khô vằn nhẹ trừ nấm · đặc trị đạo ôn vcr usa - katy usa đạo ôn 3 hoạt chất tricy iso hexa">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-10.jpg" alt="VCR USA - KATY USA ĐẠO ÔN 3 hoạt chất tricy iso hexa"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-10.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p043.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p042.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p044.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-10</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>VCR USA - KATY USA ĐẠO ÔN 3 hoạt chất tricy iso hexa</h3>
@@ -723,8 +741,8 @@
       </article>
       <article class="card" id="card-EHA-8" data-target="bạc lá, đốm sọc, thối gốc thuốc trừ vi khuẩn eha khuẩn nhật 3 hoạt chất cực mạnh gói 100gr">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-8.jpg" alt="EHA KHUẨN NHẬT 3 hoạt chất cực mạnh GÓI 100gr"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-EHA-8.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p036.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p037.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p038.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-8</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>EHA KHUẨN NHẬT 3 hoạt chất cực mạnh GÓI 100gr</h3>
@@ -739,8 +757,8 @@
       </article>
       <article class="card" id="card-EHA-11" data-target="đạo ôn lá, cổ bông, cổ gié trừ nấm · đặc trị đạo ôn eha bim nhật 100gr đạo ôn">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-11.jpg" alt="EHA BIM NHẬT 100GR đạo ôn"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-EHA-11.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p005.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p004.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p006.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-11</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>EHA BIM NHẬT 100GR đạo ôn</h3>
@@ -755,8 +773,8 @@
       </article>
       <article class="card" id="card-VCR-15" data-target="bạc lá, đốm sọc vi khuẩn thuốc trừ vi khuẩn vcr khuẩn mỹ bio usa 250wp 2 hoạt chất 100gr">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-15.jpg" alt="VCR KHUẨN MỸ BIO USA 250wp 2 Hoạt chất 100gr"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-15.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p058.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p057.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p059.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-15</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>VCR KHUẨN MỸ BIO USA 250wp 2 Hoạt chất 100gr</h3>
@@ -771,8 +789,8 @@
       </article>
       <article class="card" id="card-VCR-17" data-target="đạo ôn + bạc lá cùng lúc nấm + khuẩn kép vcr usa - antibac 100gr ( đạo ôn vi khuẩn 3 hoạt chất)">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-17.jpg" alt="VCR USA - ANTIBAC 100gr ( đạo ôn vi khuẩn 3 hoạt chất)"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-17.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p061.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p062.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p060.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-17</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>VCR USA - ANTIBAC 100gr ( đạo ôn vi khuẩn 3 hoạt chất)</h3>
@@ -787,8 +805,8 @@
       </article>
       <article class="card" id="card-VCR-11" data-target="sương mai, thối; nấm tiếp xúc phổ rộng trừ nấm · phổ rộng vcr usa rimin ridomil">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-11.jpg" alt="VCR USA RIMIN RIDOMIL"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-11.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p046.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p047.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p045.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-11</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>VCR USA RIMIN RIDOMIL</h3>
@@ -814,8 +832,8 @@
       <div class="grid">
       <article class="card" id="card-VCR-22" data-target="kích rễ, đẻ nhánh, cải tạo đất dinh dưỡng · kích rễ vcr- humic thay thế dap - sihu new đỏ cứng cây 1 kg">
         <div class="ribbon">★ BÁN CHẠY #1</div>
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-22.jpg" alt="VCR- HUMIC THAY THẾ DAP - SIHU NEW ĐỎ CỨNG CÂY 1 KG"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-22.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p078.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p079.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p077.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-22</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>VCR- HUMIC THAY THẾ DAP - SIHU NEW ĐỎ CỨNG CÂY 1 KG</h3>
@@ -830,8 +848,8 @@
       </article>
       <article class="card" id="card-EHA-12" data-target="hạt no, nặng, chín đẹp dinh dưỡng · nuôi hạt eha bio nước organic 500ml">
         <div class="ribbon">★ BÁN CHẠY #8</div>
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-12.jpg" alt="EHA BIO Nước ORGANIC 500ml"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-EHA-12.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p008.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p009.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p007.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-12</span></div>
           <h3>EHA BIO Nước ORGANIC 500ml</h3>
@@ -846,8 +864,8 @@
       </article>
       <article class="card" id="card-EHA-5" data-target="cứng cây, nở bụi, mập đòng, xanh lá dinh dưỡng · cứng cây eha antracol nước 1 lít ( siêu cứng cây, xanh lá)">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-5.jpg" alt="EHA Antracol nước 1 lít ( siêu cứng cây, xanh lá)"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-EHA-5.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p028.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p029.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p030.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-5</span><span class="tier t-cc">Cao cấp</span></div>
           <h3>EHA Antracol nước 1 lít ( siêu cứng cây, xanh lá)</h3>
@@ -862,8 +880,8 @@
       </article>
       <article class="card" id="card-VCR-21" data-target="ra rễ cám, xanh lá, hạ phèn dinh dưỡng · kích rễ vcr usa - hydrophos 1 lít">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-21.jpg" alt="VCR USA - Hydrophos 1 Lít"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-21.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p075.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p076.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p074.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-21</span><span class="tier t-cc">Cao cấp</span></div>
           <h3>VCR USA - Hydrophos 1 Lít</h3>
@@ -878,8 +896,8 @@
       </article>
       <article class="card" id="card-VCR-2" data-target="chống đổ ngã dinh dưỡng · cứng cây vcr cứng cây chống sập 500ml">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-2.jpg" alt="VCR CỨNG CÂY CHỐNG SẬP 500ml"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-2.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p082.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p081.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-2</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>VCR CỨNG CÂY CHỐNG SẬP 500ml</h3>
@@ -894,8 +912,8 @@
       </article>
       <article class="card" id="card-VCR-16" data-target="chống đổ ngã dinh dưỡng · cứng cây vcr cứng cây chống sập 500ml">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-16.jpg" alt="VCR CỨNG CÂY CHỐNG SẬP 500ml"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-16.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p082.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p081.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-16</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>VCR CỨNG CÂY CHỐNG SẬP 500ml</h3>
@@ -910,8 +928,8 @@
       </article>
       <article class="card" id="card-EHA-4" data-target="kích rễ, nở bụi, xanh lá dinh dưỡng · kích rễ eha siêu ra rể nở bụi cứng cây xanh lá 1 lít">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-4.jpg" alt="EHA Siêu ra rể nở bụi cứng cây xanh lá 1 lít"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-EHA-4.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p026.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p025.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p027.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-4</span></div>
           <h3>EHA Siêu ra rể nở bụi cứng cây xanh lá 1 lít</h3>
@@ -926,8 +944,8 @@
       </article>
       <article class="card" id="card-VCR-5" data-target="mập đòng, trổ đều dinh dưỡng · đón đòng vcr bloom power kích trổ, mập đòng">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-5.jpg" alt="VCR BLOOM POWER kích trổ, mập đòng"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-5.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p089.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p088.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p090.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-5</span></div>
           <h3>VCR BLOOM POWER kích trổ, mập đòng</h3>
@@ -942,8 +960,8 @@
       </article>
       <article class="card" id="card-VCR-6" data-target="bén rễ, bung đọt dinh dưỡng · kích rễ vcr usa comcat nước 500cc">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-6.jpg" alt="VCR USA Comcat nước 500cc"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-6.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p091.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p092.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p093.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-6</span></div>
           <h3>VCR USA Comcat nước 500cc</h3>
@@ -958,8 +976,8 @@
       </article>
       <article class="card" id="card-VCR-1" data-target="rễ yếu, phèn, đẻ nhánh kém dinh dưỡng · kích rễ vcr gói bio ra rể hạ phèn nở bụi 50gr">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-1.jpg" alt="VCR GÓI BIO RA RỂ HẠ PHÈN NỞ BỤI 50gr"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-1.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p069.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p070.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-1</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>VCR GÓI BIO RA RỂ HẠ PHÈN NỞ BỤI 50gr</h3>
@@ -974,8 +992,8 @@
       </article>
       <article class="card" id="card-VCR-9" data-target="bù vi lượng, dưỡng cây dinh dưỡng · kích rễ vcr usa - super biocat ( comcat, supercat usa)">
         
-        <div class="thumb"><div class="noimg">🖼️ Chưa có ảnh</div></div>
-        
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-9.jpg" alt="VCR USA - SUPER BIOCAT ( comcat, supercat usa)"></div>
+        <div class="thumbs"><img loading="lazy" src="assets/mk-VCR-9.jpg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p098.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p099.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"><img loading="lazy" src="assets/p100.jpeg" alt="" onclick="this.closest('.card').querySelector('.mainimg').src=this.src"></div>
         <div class="body">
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-9</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>VCR USA - SUPER BIOCAT ( comcat, supercat usa)</h3>
@@ -1034,6 +1052,46 @@
       <p class="stg-foot">⚠️ Luân phiên nhóm cơ chế — không dùng cùng một nhóm quá 2 lần liên tiếp trong vụ. Phun thuốc sâu theo ngưỡng để giữ thiên địch. Không phun lúc lúa phơi màu (9–14h).</p>
     </section>
 
+    <section class="cat" id="combo" style="--cat:#e65100">
+      <div class="cat-head">
+        <div class="cat-icon">🧺</div>
+        <div>
+          <h2>Combo theo phác đồ <span class="count">Mua trọn 1 cữ phun</span></h2>
+          <p class="cat-tag">Nguyên tắc mỗi cữ: <b>sâu + bệnh + vi khuẩn</b> — bấm 1 nút là đủ bộ cho giai đoạn, khỏi chọn từng món. Liều lượng tư vấn theo nhãn &amp; diện tích: nhắn <a href="https://zalo.me/0933526086" target="_blank" rel="noopener">Zalo kỹ thuật</a>.</p>
+        </div>
+      </div>
+      <div class="combo-grid">
+    <div class="cbc">
+      <div class="cb-head"><span class="cb-ic">🌱</span><div><b>Combo Lúa non</b><span class="cb-st">G1–G2 · Mạ – Đẻ nhánh</span></div></div>
+      <div class="cbi"><a href="#card-EHA-4">Siêu Ra Rễ Nở Bụi Cứng Cây Xanh Lá 1L</a><b>140.000đ</b></div><div class="cbi"><a href="#card-VCR-6">Comcat nước 500cc</a><b>90.000đ</b></div><div class="cbi"><a href="#card-VCR-3">Ichibio</a><b>230.000đ</b></div>
+      <p class="cb-note">Nở bụi + bén rễ bung đọt + trị bọ trĩ (có thể thay Ichibio bằng Siêu 3.6 — VCR-4)</p>
+      <div class="cb-total"><span>Tổng combo</span><strong>460.000đ</strong></div>
+      <button class="combo-btn" data-items='[["EHA-4", "Siêu Ra Rễ Nở Bụi Cứng Cây Xanh Lá 1L", 140000], ["VCR-6", "Comcat nước 500cc", 90000], ["VCR-3", "Ichibio", 230000]]'>🛒 Thêm cả combo vào đơn</button>
+    </div>
+    <div class="cbc">
+      <div class="cb-head"><span class="cb-ic">🌾</span><div><b>Combo Đón đòng</b><span class="cb-st">G3 · Làm đòng (40–45 NSS)</span></div></div>
+      <div class="cbi"><a href="#card-VCR-5">Bloom Power</a><b>105.000đ</b></div><div class="cbi"><a href="#card-VCR-12">Bim USA</a><b>65.000đ</b></div><div class="cbi"><a href="#card-EHA-2">Siêu Khuẩn USA 240cc</a><b>95.000đ</b></div><div class="cbi"><a href="#card-VCR-3">Ichibio</a><b>230.000đ</b></div>
+      <p class="cb-note">Chuẩn 1 cữ: bệnh + khuẩn + sâu, thêm Bloom Power cho trổ thoát đồng loạt</p>
+      <div class="cb-total"><span>Tổng combo</span><strong>495.000đ</strong></div>
+      <button class="combo-btn" data-items='[["VCR-5", "Bloom Power", 105000], ["VCR-12", "Bim USA", 65000], ["EHA-2", "Siêu Khuẩn USA 240cc", 95000], ["VCR-3", "Ichibio", 230000]]'>🛒 Thêm cả combo vào đơn</button>
+    </div>
+    <div class="cbc">
+      <div class="cb-head"><span class="cb-ic">🛡️</span><div><b>Combo Trước & Sau trổ</b><span class="cb-st">G4 · Cữ 1 + Cữ 2 quanh trổ</span></div></div>
+      <div class="cbi"><a href="#card-EHA-3">Help Châu Âu — Heppy Top 400</a><b>250.000đ</b></div><div class="cbi"><a href="#card-VCR-12">Bim USA</a><b>65.000đ</b></div><div class="cbi"><a href="#card-EHA-2">Siêu Khuẩn USA 240cc</a><b>95.000đ</b></div><div class="cbi"><a href="#card-VCR-3">Ichibio</a><b>230.000đ</b></div>
+      <p class="cb-note">Đạo ôn có thể thay: Bim Nhật (EHA-11) / Takana (EHA-15) · Khuẩn thay: Khuẩn Nhật nước (EHA-14) / gói 3 hoạt chất (EHA-8)</p>
+      <div class="cb-total"><span>Tổng combo</span><strong>640.000đ</strong></div>
+      <button class="combo-btn" data-items='[["EHA-3", "Help Châu Âu — Heppy Top 400", 250000], ["VCR-12", "Bim USA", 65000], ["EHA-2", "Siêu Khuẩn USA 240cc", 95000], ["VCR-3", "Ichibio", 230000]]'>🛒 Thêm cả combo vào đơn</button>
+    </div>
+    <div class="cbc">
+      <div class="cb-head"><span class="cb-ic">🍚</span><div><b>Combo Cữ cuối — Vô gạo</b><span class="cb-st">G5 · 15 ngày trước cắt</span></div></div>
+      <div class="cbi"><a href="#card-EHA-9">Fusione Nhật (Fujione)</a><b>90.000đ</b></div><div class="cbi"><a href="#card-EHA-7">Til Super 240ml</a><b>160.000đ</b></div><div class="cbi"><a href="#card-EHA-12">Bio Nước Organic 500ml</a><b>120.000đ</b></div>
+      <p class="cb-note">Fusione chặn đạo ôn cổ bông muộn + Til bảo vệ lá đòng + Bio đẩy tinh bột vô hạt</p>
+      <div class="cb-total"><span>Tổng combo</span><strong>370.000đ</strong></div>
+      <button class="combo-btn" data-items='[["EHA-9", "Fusione Nhật (Fujione)", 90000], ["EHA-7", "Til Super 240ml", 160000], ["EHA-12", "Bio Nước Organic 500ml", 120000]]'>🛒 Thêm cả combo vào đơn</button>
+    </div>
+      </div>
+    </section>
+
     <section class="cat" id="video" style="--cat:#d81b60">
       <div class="cat-head">
         <div class="cat-icon">🎬</div>
@@ -1062,7 +1120,7 @@
         <div class="pf"><b>2,67 tỷ</b><span>doanh thu thuần 8 tháng</span></div>
         <div class="pf"><b>0đ</b><span>hàng bị trả lại</span></div>
       </div>
-      
+      <div class="fb-grid"><div class="fbc"><p class="fbq">“Lúa xanh mỡ gà, hạt chắc tới cậy nhờ tui xài Nativo, Takana và Khuẩn gói 3 hoạt chất cữ trước – sau trổ 7 ngày, Bio vô gạo 15 ngày trước khi cắt.”</p><div class="fbw"><b>Anh Dương</b><span>Dùng: Nativo · Takana · Khuẩn Nhật 3 hoạt chất · Bio vô gạo</span></div></div><div class="fbc"><p class="fbq">“Chú khoái Katy USA có 3 hoạt chất đạo ôn, xài mướt lúa dữ lắm.”</p><div class="fbw"><b>Chú 3 Triều</b><span>Dùng: Katy USA</span></div></div><div class="fbc"><p class="fbq">“Anh xài 3 cữ Nativo kèm Bim USA: cữ đón đòng, trước trổ và sau trổ.”</p><div class="fbw"><b>Anh Linh</b><span>Dùng: Nativo · Bim USA</span></div></div><div class="fbc"><p class="fbq">“Bác Tư xài hầu như đủ bộ VCR, Hữu Lư kê thuốc lúc nào bác làm cũng nhất đồng: Takana, Bim USA, Padan Nhật, Antracol nước, Siêu nở bụi — từ đầu tới cuối vụ.”</p><div class="fbw"><b>Bác Tư Nhu</b><span>Dùng: Takana · Bim USA · Padan · Antracol nước · Siêu nở bụi</span></div></div><div class="fbc"><p class="fbq">“Bây giờ bác xài toàn hàng VOCHIRON và EHA — hàng chất lượng mà giá hợp lý, cuối vụ còn có quà tặng. Quan trọng vụ này bác làm 7 tấn rưỡi, cao hơn mấy người xung quanh mà chi phí thấp hơn.”</p><div class="fbw"><b>Bác 7 Dư</b><span>Dùng: Trọn bộ VOCHIRON &amp; EHA</span></div></div></div>
       <div class="fb-invite">
         <b>🎁 Bà con đã dùng sản phẩm VOCHIRON/EHA hiệu quả?</b>
         <span>Gửi hình ruộng + vài dòng cảm nhận qua <a href="https://zalo.me/0933526086" target="_blank" rel="noopener">Zalo kỹ thuật 0933 526 086</a> — phản hồi được đăng lên đây sẽ nhận <b>ưu đãi cho đơn kế tiếp</b>.</span>
@@ -1207,6 +1265,11 @@ async function sendZalo(){
   window.open('https://zalo.me/0933246086','_blank');
 }
 document.addEventListener('click',function(e){
+  var cb=e.target.closest('.combo-btn');
+  if(cb){try{JSON.parse(cb.dataset.items).forEach(function(it){
+    if(!cart[it[0]])cart[it[0]]={name:it[1],price:+it[2],qty:0};
+    cart[it[0]].qty++;
+  });renderCart();openCart();}catch(err){}return;}
   var a=e.target.closest('.add-btn');
   if(a){addToCart(a.dataset.code,a.dataset.name,+a.dataset.price);return;}
   var t=e.target;
