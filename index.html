@@ -1241,7 +1241,7 @@
       <button class="om-send" onclick="sendZalo()">📤 Gửi đơn qua Zalo mua hàng</button>
       <a class="om-tech" href="https://zalo.me/84933526086" target="_blank" rel="noopener">🧑‍🌾 Hỏi kỹ thuật</a>
     </div>
-    <p class="om-note">Bấm “Gửi đơn” sẽ tự sao chép nội dung đơn và mở Zalo mua hàng (0933 246 086). Bạn chỉ cần dán &amp; gửi để chốt đơn.</p>
+    <p class="om-note">📱 Trên điện thoại: bấm “Gửi đơn” → chọn <b>Zalo</b> trong bảng chia sẻ → chọn <b>0933 246 086</b> → Gửi (nội dung đơn tự đính kèm). 💻 Trên máy tính: đơn được copy sẵn, mở Zalo và dán vào chat.</p>
   </div>
 </div>
 
@@ -1287,15 +1287,22 @@ function orderText(){
 async function sendZalo(){
   if(!count()){alert('Vui lòng thêm ít nhất 1 sản phẩm vào đơn.');return;}
   var text=orderText();
+  track('InitiateCheckout',{value:total(),currency:'VND',num_items:count()});
   var ok=false;
   try{await navigator.clipboard.writeText(text);ok=true;}catch(e){}
   var ta=document.getElementById('order-ta');
-  if(ta){ta.value=text; ta.style.display='block'; if(!ok){ta.focus();ta.select();}}
+  if(ta){ta.value=text; ta.style.display='block';}
   var c=document.getElementById('order-copied');
+  // Điện thoại: share sheet mang NGUYÊN VĂN đơn vào Zalo (chọn Zalo → chọn số 0933 246 086 → Gửi)
+  if(navigator.share){
+    if(c){c.style.display='block';
+      c.textContent='👉 Chọn ZALO trong bảng chia sẻ → chọn số 0933 246 086 → bấm Gửi. Nội dung đơn đã đính kèm sẵn (và đã copy dự phòng).';}
+    try{ await navigator.share({title:'ĐƠN HÀNG VOCHIRON', text:text}); return; }
+    catch(e){ /* khách bấm huỷ hoặc máy không hỗ trợ → rơi xuống cách mở Zalo */ }
+  }
   if(c){c.style.display='block'; c.textContent= ok
-    ? '✅ Đã sao chép nội dung đơn — dán (Ctrl/⌘+V) vào khung chat Zalo rồi gửi nhé!'
+    ? '✅ Đã sao chép nội dung đơn — dán (Ctrl/⌘+V) vào khung chat Zalo 0933 246 086 rồi gửi nhé!'
     : '⚠️ Trình duyệt không tự copy được — hãy bôi đen nội dung trong ô dưới, copy rồi dán vào Zalo:';}
-  track('InitiateCheckout',{value:total(),currency:'VND',num_items:count()});
   window.open('https://zalo.me/84933246086','_blank');
 }
 // đo mọi cú bấm sang Zalo
