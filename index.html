@@ -160,6 +160,21 @@
   .tiktok-grid{display:flex;gap:20px;flex-wrap:wrap}
   .cat-tag a{color:var(--blue)}
 
+  /* feedback / social proof */
+  .proof{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin-bottom:18px}
+  .pf{background:linear-gradient(135deg,#eefaea,#fff);border:1px solid #b3e0aa;border-radius:14px;
+    padding:18px;text-align:center}
+  .pf b{display:block;font-size:30px;font-weight:800;color:var(--green)}
+  .pf span{font-size:13px;color:#41563f;font-weight:600}
+  .fb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px;margin-bottom:18px}
+  .fbc{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px}
+  .fbq{margin:0 0 10px;font-style:italic;color:#33413a;font-size:14.5px;line-height:1.55}
+  .fbw{font-size:13px;color:#1c6b02} .fbw span{display:block;color:var(--muted);font-size:12px}
+  .fb-invite{background:#fff8e6;border:1px solid #f0d090;border-radius:14px;padding:16px 20px}
+  .fb-invite b{display:block;margin-bottom:4px;color:#5b4a1f}
+  .fb-invite span{font-size:14px;color:#6b5a2f}
+  .fb-invite a{color:var(--blue);font-weight:700}
+
   /* logo badge (nav/footer) */
   .logo-slot{display:inline-flex;flex:none}
   .logo-badge{object-fit:cover;border-radius:8px}
@@ -282,6 +297,7 @@
     <a href="#dd">🌱 Dinh dưỡng</a>
     <a href="#phacdo">📋 Phác đồ lúa</a>
     <a href="#video">🎬 Video</a>
+    <a href="#feedback">🤝 Tin dùng</a>
     <a href="to-roi-vochiron-a5.pdf" target="_blank" rel="noopener">📄 Tờ rơi A5</a>
     <a href="#order" class="n-order">🛒 Đặt hàng</a>
     <input id="search" type="search" placeholder="🔎 Tìm sản phẩm, hoạt chất, bệnh…">
@@ -1031,6 +1047,27 @@
       <section><a target="_blank" rel="noopener" href="https://www.tiktok.com/@vtnn.lenguyen2/video/7680798244829531413">Xem video trên TikTok</a></section></blockquote></div>
     </section>
     <script async src="https://www.tiktok.com/embed.js"></script>
+
+    <section class="cat" id="feedback" style="--cat:#218b03">
+      <div class="cat-head">
+        <div class="cat-icon">🤝</div>
+        <div>
+          <h2>Nông dân tin dùng <span class="count">Số liệu thật từ hệ thống bán hàng</span></h2>
+          <p class="cat-tag">Kỳ 01/01 – 03/09/2026 · Chi nhánh Lê Nguyễn 2 (đã trừ trả hàng — tỷ lệ trả hàng: 0đ)</p>
+        </div>
+      </div>
+      <div class="proof">
+        <div class="pf"><b>208</b><span>khách hàng đã mua</span></div>
+        <div class="pf"><b>24.914</b><span>sản phẩm đã bán ra</span></div>
+        <div class="pf"><b>2,67 tỷ</b><span>doanh thu thuần 8 tháng</span></div>
+        <div class="pf"><b>0đ</b><span>hàng bị trả lại</span></div>
+      </div>
+      
+      <div class="fb-invite">
+        <b>🎁 Bà con đã dùng sản phẩm VOCHIRON/EHA hiệu quả?</b>
+        <span>Gửi hình ruộng + vài dòng cảm nhận qua <a href="https://zalo.me/0933526086" target="_blank" rel="noopener">Zalo kỹ thuật 0933 526 086</a> — phản hồi được đăng lên đây sẽ nhận <b>ưu đãi cho đơn kế tiếp</b>.</span>
+      </div>
+    </section>
 </main>
 
 <div class="slogan">
