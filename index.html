@@ -285,9 +285,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
   .om-send:hover{filter:brightness(1.07)}
   .om-tech{display:flex;align-items:center;text-decoration:none;background:#eef2f6;color:var(--ink);font-weight:700;font-size:13px;padding:0 14px;border-radius:12px}
   .om-note{font-size:11.5px;color:var(--muted);margin:8px 0 0}
-  .om-share{margin-top:8px;width:100%;border:1px dashed var(--line);background:#f7fafc;color:#44607e;
-    font-weight:600;font-size:12.5px;padding:9px;border-radius:10px;cursor:pointer}
-  .om-share:hover{border-color:var(--blue);color:var(--blue)}
+  .om-send:disabled{background:#8fbf85;cursor:default}
+  .om-actions{margin-top:8px}
+  .om-zalo{flex:1;border:1px solid var(--blue);background:#eef5ff;color:var(--blue-d);
+    font-weight:700;font-size:13px;padding:10px;border-radius:11px;cursor:pointer}
+  .om-zalo:hover{background:var(--blue);color:#fff}
 
   @media(max-width:640px){.tagline{margin-left:0;text-align:left;border-left:0;padding-left:0}.logo-txt .name{font-size:27px}.hero-lockup{height:58px}}
 </style>
@@ -1244,12 +1246,12 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
     </div>
     <p id="order-copied" class="om-copied">✅ Đã sao chép nội dung đơn — dán (Ctrl/⌘+V) vào khung chat Zalo rồi gửi nhé!</p>
     <textarea id="order-ta" class="om-ta" style="display:none" readonly></textarea>
+    <button class="om-send" id="btn-order" onclick="submitOrder()">✅ ĐẶT HÀNG NGAY — Cửa hàng sẽ gọi lại</button>
     <div class="om-actions">
-      <button class="om-send" onclick="sendZalo()">📤 Gửi đơn qua Zalo mua hàng</button>
+      <button class="om-zalo" onclick="sendZalo()">💬 Hoặc nhắn Zalo 0933 246 086</button>
       <a class="om-tech" href="https://zalo.me/84933526086" target="_blank" rel="noopener">🧑‍🌾 Hỏi kỹ thuật</a>
     </div>
-    <button class="om-share" onclick="shareZalo()">📎 Hoặc gửi kèm nội dung qua bảng chia sẻ</button>
-    <p class="om-note">Bấm “Gửi đơn”: đơn tự COPY + mở thẳng Zalo <b>0933 246 086</b> → vào chat nhấn giữ → Dán → Gửi. Đơn hàng được lưu lại, quay về trang vẫn còn nguyên.</p>
+    <p class="om-note">Chỉ cần điền <b>SỐ ĐIỆN THOẠI</b> rồi bấm nút xanh — đơn tới cửa hàng ngay, VOCHIRON gọi lại xác nhận trong giờ làm việc. Không cần thao tác gì thêm.</p>
   </div>
 </div>
 
@@ -1307,6 +1309,39 @@ async function sendZalo(){
     : '⚠️ Hãy bôi đen nội dung trong ô dưới để copy, rồi dán vào chat Zalo 0933 246 086.';}
   // Mở CÙNG TAB để deep-link vào thẳng Zalo (mở tab mới hay bị rớt về feed)
   setTimeout(function(){ window.location.href='https://zalo.me/84933246086'; }, 700);
+}
+// ĐẶT HÀNG 1 NÚT: web tự gửi đơn về email cửa hàng (FormSubmit) — khách không cần thao tác Zalo
+async function submitOrder(){
+  if(!count()){alert('Bà con bấm “＋ Thêm vào đơn” ở sản phẩm muốn mua trước nhé!');return;}
+  var g=function(id){return (document.getElementById(id).value||'').trim();};
+  if(!g('c-phone')){alert('Bà con cho xin SỐ ĐIỆN THOẠI để cửa hàng gọi lại xác nhận nhé!');
+    document.getElementById('c-phone').focus();return;}
+  var btn=document.getElementById('btn-order');
+  btn.disabled=true; var old=btn.textContent; btn.textContent='⏳ Đang gửi đơn…';
+  var payload={
+    _subject:'🛒 ĐƠN WEB: '+(g('c-name')||'Khách')+' — '+money(total())+' — '+g('c-phone'),
+    _template:'box',
+    ten_khach:g('c-name')||'(chưa điền)', so_dien_thoai:g('c-phone'),
+    dia_chi:g('c-addr')||'(chưa điền)', ghi_chu:g('c-note')||'',
+    don_hang:orderText()
+  };
+  try{
+    var r=await fetch('https://formsubmit.co/ajax/vochiron.usa@gmail.com',{method:'POST',
+      headers:{'Content-Type':'application/json','Accept':'application/json'},
+      body:JSON.stringify(payload)});
+    var j=await r.json();
+    if(!(j.success==='true'||j.success===true)) throw 0;
+    track('Lead',{value:total(),currency:'VND'});
+    var c=document.getElementById('order-copied');
+    if(c){c.style.display='block';
+      c.textContent='🎉 ĐÃ GỬI ĐƠN THÀNH CÔNG! VOCHIRON sẽ GỌI LẠI số '+g('c-phone')+' để xác nhận. Cảm ơn bà con!';}
+    for(var k in cart) delete cart[k];
+    renderCart();
+    btn.textContent='✅ Đã gửi đơn — chờ cửa hàng gọi lại';
+  }catch(e){
+    btn.disabled=false; btn.textContent=old;
+    alert('Mạng đang trục trặc, chưa gửi được — bà con bấm nút “💬 Nhắn Zalo” bên dưới giúp cửa hàng nhé!');
+  }
 }
 function shareZalo(){
   if(!count()){alert('Vui lòng thêm ít nhất 1 sản phẩm vào đơn.');return;}
