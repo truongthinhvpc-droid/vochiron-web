@@ -285,6 +285,9 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
   .om-send:hover{filter:brightness(1.07)}
   .om-tech{display:flex;align-items:center;text-decoration:none;background:#eef2f6;color:var(--ink);font-weight:700;font-size:13px;padding:0 14px;border-radius:12px}
   .om-note{font-size:11.5px;color:var(--muted);margin:8px 0 0}
+  .om-share{margin-top:8px;width:100%;border:1px dashed var(--line);background:#f7fafc;color:#44607e;
+    font-weight:600;font-size:12.5px;padding:9px;border-radius:10px;cursor:pointer}
+  .om-share:hover{border-color:var(--blue);color:var(--blue)}
 
   @media(max-width:640px){.tagline{margin-left:0;text-align:left;border-left:0;padding-left:0}.logo-txt .name{font-size:27px}.hero-lockup{height:58px}}
 </style>
@@ -1215,7 +1218,7 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
         <div><b>Zalo mua hàng:</b> <a href="https://zalo.me/84933246086" target="_blank" rel="noopener">0933 246 086</a></div>
         <div><b>Zalo kỹ thuật:</b> <a href="https://zalo.me/84933526086" target="_blank" rel="noopener">0933 526 086</a></div>
         <div><b>Email:</b> <a href="mailto:vochiron.usa@gmail.com">vochiron.usa@gmail.com</a></div>
-        <div><b>Fanpage:</b> <a href="https://www.facebook.com/Vochiron" target="_blank" rel="noopener">Facebook VOCHIRON USA</a></div>
+        <div><b>Fanpage:</b> <a href="https://www.facebook.com/Vochiron" target="_blank" rel="noopener">VOCHIRON USA</a> · <a href="https://www.facebook.com/vtnnln2/" target="_blank" rel="noopener">VTNN Lê Nguyễn 2</a></div>
         <div><b>Website:</b> <a href="https://vochiron-web.vercel.app/" target="_blank" rel="noopener">vochiron-web.vercel.app</a></div>
         <div><b>Địa chỉ:</b> 91/1 Nguyễn Hồng, phường Hạnh Thông, TP. Hồ Chí Minh</div>
       </div>
@@ -1247,7 +1250,8 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
       <button class="om-send" onclick="sendZalo()">📤 Gửi đơn qua Zalo mua hàng</button>
       <a class="om-tech" href="https://zalo.me/84933526086" target="_blank" rel="noopener">🧑‍🌾 Hỏi kỹ thuật</a>
     </div>
-    <p class="om-note">📱 Trên điện thoại: bấm “Gửi đơn” → chọn <b>Zalo</b> trong bảng chia sẻ → chọn <b>0933 246 086</b> → Gửi (nội dung đơn tự đính kèm). 💻 Trên máy tính: đơn được copy sẵn, mở Zalo và dán vào chat.</p>
+    <button class="om-share" onclick="shareZalo()">📎 Hoặc gửi kèm nội dung qua bảng chia sẻ</button>
+    <p class="om-note">Bấm “Gửi đơn”: đơn tự COPY + mở thẳng Zalo <b>0933 246 086</b> → vào chat nhấn giữ → Dán → Gửi. Đơn hàng được lưu lại, quay về trang vẫn còn nguyên.</p>
   </div>
 </div>
 
@@ -1265,6 +1269,7 @@ function setQty(code,d){ if(cart[code]){cart[code].qty+=d; if(cart[code].qty<=0)
 function count(){return Object.values(cart).reduce((s,i)=>s+i.qty,0);}
 function total(){return Object.values(cart).reduce((s,i)=>s+i.qty*i.price,0);}
 function renderCart(){
+  try{localStorage.setItem('vcr_cart',JSON.stringify(cart));}catch(e){}
   const n=count();
   document.getElementById('fab-count').textContent=n;
   document.getElementById('fab').classList.toggle('has',n>0);
@@ -1299,17 +1304,17 @@ async function sendZalo(){
   var ta=document.getElementById('order-ta');
   if(ta){ta.value=text; ta.style.display='block';}
   var c=document.getElementById('order-copied');
-  // Điện thoại: share sheet mang NGUYÊN VĂN đơn vào Zalo (chọn Zalo → chọn số 0933 246 086 → Gửi)
-  if(navigator.share){
-    if(c){c.style.display='block';
-      c.textContent='👉 Chọn ZALO trong bảng chia sẻ → chọn số 0933 246 086 → bấm Gửi. Nội dung đơn đã đính kèm sẵn (và đã copy dự phòng).';}
-    try{ await navigator.share({title:'ĐƠN HÀNG VOCHIRON', text:text}); return; }
-    catch(e){ /* khách bấm huỷ hoặc máy không hỗ trợ → rơi xuống cách mở Zalo */ }
-  }
   if(c){c.style.display='block'; c.textContent= ok
-    ? '✅ Đã sao chép nội dung đơn — dán (Ctrl/⌘+V) vào khung chat Zalo 0933 246 086 rồi gửi nhé!'
-    : '⚠️ Trình duyệt không tự copy được — hãy bôi đen nội dung trong ô dưới, copy rồi dán vào Zalo:';}
-  window.open('https://zalo.me/84933246086','_blank');
+    ? '✅ Đơn đã COPY sẵn! Zalo đang mở tới 0933 246 086 — vào khung chat: NHẤN GIỮ → DÁN → Gửi.'
+    : '⚠️ Hãy bôi đen nội dung trong ô dưới để copy, rồi dán vào chat Zalo 0933 246 086.';}
+  // Mở CÙNG TAB để deep-link vào thẳng Zalo (mở tab mới hay bị rớt về feed)
+  setTimeout(function(){ window.location.href='https://zalo.me/84933246086'; }, 700);
+}
+function shareZalo(){
+  if(!count()){alert('Vui lòng thêm ít nhất 1 sản phẩm vào đơn.');return;}
+  var text=orderText();
+  if(navigator.share){ navigator.share({title:'ĐƠN HÀNG VOCHIRON', text:text}).catch(function(){}); }
+  else{ sendZalo(); }
 }
 // đo mọi cú bấm sang Zalo
 document.addEventListener('click',function(e){
@@ -1332,6 +1337,8 @@ document.addEventListener('click',function(e){
   else if(t.dataset&&t.dataset.dec){setQty(t.dataset.dec,-1);}
   else if(t.dataset&&t.dataset.del){setQty(t.dataset.del,-999);}
 });
+// khôi phục giỏ hàng đã lưu (khách rời sang Zalo quay lại vẫn còn đơn)
+try{var _s=JSON.parse(localStorage.getItem('vcr_cart')||'{}');for(var _k in _s){if(_s[_k]&&_s[_k].qty>0)cart[_k]=_s[_k];}}catch(e){}
 renderCart();
 // search filter (free text, diacritic-insensitive)
 (function(){
