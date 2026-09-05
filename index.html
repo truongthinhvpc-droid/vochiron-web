@@ -1279,7 +1279,7 @@ function cartons(){var it=cart[PROMO.code];return it?Math.floor(it.qty/PROMO.per
 function promoDiscount(){return promoChoice==='off'?cartons()*PROMO.offPer:0;}
 function finalTotal(){return total()-promoDiscount()-shirtDiscount();}
 // ÁO THUN: mỗi THÙNG đủ quy cách (gói x100 / chai x40) = 1 áo cao cấp HOẶC giảm 200k (chuyển khoản trước)
-var PACK={"EHA-1": 40, "VCR-14": 40, "VCR-4": 40, "VCR-18": 100, "VCR-20": 100, "VCR-3": 40, "EHA-10": 40, "EHA-13": 40, "VCR-7": 40, "VCR-8": 40, "VCR-23": 40, "VCR-10": 100, "VCR-12": 100, "EHA-11": 100, "EHA-9": 40, "EHA-15": 40, "EHA-16": 40, "VCR-13": 40, "VCR-19": 100, "EHA-3": 40, "EHA-7": 40, "EHA-6": 40, "VCR-11": 100, "VCR-17": 100, "VCR-15": 100, "EHA-8": 100, "EHA-14": 40, "EHA-2": 40, "VCR-1": 100, "VCR-21": 40, "EHA-4": 20, "VCR-6": 40, "VCR-9": 100, "VCR-2": 40, "VCR-16": 40, "EHA-5": 20, "VCR-5": 40, "EHA-12": 40};
+var PACK={"EHA-1": 20, "VCR-14": 40, "VCR-4": 40, "VCR-18": 100, "VCR-20": 100, "VCR-3": 40, "EHA-10": 40, "EHA-13": 40, "VCR-7": 40, "VCR-8": 40, "VCR-23": 40, "VCR-10": 100, "VCR-12": 100, "EHA-11": 100, "EHA-9": 40, "EHA-15": 40, "EHA-16": 40, "VCR-13": 40, "VCR-19": 100, "EHA-3": 40, "EHA-7": 40, "EHA-6": 40, "VCR-11": 100, "VCR-17": 100, "VCR-15": 100, "EHA-8": 100, "EHA-14": 40, "EHA-2": 40, "VCR-1": 100, "VCR-21": 20, "EHA-4": 20, "VCR-6": 40, "VCR-9": 100, "VCR-2": 40, "VCR-16": 40, "EHA-5": 20, "VCR-5": 40, "EHA-12": 40};
 var SHIRT_OFF=200000;
 var promoChoice2='shirt';
 try{promoChoice2=localStorage.getItem('vcr_promo2')||'shirt';}catch(e){}
