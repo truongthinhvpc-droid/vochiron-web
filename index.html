@@ -344,7 +344,7 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
     </a>
     <a class="pcard gold" href="#order">
       <span class="p-ic">👕</span>
-      <span class="p-tx"><b>Mua đủ THÙNG (100 gói / 40 chai) — TẶNG ÁO THUN cao cấp</b>
+      <span class="p-tx"><b>Mua đủ THÙNG (100 gói · 40 chai · 20 chai 1L) — TẶNG ÁO THUN cao cấp</b>
       <small>Hoặc giảm 200.000đ/thùng khi chuyển khoản trước</small></span>
       <span class="p-cta">Đặt hàng →</span>
     </a>
@@ -1279,7 +1279,7 @@ function cartons(){var it=cart[PROMO.code];return it?Math.floor(it.qty/PROMO.per
 function promoDiscount(){return promoChoice==='off'?cartons()*PROMO.offPer:0;}
 function finalTotal(){return total()-promoDiscount()-shirtDiscount();}
 // ÁO THUN: mỗi THÙNG đủ quy cách (gói x100 / chai x40) = 1 áo cao cấp HOẶC giảm 200k (chuyển khoản trước)
-var PACK={"EHA-1": 40, "VCR-14": 40, "VCR-4": 40, "VCR-18": 100, "VCR-20": 100, "VCR-3": 40, "EHA-10": 40, "EHA-13": 40, "VCR-7": 40, "VCR-8": 40, "VCR-23": 40, "VCR-10": 100, "VCR-12": 100, "EHA-11": 100, "EHA-9": 40, "EHA-15": 40, "EHA-16": 40, "VCR-13": 40, "VCR-19": 100, "EHA-3": 40, "EHA-7": 40, "EHA-6": 40, "VCR-11": 100, "VCR-17": 100, "VCR-15": 100, "EHA-8": 100, "EHA-14": 40, "EHA-2": 40, "VCR-1": 100, "VCR-21": 40, "EHA-4": 40, "VCR-6": 40, "VCR-9": 100, "VCR-2": 40, "VCR-16": 40, "EHA-5": 40, "VCR-5": 40, "EHA-12": 40};
+var PACK={"EHA-1": 40, "VCR-14": 40, "VCR-4": 40, "VCR-18": 100, "VCR-20": 100, "VCR-3": 40, "EHA-10": 40, "EHA-13": 40, "VCR-7": 40, "VCR-8": 40, "VCR-23": 40, "VCR-10": 100, "VCR-12": 100, "EHA-11": 100, "EHA-9": 40, "EHA-15": 40, "EHA-16": 40, "VCR-13": 40, "VCR-19": 100, "EHA-3": 40, "EHA-7": 40, "EHA-6": 40, "VCR-11": 100, "VCR-17": 100, "VCR-15": 100, "EHA-8": 100, "EHA-14": 40, "EHA-2": 40, "VCR-1": 100, "VCR-21": 40, "EHA-4": 20, "VCR-6": 40, "VCR-9": 100, "VCR-2": 40, "VCR-16": 40, "EHA-5": 20, "VCR-5": 40, "EHA-12": 40};
 var SHIRT_OFF=200000;
 var promoChoice2='shirt';
 try{promoChoice2=localStorage.getItem('vcr_promo2')||'shirt';}catch(e){}
@@ -1315,7 +1315,7 @@ function renderCart(){
     } else {pb.style.display='none';pb.innerHTML='';}
     var sn=shirtCartons();
     if(sn>0){pb.style.display='block';
-      pb.innerHTML+='<div class="pm-sep"><img class="pm-img" src="assets/ao-thun-that.jpg" alt="Áo thun VOCHIRON" loading="lazy">🎽 <b>Đạt '+sn+' thùng đủ quy cách</b> (gói ×100 / chai ×40) — chọn ưu đãi:'
+      pb.innerHTML+='<div class="pm-sep"><img class="pm-img" src="assets/ao-thun-that.jpg" alt="Áo thun VOCHIRON" loading="lazy">🎽 <b>Đạt '+sn+' thùng đủ quy cách</b> (100 gói · 40 chai · chai 1L ×20) — chọn ưu đãi:'
       +'<label><input type="radio" name="pm2" value="shirt"'+(promoChoice2==='shirt'?' checked':'')+'> 👕 Tặng '+sn+' áo thun cao cấp VOCHIRON</label>'
       +'<label><input type="radio" name="pm2" value="off2"'+(promoChoice2==='off2'?' checked':'')+'> 💸 Giảm '+money(SHIRT_OFF*sn)+' (khi CHUYỂN KHOẢN TRƯỚC)</label>'
       +(promoChoice2==='off2'?'<div class="pm-note">Đã trừ '+money(shirtDiscount())+' — áp dụng khi bà con chuyển khoản trước.</div>':'')
