@@ -272,6 +272,14 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
   .oi-q{display:flex;align-items:center;gap:8px}
   .oi-q button{width:26px;height:26px;border-radius:7px;border:1px solid var(--line);background:#f4f7fb;cursor:pointer;font-size:15px;font-weight:700}
   .oi-q b{min-width:18px;text-align:center}
+  .oi-qin{width:46px;text-align:center;font:inherit;font-weight:800;border:1px solid var(--line);
+    border-radius:7px;padding:4px 2px;-moz-appearance:textfield}
+  .oi-qin::-webkit-outer-spin-button,.oi-qin::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+  .promo-cart{background:#fff8e6;border:2px solid #f5a623;border-radius:11px;padding:10px 12px;
+    font-size:13px;margin:8px 0 2px}
+  .promo-cart label{display:block;margin-top:6px;font-weight:700;cursor:pointer;color:#5b4a1f}
+  .promo-cart input{margin-right:6px}
+  .pm-note{margin-top:6px;font-size:12px;color:#1c6b02;font-weight:700}
   .oi-t{font-weight:800;color:var(--blue-d);font-size:13.5px;white-space:nowrap}
   .oi-x{border:none;background:none;color:#b0392e;cursor:pointer;font-size:13px}
   .om-total{display:flex;justify-content:space-between;align-items:baseline;padding:12px 2px;border-top:1px dashed var(--line);margin-top:6px}
@@ -1238,6 +1246,7 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
   <div class="om-panel">
     <div class="om-head"><b>🛒 Đơn hàng của bạn</b><button class="om-x" onclick="closeCart()" aria-label="Đóng">✕</button></div>
     <div id="order-items" class="om-items"></div>
+    <div id="promo-box" class="promo-cart" style="display:none"></div>
     <div class="om-total"><span>Tạm tính</span><strong id="order-total">0đ</strong></div>
     <div class="om-form">
       <input id="c-name" placeholder="Họ tên người nhận">
@@ -1259,6 +1268,13 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
 <script>
 const cart={};
 const money=n=>n.toLocaleString('vi-VN')+'đ';
+// KHUYẾN MÃI SIHU: đủ 24 gói/thùng → chọn 10 ghế nhựa HOẶC giảm 360.000đ/thùng
+var PROMO={code:'VCR-22',per:24,chairsPer:10,offPer:360000};
+var promoChoice='chairs';
+try{promoChoice=localStorage.getItem('vcr_promo')||'chairs';}catch(e){}
+function cartons(){var it=cart[PROMO.code];return it?Math.floor(it.qty/PROMO.per):0;}
+function promoDiscount(){return promoChoice==='off'?cartons()*PROMO.offPer:0;}
+function finalTotal(){return total()-promoDiscount();}
 // Facebook Pixel events (no-op until Pixel ID is configured)
 function track(ev,params){ if(window.fbq) fbq('track',ev,params||{}); }
 function addToCart(code,name,price){
@@ -1278,8 +1294,17 @@ function renderCart(){
   var body=document.getElementById('order-items');
   var codes=Object.keys(cart);
   if(!codes.length){ body.innerHTML='<p class="om-empty">Chưa có sản phẩm nào. Bấm “＋ Thêm vào đơn” ở sản phẩm bạn muốn mua.</p>'; }
-  else { body.innerHTML=codes.map(function(c){var i=cart[c];return '<div class="oi"><div class="oi-n">'+i.name+'<small>'+c+' · '+money(i.price)+'</small></div><div class="oi-q"><button data-dec="'+c+'">−</button><b>'+i.qty+'</b><button data-inc="'+c+'">＋</button></div><div class="oi-t">'+money(i.price*i.qty)+'</div><button class="oi-x" data-del="'+c+'" aria-label="Xóa">✕</button></div>';}).join(''); }
-  document.getElementById('order-total').textContent=money(total());
+  else { body.innerHTML=codes.map(function(c){var i=cart[c];return '<div class="oi"><div class="oi-n">'+i.name+'<small>'+c+' · '+money(i.price)+'</small></div><div class="oi-q"><button data-dec="'+c+'">−</button><input class="oi-qin" type="number" inputmode="numeric" min="0" value="'+i.qty+'" data-q="'+c+'"><button data-inc="'+c+'">＋</button></div><div class="oi-t">'+money(i.price*i.qty)+'</div><button class="oi-x" data-del="'+c+'" aria-label="Xóa">✕</button></div>';}).join(''); }
+  var pb=document.getElementById('promo-box');
+  if(pb){var pn=cartons();
+    if(pn>0){pb.style.display='block';
+      pb.innerHTML='🎁 <b>Đạt '+pn+' thùng SIHU NEW ('+(pn*PROMO.per)+' gói)</b> — bà con chọn ưu đãi:'
+      +'<label><input type="radio" name="pm" value="chairs"'+(promoChoice==='chairs'?' checked':'')+'> 🪑 Tặng '+(PROMO.chairsPer*pn)+' ghế nhựa</label>'
+      +'<label><input type="radio" name="pm" value="off"'+(promoChoice==='off'?' checked':'')+'> 💸 Giảm '+money(PROMO.offPer*pn)+' vào đơn</label>'
+      +(promoChoice==='off'?'<div class="pm-note">Đã trừ '+money(promoDiscount())+' — tổng bên dưới là số phải trả.</div>':'');
+    } else {pb.style.display='none';pb.innerHTML='';}
+  }
+  document.getElementById('order-total').textContent=money(finalTotal());
 }
 function openCart(){document.getElementById('order-modal').classList.add('open');document.body.style.overflow='hidden';}
 function closeCart(){document.getElementById('order-modal').classList.remove('open');document.body.style.overflow='';}
@@ -1293,13 +1318,19 @@ function orderText(){
   var i=1; for(var c in cart){var it=cart[c]; t+=(i++)+'. '+it.name+' ['+c+'] x'+it.qty+' = '+money(it.price*it.qty)+'\n';}
   t+='———————\n';
   t+='TỔNG TẠM TÍNH: '+money(total())+'\n';
+  var pn=cartons();
+  if(pn>0){
+    if(promoChoice==='off'){t+='KHUYẾN MÃI: '+pn+' thùng SIHU — GIẢM '+money(PROMO.offPer*pn)+'\n';
+      t+='➡️ TỔNG SAU GIẢM: '+money(finalTotal())+'\n';}
+    else{t+='KHUYẾN MÃI: '+pn+' thùng SIHU — TẶNG '+(PROMO.chairsPer*pn)+' GHẾ NHỰA\n';}
+  }
   var note=g('c-note'); if(note)t+='Ghi chú: '+note+'\n';
   return t;
 }
 async function sendZalo(){
   if(!count()){alert('Vui lòng thêm ít nhất 1 sản phẩm vào đơn.');return;}
   var text=orderText();
-  track('InitiateCheckout',{value:total(),currency:'VND',num_items:count()});
+  track('InitiateCheckout',{value:finalTotal(),currency:'VND',num_items:count()});
   var ok=false;
   try{await navigator.clipboard.writeText(text);ok=true;}catch(e){}
   var ta=document.getElementById('order-ta');
@@ -1332,7 +1363,7 @@ async function submitOrder(){
       body:JSON.stringify(payload)});
     var j=await r.json();
     if(!(j.success==='true'||j.success===true)) throw 0;
-    track('Lead',{value:total(),currency:'VND'});
+    track('Lead',{value:finalTotal(),currency:'VND'});
     var c=document.getElementById('order-copied');
     if(c){c.style.display='block';
       c.textContent='🎉 ĐÃ GỬI ĐƠN THÀNH CÔNG! VOCHIRON sẽ GỌI LẠI số '+g('c-phone')+' để xác nhận. Cảm ơn bà con!';}
@@ -1354,6 +1385,13 @@ function shareZalo(){
 document.addEventListener('click',function(e){
   var z=e.target.closest('a[href*="zalo.me"]');
   if(z) track('Contact',{content_name:z.href.indexOf('246086')>-1?'zalo-mua-hang':'zalo-ky-thuat'});
+});
+document.addEventListener('change',function(e){
+  var q=e.target.closest('.oi-qin');
+  if(q){var v=parseInt(q.value,10);var c=q.dataset.q;
+    if(cart[c]){ if(isNaN(v)||v<=0){delete cart[c];} else {cart[c].qty=v;} renderCart(); } return;}
+  var pm=e.target.closest('input[name="pm"]');
+  if(pm){promoChoice=pm.value;try{localStorage.setItem('vcr_promo',promoChoice);}catch(err){} renderCart();}
 });
 document.addEventListener('click',function(e){
   var cb=e.target.closest('.combo-btn');
