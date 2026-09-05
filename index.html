@@ -281,6 +281,8 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
   .promo-cart input{margin-right:6px}
   .pm-note{margin-top:6px;font-size:12px;color:#1c6b02;font-weight:700}
   .pm-sep{border-top:1px dashed #f0d090;margin-top:8px;padding-top:8px}
+  .pm-img{float:right;width:64px;height:64px;object-fit:cover;border-radius:10px;
+    border:2px solid #f5a623;margin-left:8px}
   .oi-t{font-weight:800;color:var(--blue-d);font-size:13.5px;white-space:nowrap}
   .oi-x{border:none;background:none;color:#b0392e;cursor:pointer;font-size:13px}
   .om-total{display:flex;justify-content:space-between;align-items:baseline;padding:12px 2px;border-top:1px dashed var(--line);margin-top:6px}
@@ -1313,7 +1315,7 @@ function renderCart(){
     } else {pb.style.display='none';pb.innerHTML='';}
     var sn=shirtCartons();
     if(sn>0){pb.style.display='block';
-      pb.innerHTML+='<div class="pm-sep">🎽 <b>Đạt '+sn+' thùng đủ quy cách</b> (gói ×100 / chai ×40) — chọn ưu đãi:'
+      pb.innerHTML+='<div class="pm-sep"><img class="pm-img" src="assets/ao-thun-that.jpg" alt="Áo thun VOCHIRON" loading="lazy">🎽 <b>Đạt '+sn+' thùng đủ quy cách</b> (gói ×100 / chai ×40) — chọn ưu đãi:'
       +'<label><input type="radio" name="pm2" value="shirt"'+(promoChoice2==='shirt'?' checked':'')+'> 👕 Tặng '+sn+' áo thun cao cấp VOCHIRON</label>'
       +'<label><input type="radio" name="pm2" value="off2"'+(promoChoice2==='off2'?' checked':'')+'> 💸 Giảm '+money(SHIRT_OFF*sn)+' (khi CHUYỂN KHOẢN TRƯỚC)</label>'
       +(promoChoice2==='off2'?'<div class="pm-note">Đã trừ '+money(shirtDiscount())+' — áp dụng khi bà con chuyển khoản trước.</div>':'')
