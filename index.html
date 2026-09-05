@@ -280,6 +280,7 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
   .promo-cart label{display:block;margin-top:6px;font-weight:700;cursor:pointer;color:#5b4a1f}
   .promo-cart input{margin-right:6px}
   .pm-note{margin-top:6px;font-size:12px;color:#1c6b02;font-weight:700}
+  .pm-sep{border-top:1px dashed #f0d090;margin-top:8px;padding-top:8px}
   .oi-t{font-weight:800;color:var(--blue-d);font-size:13.5px;white-space:nowrap}
   .oi-x{border:none;background:none;color:#b0392e;cursor:pointer;font-size:13px}
   .om-total{display:flex;justify-content:space-between;align-items:baseline;padding:12px 2px;border-top:1px dashed var(--line);margin-top:6px}
@@ -341,8 +342,8 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
     </a>
     <a class="pcard gold" href="#order">
       <span class="p-ic">👕</span>
-      <span class="p-tx"><b>Đơn từ 10 triệu — TẶNG áo thun cao cấp VOCHIRON</b>
-      <small>Trị giá 200.000đ · Áp dụng cho đại lý &amp; đơn sỉ</small></span>
+      <span class="p-tx"><b>Mua đủ THÙNG (100 gói / 40 chai) — TẶNG ÁO THUN cao cấp</b>
+      <small>Hoặc giảm 200.000đ/thùng khi chuyển khoản trước</small></span>
       <span class="p-cta">Đặt hàng →</span>
     </a>
   </div>
@@ -1274,7 +1275,14 @@ var promoChoice='chairs';
 try{promoChoice=localStorage.getItem('vcr_promo')||'chairs';}catch(e){}
 function cartons(){var it=cart[PROMO.code];return it?Math.floor(it.qty/PROMO.per):0;}
 function promoDiscount(){return promoChoice==='off'?cartons()*PROMO.offPer:0;}
-function finalTotal(){return total()-promoDiscount();}
+function finalTotal(){return total()-promoDiscount()-shirtDiscount();}
+// ÁO THUN: mỗi THÙNG đủ quy cách (gói x100 / chai x40) = 1 áo cao cấp HOẶC giảm 200k (chuyển khoản trước)
+var PACK={"EHA-1": 40, "VCR-14": 40, "VCR-4": 40, "VCR-18": 100, "VCR-20": 100, "VCR-3": 40, "EHA-10": 40, "EHA-13": 40, "VCR-7": 40, "VCR-8": 40, "VCR-23": 40, "VCR-10": 100, "VCR-12": 100, "EHA-11": 100, "EHA-9": 40, "EHA-15": 40, "EHA-16": 40, "VCR-13": 40, "VCR-19": 100, "EHA-3": 40, "EHA-7": 40, "EHA-6": 40, "VCR-11": 100, "VCR-17": 100, "VCR-15": 100, "EHA-8": 100, "EHA-14": 40, "EHA-2": 40, "VCR-1": 100, "VCR-21": 40, "EHA-4": 40, "VCR-6": 40, "VCR-9": 100, "VCR-2": 40, "VCR-16": 40, "EHA-5": 40, "VCR-5": 40, "EHA-12": 40};
+var SHIRT_OFF=200000;
+var promoChoice2='shirt';
+try{promoChoice2=localStorage.getItem('vcr_promo2')||'shirt';}catch(e){}
+function shirtCartons(){var n=0;for(var c in cart){var per=PACK[c];if(per)n+=Math.floor(cart[c].qty/per);}return n;}
+function shirtDiscount(){return promoChoice2==='off2'?shirtCartons()*SHIRT_OFF:0;}
 // Facebook Pixel events (no-op until Pixel ID is configured)
 function track(ev,params){ if(window.fbq) fbq('track',ev,params||{}); }
 function addToCart(code,name,price){
@@ -1303,6 +1311,14 @@ function renderCart(){
       +'<label><input type="radio" name="pm" value="off"'+(promoChoice==='off'?' checked':'')+'> 💸 Giảm '+money(PROMO.offPer*pn)+' vào đơn</label>'
       +(promoChoice==='off'?'<div class="pm-note">Đã trừ '+money(promoDiscount())+' — tổng bên dưới là số phải trả.</div>':'');
     } else {pb.style.display='none';pb.innerHTML='';}
+    var sn=shirtCartons();
+    if(sn>0){pb.style.display='block';
+      pb.innerHTML+='<div class="pm-sep">🎽 <b>Đạt '+sn+' thùng đủ quy cách</b> (gói ×100 / chai ×40) — chọn ưu đãi:'
+      +'<label><input type="radio" name="pm2" value="shirt"'+(promoChoice2==='shirt'?' checked':'')+'> 👕 Tặng '+sn+' áo thun cao cấp VOCHIRON</label>'
+      +'<label><input type="radio" name="pm2" value="off2"'+(promoChoice2==='off2'?' checked':'')+'> 💸 Giảm '+money(SHIRT_OFF*sn)+' (khi CHUYỂN KHOẢN TRƯỚC)</label>'
+      +(promoChoice2==='off2'?'<div class="pm-note">Đã trừ '+money(shirtDiscount())+' — áp dụng khi bà con chuyển khoản trước.</div>':'')
+      +'</div>';
+    }
   }
   document.getElementById('order-total').textContent=money(finalTotal());
 }
@@ -1323,6 +1339,12 @@ function orderText(){
     if(promoChoice==='off'){t+='KHUYẾN MÃI: '+pn+' thùng SIHU — GIẢM '+money(PROMO.offPer*pn)+'\n';
       t+='➡️ TỔNG SAU GIẢM: '+money(finalTotal())+'\n';}
     else{t+='KHUYẾN MÃI: '+pn+' thùng SIHU — TẶNG '+(PROMO.chairsPer*pn)+' GHẾ NHỰA\n';}
+  }
+  var sn=shirtCartons();
+  if(sn>0){
+    if(promoChoice2==='off2'){t+='ƯU ĐÃI THÙNG: '+sn+' thùng — GIẢM '+money(SHIRT_OFF*sn)+' (CHUYỂN KHOẢN TRƯỚC)\n';}
+    else{t+='ƯU ĐÃI THÙNG: '+sn+' thùng — TẶNG '+sn+' ÁO THUN CAO CẤP VOCHIRON\n';}
+    if(promoDiscount()+shirtDiscount()>0){t+='➡️ TỔNG PHẢI TRẢ: '+money(finalTotal())+'\n';}
   }
   var note=g('c-note'); if(note)t+='Ghi chú: '+note+'\n';
   return t;
@@ -1392,6 +1414,8 @@ document.addEventListener('change',function(e){
     if(cart[c]){ if(isNaN(v)||v<=0){delete cart[c];} else {cart[c].qty=v;} renderCart(); } return;}
   var pm=e.target.closest('input[name="pm"]');
   if(pm){promoChoice=pm.value;try{localStorage.setItem('vcr_promo',promoChoice);}catch(err){} renderCart();}
+  var pm2=e.target.closest('input[name="pm2"]');
+  if(pm2){promoChoice2=pm2.value;try{localStorage.setItem('vcr_promo2',promoChoice2);}catch(err){} renderCart();}
 });
 document.addEventListener('click',function(e){
   var cb=e.target.closest('.combo-btn');
