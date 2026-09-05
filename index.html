@@ -55,6 +55,24 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
     font-weight:800;font-size:14.5px;padding:11px 20px;border-radius:999px;box-shadow:0 4px 14px rgba(0,0,0,.18)}
   .hero-btn:hover{background:#ffd54f;color:#3a2c00}
 
+  /* phòng khám lúa */
+  .doctor{background:#fff;border-bottom:1px solid var(--line);padding:20px 0 22px}
+  .doc-head{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:14px;font-size:22px}
+  .doc-head b{font-size:22px;color:var(--blue-d)}
+  .doc-head span{font-size:13.5px;color:var(--muted);font-weight:600}
+  .doc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:10px}
+  .doc-btn{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;
+    font:inherit;text-decoration:none;background:#f7fafd;border:1.5px solid var(--line);border-radius:14px;
+    padding:12px 13px;cursor:pointer;transition:.14s;color:var(--ink)}
+  .doc-btn i{font-style:normal;font-size:24px;line-height:1}
+  .doc-btn b{font-size:13.5px;margin-top:4px}
+  .doc-btn small{font-size:11px;color:var(--muted);line-height:1.35}
+  .doc-btn:hover{border-color:var(--blue);background:#eef5ff;transform:translateY(-2px)}
+  .doc-btn.fbtn.active{background:var(--blue);border-color:var(--blue);color:#fff}
+  .doc-btn.fbtn.active small{color:#cfe0ff}
+  .doc-zalo{border-style:dashed;border-color:#218b03;background:#f2fbf0}
+  .doc-zalo:hover{border-color:#218b03;background:#e4f6e0}
+
   /* promo strip */
   .promo{background:linear-gradient(90deg,#f5a623,#e65100);padding:10px 0}
   .promo-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
@@ -337,6 +355,24 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
     </div>
   </div>
 </header>
+
+<section class="doctor">
+  <div class="wrap">
+    <div class="doc-head">🩺 <b>Lúa của bạn đang bị gì?</b><span>Bấm đúng triệu chứng — hiện ngay thuốc trị</span></div>
+    <div class="doc-grid">
+      <button class="fbtn doc-btn" data-q="đạo ôn"><i>🍂</i><b>Cháy lá — đạo ôn</b><small>vết mắt én, cổ bông đen</small></button>
+      <button class="fbtn doc-btn" data-q="rầy"><i>🦗</i><b>Rầy nâu — cháy rầy</b><small>vạch gốc thấy rầy, lúa vàng lụi</small></button>
+      <button class="fbtn doc-btn" data-q="sâu"><i>🐛</i><b>Sâu cuốn lá — đục thân</b><small>lá cuốn ống, nõn héo</small></button>
+      <button class="fbtn doc-btn" data-q="khô vằn"><i>🌫️</i><b>Khô vằn</b><small>vết vằn da beo bẹ lá</small></button>
+      <button class="fbtn doc-btn" data-q="lem lép"><i>🌾</i><b>Lem lép hạt</b><small>hạt đen lửng, bông xơ xác</small></button>
+      <button class="fbtn doc-btn" data-q="bạc lá|khuẩn"><i>🦠</i><b>Bạc lá — thối nhũn</b><small>cháy bìa lá, có mùi hôi</small></button>
+      <button class="fbtn doc-btn" data-q="cỏ"><i>🌿</i><b>Cỏ dại</b><small>lồng vực, đuôi phụng, chác lác</small></button>
+      <button class="fbtn doc-btn" data-q="ốc bươu"><i>🐌</i><b>Ốc bươu vàng</b><small>cắn mạ non mới sạ</small></button>
+      <button class="fbtn doc-btn" data-q="rễ|đòng|dưỡng|hạt no|đổ ngã|nở bụi"><i>🥀</i><b>Cây yếu — vàng lá</b><small>nghẹt rễ, phèn, chậm nở bụi</small></button>
+      <a class="doc-btn doc-zalo" href="https://zalo.me/84933526086" target="_blank" rel="noopener"><i>📷</i><b>Không rõ bệnh?</b><small>Chụp hình gửi Zalo — kỹ sư trả lời liền</small></a>
+    </div>
+  </div>
+</section>
 
 <div class="promo">
   <div class="wrap promo-row">
