@@ -45,13 +45,29 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
   .mh-tag b{display:block;font-size:14.5px;color:var(--ink)}
   .mh-tag span{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:.3px}
 
-  /* ===== Hero: nền thương hiệu sạch, KHÔNG ảnh ghép sản phẩm ===== */
-  section.hero{position:relative;color:#fff;overflow:hidden;
-    background:linear-gradient(120deg,var(--navy) 0%,var(--blue-d) 55%,var(--blue) 100%)}
-  section.hero::after{content:"";position:absolute;right:-120px;top:-120px;width:460px;height:460px;
-    border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.10),transparent 70%)}
-  section.hero::before{content:"";position:absolute;left:-90px;bottom:-140px;width:360px;height:360px;
-    border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.07),transparent 70%)}
+  /* ===== Hero: nền gradient CHUYỂN ĐỘNG kiểu Stripe (CSS thuần) ===== */
+  section.hero{position:relative;color:#fff;overflow:hidden;isolation:isolate;
+    background:linear-gradient(120deg,#06265a 0%,#0b4f9e 50%,#1372ea 100%);
+    background-size:200% 200%;animation:heroBase 22s ease-in-out infinite}
+  @keyframes heroBase{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+  /* hai lớp "khối màu" trôi & phình để tạo hiệu ứng mesh chảy */
+  section.hero::before,section.hero::after{content:"";position:absolute;inset:-35%;z-index:-1;
+    pointer-events:none;filter:blur(55px);opacity:.55;will-change:transform}
+  section.hero::before{
+    background:
+      radial-gradient(38% 42% at 22% 30%, rgba(77,155,255,.95), transparent 60%),
+      radial-gradient(34% 40% at 72% 22%, rgba(56,208,232,.75), transparent 60%),
+      radial-gradient(42% 46% at 52% 82%, rgba(91,124,255,.75), transparent 60%);
+    animation:heroA 18s ease-in-out infinite alternate}
+  section.hero::after{
+    background:
+      radial-gradient(36% 40% at 82% 62%, rgba(47,208,160,.5), transparent 60%),
+      radial-gradient(42% 46% at 28% 68%, rgba(19,114,234,.85), transparent 60%);
+    animation:heroB 26s ease-in-out infinite alternate}
+  @keyframes heroA{0%{transform:translate3d(-6%,-4%,0) scale(1)}100%{transform:translate3d(6%,6%,0) scale(1.18)}}
+  @keyframes heroB{0%{transform:translate3d(6%,4%,0) scale(1.12)}100%{transform:translate3d(-6%,-6%,0) scale(1)}}
+  @media(prefers-reduced-motion:reduce){
+    section.hero,section.hero::before,section.hero::after{animation:none}}
   section.hero .wrap{position:relative;z-index:1;padding-top:60px;padding-bottom:60px}
   .hero-body{max-width:680px}
   .hero-eyebrow{font-size:12.5px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;
