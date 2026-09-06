@@ -63,15 +63,20 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
   .hero-body h1{margin:0 0 10px;font-size:38px;font-weight:800;line-height:1.18}
   .hero-body p{margin:0;opacity:.95;font-size:15.5px;max-width:560px}
   .stats{display:flex;gap:34px;margin-top:26px;flex-wrap:wrap}
-  .stats div b{display:block;font-size:28px;font-weight:800}
-  .stats div span{font-size:12.5px;opacity:.9}
+  .stats div b{display:block;font-size:30px;font-weight:800;font-variant-numeric:tabular-nums}
+  .stats div span{font-size:12.5px;opacity:.9;display:flex;align-items:center;gap:5px}
+  .live-dot{width:8px;height:8px;border-radius:50%;background:#54e37a;display:inline-block;
+    box-shadow:0 0 0 0 rgba(84,227,122,.7);animation:pulse 1.8s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(84,227,122,.6)}70%{box-shadow:0 0 0 8px rgba(84,227,122,0)}100%{box-shadow:0 0 0 0 rgba(84,227,122,0)}}
+  .hero-cta{margin-top:8px}
   .bay-btn{display:inline-block;margin:26px 16px 0 0;background:#fff;color:var(--blue-d);text-decoration:none;
     text-transform:uppercase;font-weight:800;font-size:13px;letter-spacing:1px;
     padding:14px 30px 14px 20px;clip-path:polygon(0 0,100% 0,calc(100% - 16px) 100%,0 100%);transition:.15s}
   .bay-btn::after{content:"❯";margin-left:12px}
   .bay-btn:hover{background:#ffd54f;color:#3a2c00}
-  .bay-btn.ghost{background:rgba(255,255,255,.16);color:#fff;backdrop-filter:blur(2px)}
-  .bay-btn.ghost:hover{background:#fff;color:var(--blue-d)}
+  .bay-btn.call{background:var(--green);color:#fff}
+  .bay-btn.call::after{content:""}
+  .bay-btn.call:hover{background:#fff;color:var(--green-d)}
 
   /* phòng khám lúa */
   .doctor{background:#fff;border-bottom:1px solid var(--line);padding:20px 0 22px}
@@ -86,10 +91,31 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
   .doc-btn b{font-size:13.5px;margin-top:4px}
   .doc-btn small{font-size:11px;color:var(--muted);line-height:1.35}
   .doc-btn:hover{border-color:var(--blue);background:#eef5ff;transform:translateY(-2px)}
-  .doc-btn.fbtn.active{background:var(--blue);border-color:var(--blue);color:#fff}
-  .doc-btn.fbtn.active small{color:#cfe0ff}
+  .doc-btn.active{background:var(--blue);border-color:var(--blue);color:#fff}
+  .doc-btn.active i,.doc-btn.active b{color:#fff}
+  .doc-btn.active small{color:#cfe0ff}
   .doc-zalo{border-style:dashed;border-color:#218b03;background:#f2fbf0}
   .doc-zalo:hover{border-color:#218b03;background:#e4f6e0}
+  /* recommender: chọn bệnh → gợi ý thuốc */
+  .doc-result{margin-top:16px;background:#f2f8ff;border:1px solid #cfe0fb;border-radius:14px;padding:16px 16px 6px;
+    animation:smfade .25s ease}
+  .dr-head{font-size:14px;font-weight:800;color:var(--blue-d);margin-bottom:12px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .dr-head .dr-x{margin-left:auto;background:none;border:none;font:inherit;color:var(--muted);cursor:pointer;font-size:13px}
+  .dr-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px;padding-bottom:12px}
+  .drc{background:#fff;border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column}
+  .drc .drc-img{aspect-ratio:1.4/1;background:#fff;display:grid;place-items:center;padding:10px;border-bottom:1px solid var(--line)}
+  .drc .drc-img img{max-width:100%;max-height:100%;object-fit:contain}
+  .drc-b{padding:10px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
+  .drc-b b{font-size:13.5px;line-height:1.3}
+  .drc-b .drc-pr{font-size:15px;font-weight:800;color:var(--green-d);margin-top:auto}
+  .drc-btns{display:flex;gap:6px}
+  .drc-add{flex:1;border:none;background:var(--green);color:#fff;font:inherit;font-weight:700;font-size:12.5px;
+    padding:7px;border-radius:9px;cursor:pointer}
+  .drc-add:hover{background:var(--green-d)}
+  .drc-see{border:1px solid var(--line);border-radius:9px;padding:7px 10px;text-decoration:none;color:var(--blue-d);font-size:12.5px;font-weight:700}
+  .drc-see:hover{border-color:var(--blue)}
+  .dr-more{font-size:13px;padding:2px 0 10px}
+  .dr-more a{color:var(--green-d);font-weight:700;text-decoration:none}
 
   /* promo strip */
   .promo{background:linear-gradient(90deg,#f5a623,#e65100);padding:10px 0}
@@ -420,13 +446,13 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
       <h1>Danh mục nông dược &amp;<br>dinh dưỡng cây trồng</h1>
       <p>Giải pháp thực chiến trên đồng ruộng: trừ cỏ, trừ sâu rầy ốc, trừ nấm khuẩn và chăm cây khỏe từ gốc đến ngọn. Ưu tiên hoạt chất chuẩn Châu Âu / Nhật / Mỹ.</p>
       <div class="stats">
-        <div><b>41</b><span>Sản phẩm (SKU)</span></div>
-        <div><b>2</b><span>Thương hiệu VOCHIRON &amp; EHA</span></div>
-        <div><b>10</b><span>Sản phẩm bán chạy ★</span></div>
+        <div><b class="count" data-count="208">0</b><span><span class="live-dot"></span>Nông dân tin dùng</span></div>
+        <div><b class="count" data-count="24914">0</b><span>Sản phẩm đã bán ra</span></div>
+        <div><b class="count" data-count="41">0</b><span>Sản phẩm (SKU)</span></div>
       </div>
-      <div>
+      <div class="hero-cta">
         <a class="bay-btn" href="#lg">Xem sản phẩm</a>
-        <a class="bay-btn ghost" href="to-roi-vochiron-a5.pdf" target="_blank" rel="noopener">📄 Tờ rơi PDF · A5</a>
+        <a class="bay-btn call" href="tel:0933526086">📞 Gọi tư vấn ngay</a>
       </div>
     </div>
   </div>
@@ -434,19 +460,20 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
 
 <section class="doctor">
   <div class="wrap">
-    <div class="doc-head">🩺 <b>Lúa của bạn đang bị gì?</b><span>Bấm đúng triệu chứng — hiện ngay thuốc trị</span></div>
+    <div class="doc-head">🩺 <b>Lúa của bạn đang bị gì?</b><span>Bấm đúng triệu chứng — gợi ý ngay thuốc trị</span></div>
     <div class="doc-grid">
-      <button class="fbtn doc-btn" data-q="đạo ôn"><i>🍂</i><b>Cháy lá — đạo ôn</b><small>vết mắt én, cổ bông đen</small></button>
-      <button class="fbtn doc-btn" data-q="rầy"><i>🦗</i><b>Rầy nâu — cháy rầy</b><small>vạch gốc thấy rầy, lúa vàng lụi</small></button>
-      <button class="fbtn doc-btn" data-q="sâu"><i>🐛</i><b>Sâu cuốn lá — đục thân</b><small>lá cuốn ống, nõn héo</small></button>
-      <button class="fbtn doc-btn" data-q="khô vằn"><i>🌫️</i><b>Khô vằn</b><small>vết vằn da beo bẹ lá</small></button>
-      <button class="fbtn doc-btn" data-q="lem lép"><i>🌾</i><b>Lem lép hạt</b><small>hạt đen lửng, bông xơ xác</small></button>
-      <button class="fbtn doc-btn" data-q="bạc lá|khuẩn"><i>🦠</i><b>Bạc lá — thối nhũn</b><small>cháy bìa lá, có mùi hôi</small></button>
-      <button class="fbtn doc-btn" data-q="cỏ"><i>🌿</i><b>Cỏ dại</b><small>lồng vực, đuôi phụng, chác lác</small></button>
-      <button class="fbtn doc-btn" data-q="ốc bươu"><i>🐌</i><b>Ốc bươu vàng</b><small>cắn mạ non mới sạ</small></button>
-      <button class="fbtn doc-btn" data-q="rễ|đòng|dưỡng|hạt no|đổ ngã|nở bụi"><i>🥀</i><b>Cây yếu — vàng lá</b><small>nghẹt rễ, phèn, chậm nở bụi</small></button>
+      <button class="doc-btn" data-rec="dao-on"><i>🍂</i><b>Cháy lá — đạo ôn</b><small>vết mắt én, cổ bông đen</small></button>
+      <button class="doc-btn" data-rec="ray"><i>🦗</i><b>Rầy nâu — cháy rầy</b><small>vạch gốc thấy rầy, lúa vàng lụi</small></button>
+      <button class="doc-btn" data-rec="sau"><i>🐛</i><b>Sâu cuốn lá — đục thân</b><small>lá cuốn ống, nõn héo</small></button>
+      <button class="doc-btn" data-rec="kho-van"><i>🌫️</i><b>Khô vằn</b><small>vết vằn da beo bẹ lá</small></button>
+      <button class="doc-btn" data-rec="lem-lep"><i>🌾</i><b>Lem lép hạt</b><small>hạt đen lửng, bông xơ xác</small></button>
+      <button class="doc-btn" data-rec="bac-la"><i>🦠</i><b>Bạc lá — thối nhũn</b><small>cháy bìa lá, có mùi hôi</small></button>
+      <button class="doc-btn" data-rec="co"><i>🌿</i><b>Cỏ dại</b><small>lồng vực, đuôi phụng, chác lác</small></button>
+      <button class="doc-btn" data-rec="oc"><i>🐌</i><b>Ốc bươu vàng</b><small>cắn mạ non mới sạ</small></button>
+      <button class="doc-btn" data-rec="yeu"><i>🥀</i><b>Cây yếu — vàng lá</b><small>nghẹt rễ, phèn, chậm nở bụi</small></button>
       <a class="doc-btn doc-zalo" href="https://zalo.me/84933526086" target="_blank" rel="noopener"><i>📷</i><b>Không rõ bệnh?</b><small>Chụp hình gửi Zalo — kỹ sư trả lời liền</small></a>
     </div>
+    <div id="doc-result" class="doc-result" hidden></div>
   </div>
 </section>
 
@@ -1662,6 +1689,60 @@ renderCart();
       document.querySelectorAll('.sm-panel').forEach(function(p){
         p.classList.toggle('active', p.dataset.stg===id);
       });
+    });
+  });
+})();
+// Live counter: đếm tăng dần khi tải trang (có fallback để không kẹt ở 0)
+(function(){
+  var els=document.querySelectorAll('.count[data-count]'); if(!els.length)return;
+  function run(el){
+    var target=+el.dataset.count||0, dur=1500, t0=null, done=false;
+    function fin(){ if(!done){ done=true; el.textContent=target.toLocaleString('vi-VN'); } }
+    function step(ts){ if(done)return; if(!t0)t0=ts; var p=Math.min((ts-t0)/dur,1);
+      el.textContent=Math.floor((1-Math.pow(1-p,3))*target).toLocaleString('vi-VN');
+      if(p<1) requestAnimationFrame(step); else fin(); }
+    requestAnimationFrame(step);
+    setTimeout(fin, dur+400);  // đảm bảo hiện đúng số dù tab bị ẩn (rAF tạm dừng)
+  }
+  els.forEach(run);
+})();
+// Bác sĩ lúa: chọn triệu chứng → GỢI Ý thuốc (đọc dữ liệu từ thẻ sản phẩm sẵn có)
+var REC={"dao-on": {"codes": ["VCR-12", "VCR-7", "EHA-15", "VCR-13"], "cat": "benh"}, "ray": {"codes": ["VCR-3", "EHA-10", "VCR-18"], "cat": "sau"}, "sau": {"codes": ["VCR-3", "VCR-20", "EHA-13"], "cat": "sau"}, "kho-van": {"codes": ["EHA-6", "VCR-19", "EHA-7"], "cat": "benh"}, "lem-lep": {"codes": ["EHA-3", "VCR-19", "EHA-9"], "cat": "benh"}, "bac-la": {"codes": ["EHA-2", "VCR-15", "EHA-14", "VCR-17"], "cat": "benh"}, "co": {"codes": ["EHA-1", "VCR-14"], "cat": "co"}, "oc": {"codes": ["VCR-4"], "cat": "sau"}, "yeu": {"codes": ["VCR-22", "VCR-1", "EHA-4", "VCR-16"], "cat": "dd"}};
+(function(){
+  var res=document.getElementById('doc-result'); if(!res)return;
+  var btns=document.querySelectorAll('.doc-btn[data-rec]');
+  var CATNAME={co:'Trừ cỏ',sau:'Trừ sâu rầy ốc',benh:'Trừ bệnh',dd:'Dinh dưỡng',lg:'Lúa giống'};
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      btns.forEach(function(x){x.classList.toggle('active',x===b);});
+      var rec=REC[b.dataset.rec]||{codes:[],cat:''};
+      var cards='';
+      rec.codes.forEach(function(code){
+        var card=document.getElementById('card-'+code); if(!card)return;
+        var img=card.querySelector('.mainimg'); var imgsrc=img?img.getAttribute('src'):'';
+        var name=(card.querySelector('h3')||{}).textContent||code;
+        var price=(card.querySelector('.price strong')||{}).textContent||'';
+        var det=card.querySelector('.detail-link'); var dhref=det?det.getAttribute('href'):('#card-'+code);
+        cards+='<div class="drc"><div class="drc-img"><img loading="lazy" src="'+esc(imgsrc)+'" alt="'+esc(name)+'"></div>'
+          +'<div class="drc-b"><b>'+esc(name)+'</b><span class="drc-pr">'+esc(price)+'</span>'
+          +'<div class="drc-btns"><button class="drc-add" data-code="'+esc(code)+'">＋ Thêm vào đơn</button>'
+          +'<a class="drc-see" href="'+esc(dhref)+'">Chi tiết</a></div></div></div>';
+      });
+      if(!cards){ res.hidden=true; return; }
+      var label=(b.querySelector('b')||{}).textContent||'';
+      res.innerHTML='<div class="dr-head">💊 Thuốc gợi ý cho <b>'+esc(label)+'</b>'
+        +'<button class="dr-x">✕ Đóng</button></div><div class="dr-grid">'+cards+'</div>'
+        +'<div class="dr-more">👉 <a href="#'+rec.cat+'">Xem tất cả nhóm '+(CATNAME[rec.cat]||'sản phẩm')+'</a> · hoặc <a href="https://zalo.me/84933526086" target="_blank" rel="noopener">nhắn kỹ sư tư vấn</a></div>';
+      res.hidden=false;
+      res.scrollIntoView({behavior:'smooth',block:'nearest'});
+      res.querySelectorAll('.drc-add').forEach(function(a){
+        a.addEventListener('click',function(){
+          var ab=document.querySelector('#card-'+a.dataset.code+' .add-btn');
+          if(ab){ ab.click(); a.textContent='✓ Đã thêm'; setTimeout(function(){a.textContent='＋ Thêm vào đơn';},1400); }
+        });
+      });
+      res.querySelector('.dr-x').addEventListener('click',function(){res.hidden=true;btns.forEach(function(x){x.classList.remove('active');});});
     });
   });
 })();
