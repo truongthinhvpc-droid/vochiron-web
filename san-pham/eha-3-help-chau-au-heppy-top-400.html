@@ -32,6 +32,26 @@ a{color:var(--vblue)}
 background:var(--card);border:1px solid var(--line);border-radius:18px;box-shadow:var(--shadow);padding:24px;margin-top:8px}
 .pr-img{background:#fff;border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;place-items:center;aspect-ratio:1/1}
 .pr-img img{width:100%;height:100%;object-fit:contain}
+/* ===== Carousel ảnh sản phẩm ===== */
+.gal{display:flex;flex-direction:column;gap:10px}
+.gal-stage{position:relative;background:#fff;border:1px solid var(--line);border-radius:14px;overflow:hidden;aspect-ratio:1/1}
+.gal-track{display:flex;height:100%;transition:transform .35s ease;touch-action:pan-y;will-change:transform}
+.gs{flex:0 0 100%;width:100%;height:100%;object-fit:contain;padding:20px}
+.gnav{position:absolute;top:50%;transform:translateY(-50%);width:38px;height:38px;border-radius:50%;border:1px solid var(--line);
+  background:rgba(255,255,255,.9);color:var(--blue-d);font-size:22px;line-height:1;cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 2px 8px rgba(11,79,158,.15);transition:.15s;z-index:2}
+.gnav:hover{background:#fff;color:var(--blue)}
+.gprev{left:10px}.gnext{right:10px}
+.gcount{position:absolute;right:10px;bottom:10px;background:rgba(6,38,90,.78);color:#fff;font-size:12px;font-weight:700;
+  padding:3px 10px;border-radius:999px;z-index:2}
+.gdots{display:flex;gap:7px;justify-content:center;flex-wrap:wrap}
+.gd{width:8px;height:8px;padding:0;border-radius:50%;border:none;background:#c6d3e4;cursor:pointer;transition:.15s}
+.gd.on{background:var(--blue);transform:scale(1.25)}
+.gthumbs{display:flex;gap:8px;overflow-x:auto;padding:2px;scrollbar-width:thin}
+.gt{flex:0 0 auto;width:56px;height:56px;padding:0;border:2px solid var(--line);border-radius:9px;background:#fff;cursor:pointer;overflow:hidden;transition:.15s}
+.gt img{width:100%;height:100%;object-fit:cover;display:block}
+.gt.on{border-color:var(--blue)}
+@media(prefers-reduced-motion:reduce){.gal-track{transition:none}}
 .pr-meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
 .badge{font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;color:#fff}
 .b-eha{background:var(--blue-d)}.b-vcr{background:var(--green-d)}
@@ -68,7 +88,8 @@ h1{margin:2px 0 4px;font-size:27px;line-height:1.25}
 footer{background:#212121;color:#c9d2dc;padding:30px 0;margin-top:30px;font-size:13.5px}
 footer a{color:#9ec3f5;text-decoration:none}
 footer b{color:#9ec3f5}
-@media(max-width:720px){.hero{grid-template-columns:1fr}.pr-img{max-width:340px;margin:0 auto}}
+@media(max-width:720px){.hero{grid-template-columns:1fr}.pr-img{max-width:340px;margin:0 auto}
+.gal{max-width:380px;margin:0 auto;width:100%}.gnav{width:34px;height:34px;font-size:20px}.gs{padding:14px}}
 </style></head><body>
 <div class="topbar"><div class="wrap"><span class="slog">🌱 Grow Easy · Protect Smart</span>
 <span><a href="tel:0933526086">📞 0933 526 086</a><a href="https://zalo.me/84933246086" target="_blank" rel="noopener">💬 Zalo mua hàng</a></span></div></div>
@@ -79,7 +100,7 @@ footer b{color:#9ec3f5}
 <div class="crumb"><a href="/">Trang chủ</a> › <a href="/#benh">Thuốc trừ bệnh</a> › Help Châu Âu Heppy top 400</div>
 
 <div class="hero">
-  <div class="pr-img"><img src="/assets/mk-EHA-3.webp" alt="Help Châu Âu Heppy top 400"></div>
+  <div class="gal" data-n="2"><div class="gal-stage"><div class="gal-track"><img class="gs" src="/assets/mk-EHA-3.webp" alt="Help Châu Âu Heppy top 400 — ảnh sản phẩm" loading="eager"><img class="gs" src="/assets/ph-EHA-3-1.webp" alt="Help Châu Âu Heppy top 400 — ảnh thật 1" loading="lazy"></div><button class="gnav gprev" type="button" aria-label="Ảnh trước">‹</button><button class="gnav gnext" type="button" aria-label="Ảnh sau">›</button><span class="gcount"><b>1</b>/2</span></div><div class="gdots"><button class="gd on" data-i="0" aria-label="Ảnh 1"></button><button class="gd" data-i="1" aria-label="Ảnh 2"></button></div><div class="gthumbs"><button class="gt on" data-i="0"><img src="/assets/mk-EHA-3.webp" alt="" loading="lazy"></button><button class="gt" data-i="1"><img src="/assets/ph-EHA-3-1.webp" alt="" loading="lazy"></button></div></div>
   <div>
     <div class="pr-meta"><span class="badge b-eha">EHA</span><span class="code">EHA-3</span><span class="tierchip">Cao cấp</span><span class="ribbon">★ BÁN CHẠY #4</span></div>
     <h1>Help Châu Âu Heppy top 400</h1>
@@ -118,4 +139,28 @@ Hotline/Zalo kỹ thuật: <a href="tel:0933526086">0933 526 086</a> · Zalo mua
 91/1 Nguyễn Hồng, phường Hạnh Thông, TP. Hồ Chí Minh · <a href="/">vochironusa.com</a><br>
 <span style="font-size:12px;color:#8592a0">* Giá &amp; công dụng mang tính tham khảo kỹ thuật. Đọc kỹ hướng dẫn trước khi dùng.</span>
 </div></footer>
+<script>
+(function(){
+  document.querySelectorAll('.gal').forEach(function(g){
+    var track=g.querySelector('.gal-track'), n=+g.dataset.n||1, i=0;
+    var dots=g.querySelectorAll('.gd'), thumbs=g.querySelectorAll('.gt');
+    var cnt=g.querySelector('.gcount b'), tc=g.querySelector('.gthumbs');
+    function show(k){ i=((k%n)+n)%n; track.style.transform='translateX('+(-i*100)+'%)';
+      dots.forEach(function(d,j){d.classList.toggle('on',j===i);});
+      thumbs.forEach(function(t,j){t.classList.toggle('on',j===i);});
+      if(cnt)cnt.textContent=i+1;
+      var at=thumbs[i]; if(at&&tc){tc.scrollLeft=at.offsetLeft-tc.clientWidth/2+at.clientWidth/2;}
+    }
+    var p=g.querySelector('.gprev'), nx=g.querySelector('.gnext');
+    if(p)p.onclick=function(){show(i-1);};
+    if(nx)nx.onclick=function(){show(i+1);};
+    dots.forEach(function(d){d.onclick=function(){show(+d.dataset.i);};});
+    thumbs.forEach(function(t){t.onclick=function(){show(+t.dataset.i);};});
+    var x0=null, st=g.querySelector('.gal-stage');
+    st.addEventListener('touchstart',function(e){x0=e.touches[0].clientX;},{passive:true});
+    st.addEventListener('touchend',function(e){ if(x0===null)return;
+      var dx=e.changedTouches[0].clientX-x0; if(Math.abs(dx)>40)show(i+(dx<0?1:-1)); x0=null;},{passive:true});
+  });
+})();
+</script>
 </body></html>
