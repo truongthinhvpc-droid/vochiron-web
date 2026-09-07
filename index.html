@@ -1798,34 +1798,34 @@ renderCart();
   var W,H,DPR;
   function size(){ DPR=Math.min(window.devicePixelRatio||1,2); var r=c.getBoundingClientRect();
     W=Math.max(1,r.width); H=Math.max(1,r.height); c.width=W*DPR; c.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0); }
-  var COL=['rgba(255,255,255,','rgba(155,228,255,','rgba(110,210,160,','rgba(130,170,255,'];
-  var N=16, S=[];
-  // Sóng cuộn: mọi sợi CÙNG bước sóng + CÙNG hướng chảy -> gối lên nhau như lớp sóng biển
+  var COL=['rgba(255,255,255,','rgba(160,230,255,','rgba(120,215,165,','rgba(135,175,255,'];
+  var N=46, S=[];
+  // Kiểu Stripe: nhiều sợi MẢNH, KHÍT, nghiêng CHÉO cùng góc, sóng nhẹ trôi theo đường chéo
   function build(){ S=[]; for(var i=0;i<N;i++){ S.push({
-      base:(i+0.5)/N,                        // vị trí dọc gốc, xếp đều như lớp sóng
-      amp:0.075+Math.random()*0.07,          // biên độ sóng (đồng đều hơn)
-      len:1.7+Math.random()*0.5,             // số bước sóng ngang (gần nhau -> cùng nhịp)
-      ph:i*0.55+Math.random()*0.3,           // lệch pha đều theo lớp -> sóng gối nhau
-      w:2.6+Math.random()*3.4,               // ĐỘ DÀY sợi (dày hơn hẳn)
+      base:-0.4+(i/(N-1))*1.8,               // trải rộng quá mép -> phủ kín khi nghiêng
+      amp:0.018+Math.random()*0.03,          // biên độ NHỎ -> sợi khít, ít cắt nhau
+      len:1.4+Math.random()*0.6,             // bước sóng
+      ph:i*0.42+Math.random()*0.25,          // lệch pha đều theo lớp
+      w:0.6+Math.random()*0.9,               // ĐỘ MẢNH (thin)
       col:COL[i%COL.length],
-      a:0.07+Math.random()*0.13              // mờ hơn chút vì sợi dày
+      a:0.10+Math.random()*0.16
     }); } }
-  var SPD=0.00034;                           // tốc độ sóng chảy chung (mướt, chậm rãi)
+  var SPD=0.00030, SLOPE=-0.62;              // SLOPE<0: dải nghiêng chéo lên bên phải (kiểu Stripe)
   function bg(){ var g=ctx.createLinearGradient(0,0,W,H);
     g.addColorStop(0,'#0b3aa0'); g.addColorStop(.55,'#0f7bd6'); g.addColorStop(1,'#13c6e6');
     ctx.fillStyle=g; ctx.fillRect(0,0,W,H); }
   function draw(t){
     ctx.globalCompositeOperation='source-over'; bg();
     ctx.globalCompositeOperation='lighter'; ctx.lineCap='round'; ctx.lineJoin='round';
-    var flow=t*SPD;                           // pha chảy dùng chung cho mọi sợi
+    var flow=t*SPD;                           // pha chảy dùng chung
     for(var i=0;i<S.length;i++){ var s=S[i];
-      var yb=s.base*H, drift=Math.sin(flow*0.5+s.ph)*0.03*H;
-      ctx.shadowColor=s.col+'0.5)'; ctx.shadowBlur=s.w*3.2;   // quầng sáng mềm -> mượt như lụa
+      var yb=s.base*H;
+      ctx.shadowColor=s.col+'0.45)'; ctx.shadowBlur=s.w*2.4;  // quầng sáng nhẹ -> mượt
       ctx.beginPath();
       for(var x=0;x<=W;x+=5){ var u=x/W;
-        var y=yb+drift
-             +Math.sin(u*6.283*s.len - flow + s.ph)*s.amp*H              // sóng chính chảy ngang
-             +Math.sin(u*6.283*s.len*0.5 - flow*0.6 + s.ph*1.3)*s.amp*0.35*H; // sóng phụ
+        var y=yb + SLOPE*u*H                                  // nghiêng chéo
+             +Math.sin(u*6.283*s.len - flow + s.ph)*s.amp*H              // sóng chính chảy
+             +Math.sin(u*6.283*s.len*0.5 - flow*0.6 + s.ph*1.3)*s.amp*0.4*H; // sóng phụ
         if(x===0)ctx.moveTo(x,y); else ctx.lineTo(x,y);
       }
       ctx.lineWidth=s.w; ctx.strokeStyle=s.col+s.a.toFixed(3)+')'; ctx.stroke();
