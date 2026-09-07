@@ -1798,42 +1798,46 @@ renderCart();
   var W,H,DPR;
   function size(){ DPR=Math.min(window.devicePixelRatio||1,2); var r=c.getBoundingClientRect();
     W=Math.max(1,r.width); H=Math.max(1,r.height); c.width=W*DPR; c.height=H*DPR; ctx.setTransform(DPR,0,0,DPR,0,0); }
-  var COL=['rgba(255,255,255,','rgba(150,225,255,','rgba(96,205,150,','rgba(125,165,255,'];
-  var N=24, S=[];
+  var COL=['rgba(255,255,255,','rgba(155,228,255,','rgba(110,210,160,','rgba(130,170,255,'];
+  var N=16, S=[];
+  // Sóng cuộn: mọi sợi CÙNG bước sóng + CÙNG hướng chảy -> gối lên nhau như lớp sóng biển
   function build(){ S=[]; for(var i=0;i<N;i++){ S.push({
-      base:(i+0.5)/N,                        // vị trí dọc gốc
-      amp:0.045+Math.random()*0.13,          // biên độ sóng
-      len:1.3+Math.random()*2.4,             // số bước sóng ngang
-      spd:0.00007+Math.random()*0.00018,     // tốc độ trôi
-      ph:Math.random()*6.283,                // pha lệch
-      w:0.7+Math.random()*1.9,               // độ dày sợi
+      base:(i+0.5)/N,                        // vị trí dọc gốc, xếp đều như lớp sóng
+      amp:0.075+Math.random()*0.07,          // biên độ sóng (đồng đều hơn)
+      len:1.7+Math.random()*0.5,             // số bước sóng ngang (gần nhau -> cùng nhịp)
+      ph:i*0.55+Math.random()*0.3,           // lệch pha đều theo lớp -> sóng gối nhau
+      w:2.6+Math.random()*3.4,               // ĐỘ DÀY sợi (dày hơn hẳn)
       col:COL[i%COL.length],
-      a:0.09+Math.random()*0.20              // độ mờ
+      a:0.07+Math.random()*0.13              // mờ hơn chút vì sợi dày
     }); } }
+  var SPD=0.00034;                           // tốc độ sóng chảy chung (mướt, chậm rãi)
   function bg(){ var g=ctx.createLinearGradient(0,0,W,H);
     g.addColorStop(0,'#0b3aa0'); g.addColorStop(.55,'#0f7bd6'); g.addColorStop(1,'#13c6e6');
     ctx.fillStyle=g; ctx.fillRect(0,0,W,H); }
   function draw(t){
     ctx.globalCompositeOperation='source-over'; bg();
     ctx.globalCompositeOperation='lighter'; ctx.lineCap='round'; ctx.lineJoin='round';
+    var flow=t*SPD;                           // pha chảy dùng chung cho mọi sợi
     for(var i=0;i<S.length;i++){ var s=S[i];
-      var yb=s.base*H, drift=Math.sin(t*s.spd*0.6+s.ph)*0.045*H;
+      var yb=s.base*H, drift=Math.sin(flow*0.5+s.ph)*0.03*H;
+      ctx.shadowColor=s.col+'0.5)'; ctx.shadowBlur=s.w*3.2;   // quầng sáng mềm -> mượt như lụa
       ctx.beginPath();
-      for(var x=0;x<=W;x+=8){ var u=x/W;
+      for(var x=0;x<=W;x+=5){ var u=x/W;
         var y=yb+drift
-             +Math.sin(u*6.283*s.len + t*s.spd + s.ph)*s.amp*H
-             +Math.sin(u*6.283*s.len*0.5 - t*s.spd*1.7 + s.ph*1.3)*s.amp*0.42*H;
+             +Math.sin(u*6.283*s.len - flow + s.ph)*s.amp*H              // sóng chính chảy ngang
+             +Math.sin(u*6.283*s.len*0.5 - flow*0.6 + s.ph*1.3)*s.amp*0.35*H; // sóng phụ
         if(x===0)ctx.moveTo(x,y); else ctx.lineTo(x,y);
       }
       ctx.lineWidth=s.w; ctx.strokeStyle=s.col+s.a.toFixed(3)+')'; ctx.stroke();
     }
+    ctx.shadowBlur=0;
   }
   size(); build(); window.addEventListener('resize',function(){ size(); });
   if(reduce){ draw(0); return; }
   var run=true, last=0;
   try{ new IntersectionObserver(function(es){run=es[0].isIntersecting; if(run)requestAnimationFrame(loop);})
         .observe(c); }catch(e){}
-  function loop(ts){ if(!run)return; if(ts-last>28){ last=ts; draw(ts); } requestAnimationFrame(loop); }
+  function loop(ts){ if(!run)return; if(ts-last>16){ last=ts; draw(ts); } requestAnimationFrame(loop); }
   requestAnimationFrame(loop);
 })();
 // Live counter: đếm tăng dần khi tải trang (có fallback để không kẹt ở 0)
