@@ -172,6 +172,17 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
   /* dropdown lọc bệnh: các nút xổ thành lưới pill */
   .filter-drop .nav-menu{flex-direction:row;flex-wrap:wrap;max-width:340px;gap:7px;padding:12px}
   .filter-drop .nav-menu .fbtn{font-size:12.5px;padding:6px 12px}
+  /* mega-menu Sản phẩm kiểu Corteva: nhiều cột theo nhóm */
+  .mega-drop .nav-menu.mega-menu{display:none;left:0;padding:20px 22px;
+    min-width:min(780px,94vw);grid-template-columns:repeat(auto-fill,minmax(146px,1fr));gap:6px 22px}
+  .mega-drop.open .nav-menu.mega-menu{display:grid}
+  .mm-col{display:flex;flex-direction:column;gap:1px;min-width:0}
+  .mm-head{font-family:"Be Vietnam Pro",sans-serif;font-weight:800;font-size:13px;color:var(--vblue);
+    text-decoration:none;padding:2px 0 7px;margin-bottom:5px;border-bottom:2px solid var(--line);line-height:1.25}
+  .mm-head:hover{color:var(--blue)}
+  .mm-col>a:not(.mm-head){font-size:12.6px;color:var(--ink);text-decoration:none;padding:3.5px 0;line-height:1.3}
+  .mm-col>a:not(.mm-head):hover{color:var(--blue)}
+  .mm-all{font-weight:700;color:var(--green-d)!important;margin-top:5px;font-size:12px!important}
   /* Tin tức */
   .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
   .ncard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;
@@ -497,14 +508,10 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
 <nav class="jump">
   <div class="wrap">
     <img class="n-logo logo-badge" src="assets/logo-mark.webp" alt="VOCHIRON USA">
-    <span class="nav-drop">
+    <span class="nav-drop mega-drop">
       <button class="nav-top"><span data-i18n="nav_products">🌾 Sản phẩm</span> <span class="caret">▾</span></button>
-      <span class="nav-menu">
-        <a href="#lg" data-i18n="cat_lg">Lúa giống</a>
-        <a href="#co" data-i18n="cat_co">Trừ cỏ</a>
-        <a href="#sau" data-i18n="cat_sau">Trừ sâu rầy ốc</a>
-        <a href="#benh" data-i18n="cat_benh">Trừ bệnh</a>
-        <a href="#dd" data-i18n="cat_dd">Dinh dưỡng</a>
+      <span class="nav-menu mega-menu">
+        <div class="mm-col"><a class="mm-head" href="#lg">🌾 <span data-i18n="cat_lg">Lúa giống</span></a><a href="san-pham/lg-1-lua-giong-om18-tan-thinh.html">Lúa giống OM18 — Tấn Thịnh</a><a href="san-pham/lg-2-nep-ir4625.html">Nếp IR4625</a><a class="mm-all" href="#lg">Xem nhóm →</a></div><div class="mm-col"><a class="mm-head" href="#co">🌾 <span data-i18n="cat_co">Thuốc trừ cỏ</span></a><a href="san-pham/eha-1-eurofit-sofit-chau-au.html">EHA EUROFIT- SOFIT CHÂU ÂU 1 lít</a><a href="san-pham/vcr-14-diet-mam-my-tieu-mam-sofit.html">VCR Diệt Mầm MỸ 500ml Tiêu Mầm sofit</a><a class="mm-all" href="#co">Xem nhóm →</a></div><div class="mm-col"><a class="mm-head" href="#sau">🐛 <span data-i18n="cat_sau">Thuốc trừ sâu, rầy &amp; ốc</span></a><a href="san-pham/vcr-3-ichibio.html">VCR ICHIBIO Sâu đục thân, cuốn lá, nhện gié, bọ trĩ, rầy nâu</a><a href="san-pham/eha-10-f21-xong-hoi-ban-moi-f18.html">EHA F21 xông hơi sâu đục thân, rầy rệp bản mới F18</a><a href="san-pham/eha-13-diet-sach.html">EHA DIỆT SẠCH sâu rầy rệp, xông hơi lưu dẫn</a><a href="san-pham/vcr-4-sieu-3-6.html">VCR Siêu 3.6 siêu diệt ốc</a><a href="san-pham/vcr-20-padan-ledan-usa.html">VCR USA- PADAN LEDAN USA ( cartap, imidac, sâu đục thân, cuốn lá) 100gr</a><a href="san-pham/vcr-18-soi-xam-100g-soi-do-ban-moi.html">VCR SÓI XÁM 100g Sói đỏ bản mới ( sâu đục thân, rầy nâu)</a><a class="mm-all" href="#sau">Xem nhóm →</a></div><div class="mm-col"><a class="mm-head" href="#benh">🍃 <span data-i18n="cat_benh">Thuốc trừ bệnh — nấm &amp; vi khuẩn</span></a><a href="san-pham/eha-15-katana-kiem-nhat-480cc.html">EHA- Katana kiếm nhật bản 480cc đạo ôn</a><a href="san-pham/vcr-12-bim-usa.html">VCR BIM USA 100gr đạo ôn</a><a href="san-pham/eha-3-help-chau-au-heppy-top-400.html">EHA Help Châu Âu Heppy top 400</a><a href="san-pham/eha-6-topvil-50sc-anvil-nano.html">EHA TOPVIL 50SC anvil ấn độ , công nghệ nano</a><a href="san-pham/eha-2-sieu-khuan-usa-240cc.html">EHA SIÊU KHUẨN USA 240cc</a><a href="san-pham/vcr-13-than-y-pirastar.html">VCR Thần Y Pirastar ( diệt sạch đạo ôn, vàng lá chín sớm, hơn 100 loại nấm bệnh)</a><a href="san-pham/vcr-19-nativo-my-90g.html">VCR NATIVO MỸ 90gr</a><a href="san-pham/eha-7-til-super-240ml.html">EHA - Til super 240ml</a><a class="mm-all" href="#benh">Xem tất cả 20 →</a></div><div class="mm-col"><a class="mm-head" href="#dd">🌱 <span data-i18n="cat_dd">Dinh dưỡng &amp; Kích thích sinh trưởng</span></a><a href="san-pham/vcr-22-humic-thay-dap-sihu-new-do-1kg.html">VCR- HUMIC THAY THẾ DAP - SIHU NEW ĐỎ CỨNG CÂY 1 KG</a><a href="san-pham/eha-12-bio-nuoc-organic-500ml.html">EHA BIO Nước ORGANIC 500ml</a><a href="san-pham/eha-5-antracol-nuoc-1l.html">EHA Antracol nước 1 lít ( siêu cứng cây, xanh lá)</a><a href="san-pham/vcr-21-hydrophos-1l.html">VCR USA - Hydrophos 1 Lít</a><a href="san-pham/vcr-2-cung-cay-chong-sap-500ml.html">VCR CỨNG CÂY CHỐNG SẬP 500ml</a><a href="san-pham/vcr-16-ginseng-nyro-0-01sl.html">GINSENG NYRO 0.01SL 200ml (King Brassinolide)</a><a href="san-pham/eha-4-sieu-ra-re-no-bui-cung-cay-xanh-la-1l.html">EHA Siêu ra rể nở bụi cứng cây xanh lá 1 lít</a><a href="san-pham/vcr-5-bloom-power.html">VCR BLOOM POWER kích trổ, mập đòng</a><a class="mm-all" href="#dd">Xem tất cả 11 →</a></div>
       </span>
     </span>
     <span class="nav-drop filter-drop">
