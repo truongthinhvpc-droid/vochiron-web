@@ -17,6 +17,8 @@ t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
 document,'script','https://connect.facebook.net/en_US/fbevents.js');
 fbq('init','2317460879086370');fbq('track','PageView');</script>
 <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=2317460879086370&ev=PageView&noscript=1"/></noscript>
+
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
 <style>
   :root{
@@ -36,9 +38,22 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
   .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;
     padding-top:7px;padding-bottom:7px}
   .topbar .slog{font-style:italic;font-weight:700;color:var(--blue-d);letter-spacing:.4px}
-  .topbar .tlinks{display:flex;gap:18px;flex-wrap:wrap}
+  .topbar .tlinks{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
   .topbar a{color:var(--ink);text-decoration:none;font-weight:600}
   .topbar a:hover{color:var(--blue)}
+  /* language selector */
+  .lang{position:relative;display:inline-block}
+  .lang-btn{font:inherit;font-size:12.5px;font-weight:700;color:var(--blue-d);background:#eef5ff;
+    border:1px solid var(--line);border-radius:999px;padding:4px 11px;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+  .lang-btn:hover{border-color:var(--blue)}
+  .lang-menu{position:absolute;right:0;top:calc(100% + 6px);z-index:60;background:#fff;border:1px solid var(--line);
+    border-radius:12px;box-shadow:0 10px 30px rgba(16,42,80,.16);padding:6px;min-width:150px;display:none;flex-direction:column;gap:2px}
+  .lang.open .lang-menu{display:flex}
+  .lang-menu button{font:inherit;font-size:13.5px;text-align:left;background:none;border:none;border-radius:8px;
+    padding:9px 11px;cursor:pointer;color:var(--ink)}
+  .lang-menu button:hover{background:#eef5ff}
+  .lang-menu button.on{background:var(--blue);color:#fff}
+  .caret{font-size:10px;opacity:.8}
   header.masthead{background:#fff;padding:15px 0;border-bottom:4px solid var(--blue)}
   header.masthead .wrap{display:flex;align-items:center;gap:16px;justify-content:space-between;flex-wrap:wrap}
   .mh-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
@@ -131,9 +146,31 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
     backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
   nav.jump .wrap{display:flex;gap:8px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px;align-items:center}
   nav.jump .n-logo{width:26px;height:26px;color:var(--blue);flex:none}
-  nav.jump a{text-decoration:none;font-size:14px;font-weight:600;color:var(--blue-d);
-    background:#e7f0fd;padding:8px 14px;border-radius:999px;border:1px solid var(--line)}
-  nav.jump a:hover{background:var(--blue);color:#fff}
+  nav.jump>.wrap>a, nav.jump .nav-top{text-decoration:none;font-size:14px;font-weight:600;color:var(--blue-d);
+    background:#e7f0fd;padding:8px 14px;border-radius:999px;border:1px solid var(--line);cursor:pointer;font-family:inherit}
+  nav.jump>.wrap>a:hover, nav.jump .nav-top:hover{background:var(--blue);color:#fff}
+  /* nav dropdowns (gọn menu) */
+  .nav-drop{position:relative;display:inline-block}
+  .nav-drop .nav-menu{position:absolute;left:0;top:calc(100% + 6px);z-index:60;background:#fff;
+    border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px rgba(16,42,80,.16);
+    padding:6px;min-width:190px;display:none;flex-direction:column;gap:2px}
+  .nav-drop.open .nav-menu{display:flex}
+  .nav-drop .nav-menu a{background:none;border:none;border-radius:8px;padding:9px 12px;font-size:14px;
+    font-weight:600;color:var(--ink);text-decoration:none}
+  .nav-drop .nav-menu a:hover{background:#eef5ff;color:var(--blue-d)}
+  nav.jump .nav-top.open{background:var(--blue);color:#fff}
+  /* Tin tức */
+  .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
+  .ncard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;
+    box-shadow:0 2px 8px rgba(16,42,80,.05);transition:.16s;border-top:4px solid var(--vblue)}
+  .ncard:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(0,114,188,.14)}
+  .n-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .n-ic{font-size:20px}
+  .n-tag{font-size:10.5px;font-weight:800;text-transform:uppercase;letter-spacing:.4px;color:var(--vblue);
+    background:#e7f0fd;border:1px solid #b9d4f7;padding:2px 9px;border-radius:999px}
+  .n-date{margin-left:auto;font-size:12px;color:var(--muted);font-weight:600}
+  .ncard h3{margin:0 0 6px;font-size:16.5px;line-height:1.35;color:var(--ink)}
+  .ncard p{margin:0;font-size:13.8px;color:#48535f;line-height:1.55}
 
   /* ===== Section title kiểu Vipesco: căn giữa, IN HOA, xanh, gạch chân xanh lá ===== */
   .cat{padding:52px 0 8px}
@@ -421,8 +458,16 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
     <span class="slog">🌱 Grow Easy · Protect Smart</span>
     <span class="tlinks">
       <a href="tel:0933526086">📞 0933 526 086</a>
-      <a href="https://zalo.me/84933246086" target="_blank" rel="noopener">💬 Zalo mua hàng</a>
-      <a href="#order">Liên hệ</a>
+      <a data-i18n="topbar_zalo" href="https://zalo.me/84933246086" target="_blank" rel="noopener">💬 Zalo mua hàng</a>
+      <span class="lang">
+        <button class="lang-btn" id="lang-btn" aria-haspopup="true" aria-expanded="false">🌐 <span id="lang-cur">VI</span> <span class="caret">▾</span></button>
+        <span class="lang-menu" id="lang-menu">
+          <button data-lang="vi">🇻🇳 Tiếng Việt</button>
+          <button data-lang="en">🇬🇧 English</button>
+          <button data-lang="fr">🇫🇷 Français</button>
+          <button data-lang="zh">🇨🇳 中文</button>
+        </span>
+      </span>
     </span>
   </div>
 </div>
@@ -440,17 +485,17 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
   <canvas class="hero-canvas" aria-hidden="true"></canvas>
   <div class="wrap">
     <div class="hero-body">
-      <div class="hero-eyebrow">VOCHIRON &amp; EHA · Nông dược cho cây lúa</div>
-      <h1>Danh mục nông dược &amp;<br>dinh dưỡng cây trồng</h1>
-      <p>Giải pháp thực chiến trên đồng ruộng: trừ cỏ, trừ sâu rầy ốc, trừ nấm khuẩn và chăm cây khỏe từ gốc đến ngọn. Ưu tiên hoạt chất chuẩn Châu Âu / Nhật / Mỹ.</p>
+      <div class="hero-eyebrow" data-i18n="hero_eyebrow">VOCHIRON &amp; EHA · Nông dược cho cây lúa</div>
+      <h1 data-i18n="hero_h1">Danh mục nông dược &amp; dinh dưỡng cây trồng</h1>
+      <p data-i18n="hero_sub">Giải pháp thực chiến trên đồng ruộng: trừ cỏ, trừ sâu rầy ốc, trừ nấm khuẩn và chăm cây khỏe từ gốc đến ngọn. Ưu tiên hoạt chất chuẩn Châu Âu / Nhật / Mỹ.</p>
       <div class="stats">
-        <div><b class="count" data-count="208">0</b><span><span class="live-dot"></span>Nông dân tin dùng</span></div>
-        <div><b class="count" data-count="24914">0</b><span>Sản phẩm đã bán ra</span></div>
-        <div><b class="count" data-count="41">0</b><span>Sản phẩm (SKU)</span></div>
+        <div><b class="count" data-count="208">0</b><span><span class="live-dot"></span><span data-i18n="stat_farmers">Nông dân tin dùng</span></span></div>
+        <div><b class="count" data-count="24914">0</b><span data-i18n="stat_sold">Sản phẩm đã bán ra</span></div>
+        <div><b class="count" data-count="41">0</b><span data-i18n="stat_sku">Sản phẩm (SKU)</span></div>
       </div>
       <div class="hero-cta">
-        <a class="bay-btn" href="#lg">Xem sản phẩm</a>
-        <a class="bay-btn call" href="tel:0933526086">📞 Gọi tư vấn ngay</a>
+        <a class="bay-btn" href="#lg" data-i18n="cta_view">Xem sản phẩm</a>
+        <a class="bay-btn call" href="tel:0933526086" data-i18n="cta_call">📞 Gọi tư vấn ngay</a>
       </div>
     </div>
   </div>
@@ -458,7 +503,7 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
 
 <section class="doctor">
   <div class="wrap">
-    <div class="doc-head">🩺 <b>Lúa của bạn đang bị gì?</b><span>Bấm đúng triệu chứng — gợi ý ngay thuốc trị</span></div>
+    <div class="doc-head">🩺 <b data-i18n="doc_head">Lúa của bạn đang bị gì?</b><span data-i18n="doc_sub">Bấm đúng triệu chứng — gợi ý ngay thuốc trị</span></div>
     <div class="doc-grid">
       <button class="doc-btn" data-rec="dao-on"><i>🍂</i><b>Cháy lá — đạo ôn</b><small>vết mắt én, cổ bông đen</small></button>
       <button class="doc-btn" data-rec="ray"><i>🦗</i><b>Rầy nâu — cháy rầy</b><small>vạch gốc thấy rầy, lúa vàng lụi</small></button>
@@ -495,20 +540,31 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
 <nav class="jump">
   <div class="wrap">
     <img class="n-logo logo-badge" src="assets/logo-mark.webp" alt="VOCHIRON USA">
-    <a href="#lg">🌾 Lúa giống</a>
-    <a href="#co">🌿 Trừ cỏ</a>
-    <a href="#sau">🐛 Trừ sâu rầy ốc</a>
-    <a href="#benh">🍃 Trừ bệnh</a>
-    <a href="#dd">🌱 Dinh dưỡng</a>
-    <a href="#phacdo">📋 Phác đồ lúa</a>
-    <a href="https://vochironusa.com/cam-nang/">📚 Cẩm nang</a>
-    <a href="#combo">🧺 Combo</a>
-    <a href="#video">🎬 Video</a>
-    <a href="#feedback">🤝 Tin dùng</a>
-    <a href="https://www.ppd.gov.vn/" target="_blank" rel="noopener">✅ Tra cứu thuốc BVTV</a>
-    <a href="to-roi-vochiron-a5.pdf" target="_blank" rel="noopener">📄 Tờ rơi A5</a>
-    <a href="#order" class="n-order">🛒 Đặt hàng</a>
-    <input id="search" type="search" placeholder="🔎 Tìm sản phẩm, hoạt chất, bệnh…">
+    <span class="nav-drop">
+      <button class="nav-top"><span data-i18n="nav_products">🌾 Sản phẩm</span> <span class="caret">▾</span></button>
+      <span class="nav-menu">
+        <a href="#lg" data-i18n="cat_lg">Lúa giống</a>
+        <a href="#co" data-i18n="cat_co">Trừ cỏ</a>
+        <a href="#sau" data-i18n="cat_sau">Trừ sâu rầy ốc</a>
+        <a href="#benh" data-i18n="cat_benh">Trừ bệnh</a>
+        <a href="#dd" data-i18n="cat_dd">Dinh dưỡng</a>
+      </span>
+    </span>
+    <a href="#phacdo" data-i18n="nav_protocol">📋 Phác đồ lúa</a>
+    <a href="https://vochironusa.com/cam-nang/" data-i18n="nav_guide">📚 Cẩm nang</a>
+    <a href="#news" data-i18n="nav_news">📰 Tin tức</a>
+    <span class="nav-drop">
+      <button class="nav-top"><span data-i18n="nav_more">Thêm</span> <span class="caret">▾</span></button>
+      <span class="nav-menu">
+        <a href="#combo" data-i18n="title_combo">🧺 Combo</a>
+        <a href="#video">🎬 Video</a>
+        <a href="#feedback" data-i18n="title_feedback">🤝 Tin dùng</a>
+        <a href="https://www.ppd.gov.vn/" target="_blank" rel="noopener">✅ Tra cứu thuốc BVTV</a>
+        <a href="to-roi-vochiron-a5.pdf" target="_blank" rel="noopener">📄 Tờ rơi A5</a>
+      </span>
+    </span>
+    <input id="search" type="search" data-i18n-ph="search_ph" placeholder="🔎 Tìm sản phẩm, bệnh…">
+    <a href="#order" class="n-order" data-i18n="nav_order">🛒 Đặt hàng</a>
   </div>
 </nav>
 
@@ -534,7 +590,7 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
       <div class="cat-head">
         <div class="cat-icon">🌾</div>
         <div>
-          <h2>Lúa giống <span class="count">2 sản phẩm</span></h2>
+          <h2><span data-i18n="cat_lg">Lúa giống</span> <span class="count">2 <span data-i18n="lbl_products">sản phẩm</span></span></h2>
           <p class="cat-tag">Giống lúa chất lượng — nảy mầm khỏe, đẻ nhánh mạnh, cứng cây, năng suất cao</p>
         </div>
       </div>
@@ -547,11 +603,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">LG-1</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>Lúa giống OM18 — Tấn Thịnh</h3>
           <div class="pack">Giá theo kg · đóng bao 40kg</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Giống lúa thuần OM18</span></div>
-          <div class="field"><b>Công dụng:</b> Giống chủ lực vụ Đông Xuân &amp; Hè Thu — ĐBSCL</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Giống lúa thuần OM18</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Giống chủ lực vụ Đông Xuân &amp; Hè Thu — ĐBSCL</div>
           <div class="desc">Giống lúa thuần ngắn ngày (~90–95 ngày). Cứng cây, đẻ nhánh khá, thích nghi rộng vùng ĐBSCL, chịu phèn mặn tốt. Năng suất cao, hạt gạo dài, cơm mềm thơm nhẹ — thương lái ưa chuộng, dễ bán.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>13.500đ</strong></div>
-          <a class="detail-link" href="san-pham/lg-1-lua-giong-om18-tan-thinh.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>13.500đ</strong></div>
+          <a class="detail-link" href="san-pham/lg-1-lua-giong-om18-tan-thinh.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="LG-1" data-name="Lúa giống OM18 — Tấn Thịnh" data-price="13500" data-step="40">＋ Thêm 40kg vào đơn</button>
         </div>
       </article>
@@ -563,11 +619,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">LG-2</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>Nếp IR4625</h3>
           <div class="pack">Giá theo kg · đóng bao 40kg</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Giống nếp IR4625</span></div>
-          <div class="field"><b>Công dụng:</b> Giống nếp chủ lực — dẻo thơm, dễ bán</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Giống nếp IR4625</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Giống nếp chủ lực — dẻo thơm, dễ bán</div>
           <div class="desc">Giống nếp phổ biến (~90–95 ngày), đẻ nhánh khỏe, thích nghi tốt vùng ĐBSCL. Hạt nếp đục đẹp, nấu dẻo thơm; đầu ra ổn định, thương lái thu mạnh.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>12.500đ</strong></div>
-          <a class="detail-link" href="san-pham/lg-2-nep-ir4625.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>12.500đ</strong></div>
+          <a class="detail-link" href="san-pham/lg-2-nep-ir4625.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="LG-2" data-name="Nếp IR4625" data-price="12500" data-step="40">＋ Thêm 40kg vào đơn</button>
         </div>
       </article>
@@ -577,7 +633,7 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
       <div class="cat-head">
         <div class="cat-icon">🌾</div>
         <div>
-          <h2>Thuốc trừ cỏ <span class="count">2 sản phẩm</span></h2>
+          <h2><span data-i18n="cat_co">Thuốc trừ cỏ</span> <span class="count">2 <span data-i18n="lbl_products">sản phẩm</span></span></h2>
           <p class="cat-tag">Diệt mầm cỏ lồng vực, đuôi phụng, cỏ lá rộng — và trừ ốc bảo vệ mạ non</p>
         </div>
       </div>
@@ -590,11 +646,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-1</span><span class="tier t-cc">Cao cấp</span></div>
           <h3>EHA EUROFIT- SOFIT CHÂU ÂU 1 lít</h3>
           <div class="pack">Chai 1L</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Pretilachlor 350g/l</span><span class="chip">Fenclorim 100g/l</span></div>
-          <div class="field"><b>Công dụng:</b> Cỏ lồng vực, đuôi phụng, chác lác</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Pretilachlor 350g/l</span><span class="chip">Fenclorim 100g/l</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Cỏ lồng vực, đuôi phụng, chác lác</div>
           <div class="desc">Pretilachlor khóa phân chia tế bào mầm cỏ (ức chế VLCFA). Fenclorim kích lúa tạo enzyme phân giải thuốc nên lúa an toàn. Phun tiền nảy mầm 0–3 NSS, ruộng đủ ẩm.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>255.000đ</strong></div>
-          <a class="detail-link" href="san-pham/eha-1-eurofit-sofit-chau-au.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>255.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-1-eurofit-sofit-chau-au.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="EHA-1" data-name="EHA EUROFIT- SOFIT CHÂU ÂU 1 lít" data-price="255000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -606,11 +662,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-14</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>VCR Diệt Mầm MỸ 500ml Tiêu Mầm sofit</h3>
           <div class="pack">Chai 500ml</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Pretilachlor 300g/l</span><span class="chip">Fenclorim 100g/l</span></div>
-          <div class="field"><b>Công dụng:</b> Cỏ tiền nảy mầm</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Pretilachlor 300g/l</span><span class="chip">Fenclorim 100g/l</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Cỏ tiền nảy mầm</div>
           <div class="desc">Cùng cơ chế Eurofit, hàm lượng Pretilachlor thấp hơn. Tiền nảy mầm 0–3 NSS.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>125.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-14-diet-mam-my-tieu-mam-sofit.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>125.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-14-diet-mam-my-tieu-mam-sofit.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-14" data-name="VCR Diệt Mầm MỸ 500ml Tiêu Mầm sofit" data-price="125000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -620,7 +676,7 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
       <div class="cat-head">
         <div class="cat-icon">🐛</div>
         <div>
-          <h2>Thuốc trừ sâu, rầy &amp; ốc <span class="count">6 sản phẩm</span></h2>
+          <h2><span data-i18n="cat_sau">Thuốc trừ sâu, rầy &amp; ốc</span> <span class="count">6 <span data-i18n="lbl_products">sản phẩm</span></span></h2>
           <p class="cat-tag">Sâu đục thân, cuốn lá, nhện gié, bọ trĩ, rầy nâu, ốc bươu vàng</p>
         </div>
       </div>
@@ -633,11 +689,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-3</span><span class="tier t-cc">Cao cấp</span></div>
           <h3>VCR ICHIBIO Sâu đục thân, cuốn lá, nhện gié, bọ trĩ, rầy nâu</h3>
           <div class="pack">Chai</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Bifenthrin 17,1%</span><span class="chip">Imidacloprid 17,1%</span></div>
-          <div class="field"><b>Công dụng:</b> Sâu đục thân, cuốn lá, nhện gié, bọ trĩ, rầy nâu</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Bifenthrin 17,1%</span><span class="chip">Imidacloprid 17,1%</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Sâu đục thân, cuốn lá, nhện gié, bọ trĩ, rầy nâu</div>
           <div class="desc">Bifenthrin (Pyrethroid, IRAC 3A) giữ kênh Natri mở, hạ gục nhanh, có tác động lên nhện. Imidacloprid lưu dẫn chặn thần kinh côn trùng chích hút.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>230.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-3-ichibio.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>230.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-3-ichibio.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-3" data-name="VCR ICHIBIO Sâu đục thân, cuốn lá, nhện gié, bọ trĩ, rầy nâu" data-price="230000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -649,11 +705,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-10</span><span class="tier t-cc">Cao cấp</span></div>
           <h3>EHA F21 xông hơi sâu đục thân, rầy rệp bản mới F18</h3>
           <div class="pack">Chai</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Profenofos 450g/l</span><span class="chip">Thiamethoxam 100g/l</span></div>
-          <div class="field"><b>Công dụng:</b> Sâu đục thân, cuốn lá, rầy nâu, bọ xít hôi</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Profenofos 450g/l</span><span class="chip">Thiamethoxam 100g/l</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Sâu đục thân, cuốn lá, rầy nâu, bọ xít hôi</div>
           <div class="desc">Profenofos (lân hữu cơ, IRAC 1B) ức chế AChE; tiếp xúc, vị độc, xông hơi, thấm sâu. Thiamethoxam (IRAC 4A) lưu dẫn nhanh, kéo dài. Nhắc bảo hộ lao động.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>180.000đ</strong></div>
-          <a class="detail-link" href="san-pham/eha-10-f21-xong-hoi-ban-moi-f18.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>180.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-10-f21-xong-hoi-ban-moi-f18.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="EHA-10" data-name="EHA F21 xông hơi sâu đục thân, rầy rệp bản mới F18" data-price="180000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -665,11 +721,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-13</span></div>
           <h3>EHA DIỆT SẠCH sâu rầy rệp, xông hơi lưu dẫn</h3>
           <div class="pack">Chai</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Dimethoate 40g/l</span><span class="chip">Fenobucarb 100g/l</span></div>
-          <div class="field"><b>Công dụng:</b> Rầy nâu, rầy lưng trắng, rệp</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Dimethoate 40g/l</span><span class="chip">Fenobucarb 100g/l</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Rầy nâu, rầy lưng trắng, rệp</div>
           <div class="desc">Dimethoate (lân hữu cơ) lưu dẫn + Fenobucarb (Carbamate, IRAC 1A) tiếp xúc, cùng ức chế AChE. Hạ rầy trưởng thành cực nhanh.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>170.000đ</strong></div>
-          <a class="detail-link" href="san-pham/eha-13-diet-sach.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>170.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-13-diet-sach.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="EHA-13" data-name="EHA DIỆT SẠCH sâu rầy rệp, xông hơi lưu dẫn" data-price="170000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -681,11 +737,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-4</span></div>
           <h3>VCR Siêu 3.6 siêu diệt ốc</h3>
           <div class="pack">Chai</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Abamectin 3,6%</span><span class="chip">phụ gia thẩm thấu</span></div>
-          <div class="field"><b>Công dụng:</b> Ốc bươu vàng</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Abamectin 3,6%</span><span class="chip">phụ gia thẩm thấu</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Ốc bươu vàng</div>
           <div class="desc">Chủ vận kênh Chloride (GluCl) gây tê liệt cơ. Tiếp xúc + vị độc, thấm sâu mô.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>80.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-4-sieu-3-6.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>80.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-4-sieu-3-6.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-4" data-name="VCR Siêu 3.6 siêu diệt ốc" data-price="80000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -697,11 +753,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-20</span></div>
           <h3>VCR USA- PADAN LEDAN USA ( cartap, imidac, sâu đục thân, cuốn lá) 100gr</h3>
           <div class="pack">Gói 100g</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Cartap 75%</span><span class="chip">Imidacloprid 10%</span></div>
-          <div class="field"><b>Công dụng:</b> Sâu đục thân, cuốn lá, muỗi hành, rầy</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Cartap 75%</span><span class="chip">Imidacloprid 10%</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Sâu đục thân, cuốn lá, muỗi hành, rầy</div>
           <div class="desc">Cartap (Nereistoxin, IRAC 14) chẹn nAChR, thấm sâu + vị độc, đặc trị sâu đục thân, cuốn lá. Imidacloprid lưu dẫn diệt rầy.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>70.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-20-padan-ledan-usa.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>70.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-20-padan-ledan-usa.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-20" data-name="VCR USA- PADAN LEDAN USA ( cartap, imidac, sâu đục thân, cuốn lá) 100gr" data-price="70000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -713,11 +769,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-18</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>VCR SÓI XÁM 100g Sói đỏ bản mới ( sâu đục thân, rầy nâu)</h3>
           <div class="pack">Gói 100g</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Buprofezin</span><span class="chip">Imidacloprid</span></div>
-          <div class="field"><b>Công dụng:</b> Rầy nâu, bọ trĩ, sâu đục thân</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Buprofezin</span><span class="chip">Imidacloprid</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Rầy nâu, bọ trĩ, sâu đục thân</div>
           <div class="desc">Buprofezin ức chế tổng hợp chitin: rầy non không lột xác, trứng ung (IRAC 16). Imidacloprid lưu dẫn, chủ vận nAChR diệt nhanh (IRAC 4A).</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>48.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-18-soi-xam-100g-soi-do-ban-moi.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>48.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-18-soi-xam-100g-soi-do-ban-moi.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-18" data-name="VCR SÓI XÁM 100g Sói đỏ bản mới ( sâu đục thân, rầy nâu)" data-price="48000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -727,7 +783,7 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
       <div class="cat-head">
         <div class="cat-icon">🍃</div>
         <div>
-          <h2>Thuốc trừ bệnh — nấm &amp; vi khuẩn <span class="count">20 sản phẩm</span></h2>
+          <h2><span data-i18n="cat_benh">Thuốc trừ bệnh — nấm &amp; vi khuẩn</span> <span class="count">20 <span data-i18n="lbl_products">sản phẩm</span></span></h2>
           <p class="cat-tag">Đạo ôn lá &amp; cổ bông, khô vằn, lem lép hạt, bạc lá do vi khuẩn</p>
         </div>
       </div>
@@ -740,11 +796,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-15</span><span class="tier t-cc">Cao cấp</span></div>
           <h3>EHA- Katana kiếm nhật bản 480cc đạo ôn</h3>
           <div class="pack">Chai 480cc</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Fenoxanil 20g/l</span></div>
-          <div class="field"><b>Công dụng:</b> Đạo ôn nặng, tái đi tái lại</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Fenoxanil 20g/l</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Đạo ôn nặng, tái đi tái lại</div>
           <div class="desc">MBI-D: ức chế scytalone dehydratase trong tổng hợp melanin; chặn bào tử nảy mầm. Nội hấp, cả phòng lẫn trị sớm. Xoay vòng được với Tricyclazole.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>245.000đ</strong></div>
-          <a class="detail-link" href="san-pham/eha-15-katana-kiem-nhat-480cc.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>245.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-15-katana-kiem-nhat-480cc.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="EHA-15" data-name="EHA- Katana kiếm nhật bản 480cc đạo ôn" data-price="245000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -756,11 +812,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-12</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>VCR BIM USA 100gr đạo ôn</h3>
           <div class="pack">Gói 100g</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Tricyclazole (dữ liệu ghi 75g/kg — kiểm tra nhãn, chuẩn Bim 75WP là 750g/kg)</span></div>
-          <div class="field"><b>Công dụng:</b> Đạo ôn lá, cổ bông, cổ gié</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Tricyclazole (dữ liệu ghi 75g/kg — kiểm tra nhãn, chuẩn Bim 75WP là 750g/kg)</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Đạo ôn lá, cổ bông, cổ gié</div>
           <div class="desc">MBI-R, nội hấp. Dùng phòng đạo ôn lá giai đoạn đẻ nhánh khi thời tiết âm u, sương nhiều.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>65.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-12-bim-usa.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>65.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-12-bim-usa.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-12" data-name="VCR BIM USA 100gr đạo ôn" data-price="65000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -772,11 +828,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-3</span><span class="tier t-cc">Cao cấp</span></div>
           <h3>EHA Help Châu Âu Heppy top 400</h3>
           <div class="pack">Chai</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Azoxystrobin 250</span><span class="chip">Difenoconazole 150</span></div>
-          <div class="field"><b>Công dụng:</b> Đạo ôn, lem lép, vàng lá</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Azoxystrobin 250</span><span class="chip">Difenoconazole 150</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Đạo ôn, lem lép, vàng lá</div>
           <div class="desc">Strobilurin chặn hô hấp nấm + Triazole ức chế ergosterol; giữ lá đòng xanh. Cữ trước trổ.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>250.000đ</strong></div>
-          <a class="detail-link" href="san-pham/eha-3-help-chau-au-heppy-top-400.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>250.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-3-help-chau-au-heppy-top-400.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="EHA-3" data-name="EHA Help Châu Âu Heppy top 400" data-price="250000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -788,11 +844,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-6</span></div>
           <h3>EHA TOPVIL 50SC anvil ấn độ , công nghệ nano</h3>
           <div class="pack">Chai</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Hexaconazole 50g/l</span></div>
-          <div class="field"><b>Công dụng:</b> Khô vằn, lem lép, rỉ sắt, đốm nâu</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Hexaconazole 50g/l</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Khô vằn, lem lép, rỉ sắt, đốm nâu</div>
           <div class="desc">Triazole: ức chế C14-demethylase, thiếu ergosterol, màng nấm vỡ. Nội hấp hướng ngọn, giữ lá xanh.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>180.000đ</strong></div>
-          <a class="detail-link" href="san-pham/eha-6-topvil-50sc-anvil-nano.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>180.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-6-topvil-50sc-anvil-nano.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="EHA-6" data-name="EHA TOPVIL 50SC anvil ấn độ , công nghệ nano" data-price="180000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -804,11 +860,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-2</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>EHA SIÊU KHUẨN USA 240cc</h3>
           <div class="pack">Chai 240cc</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Ningnanmycin 40g/l (4SL)</span></div>
-          <div class="field"><b>Công dụng:</b> Bạc lá, đốm sọc vi khuẩn, thối gốc</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Ningnanmycin 40g/l (4SL)</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Bạc lá, đốm sọc vi khuẩn, thối gốc</div>
           <div class="desc">Kháng sinh sinh học: ức chế tổng hợp protein, phá màng tế bào vi khuẩn; kích thích tính kháng tập nhiễm hệ thống (SAR). Dạng SL tan hoàn toàn trong nước, thấm nhanh.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>95.000đ</strong></div>
-          <a class="detail-link" href="san-pham/eha-2-sieu-khuan-usa-240cc.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>95.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-2-sieu-khuan-usa-240cc.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="EHA-2" data-name="EHA SIÊU KHUẨN USA 240cc" data-price="95000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -820,11 +876,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-13</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>VCR Thần Y Pirastar ( diệt sạch đạo ôn, vàng lá chín sớm, hơn 100 loại nấm bệnh)</h3>
           <div class="pack">Chai</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Pyraclostrobin 133g/l</span><span class="chip">Epoxiconazole 50g/l</span></div>
-          <div class="field"><b>Công dụng:</b> Đạo ôn, vàng lá chín sớm, lem lép, nấm phổ rộng</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Pyraclostrobin 133g/l</span><span class="chip">Epoxiconazole 50g/l</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Đạo ôn, vàng lá chín sớm, lem lép, nấm phổ rộng</div>
           <div class="desc">Strobilurin (FRAC 11) chặn hô hấp ty thể nấm, hiệu ứng xanh lá. Triazole (FRAC 3) lưu dẫn, ức chế ergosterol. Tối đa 2 lần/vụ.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>200.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-13-than-y-pirastar.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>200.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-13-than-y-pirastar.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-13" data-name="VCR Thần Y Pirastar ( diệt sạch đạo ôn, vàng lá chín sớm, hơn 100 loại nấm bệnh)" data-price="200000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -836,11 +892,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-19</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>VCR NATIVO MỸ 90gr</h3>
           <div class="pack">Gói 90g</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Azoxystrobin 200</span><span class="chip">Trifloxystrobin 250</span><span class="chip">Cyproconazole 75</span></div>
-          <div class="field"><b>Công dụng:</b> Lem lép hạt, vàng lá, đạo ôn, khô vằn</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Azoxystrobin 200</span><span class="chip">Trifloxystrobin 250</span><span class="chip">Cyproconazole 75</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Lem lép hạt, vàng lá, đạo ôn, khô vằn</div>
           <div class="desc">Hai Strobilurin chặn hô hấp nấm + Triazole ức chế ergosterol. Phòng lem lép hạt và vàng lá cữ sau trổ.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>168.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-19-nativo-my-90g.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>168.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-19-nativo-my-90g.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-19" data-name="VCR NATIVO MỸ 90gr" data-price="168000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -852,11 +908,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-7</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>EHA - Til super 240ml</h3>
           <div class="pack">Chai 240ml</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Azoxystrobin</span><span class="chip">Difenoconazole</span></div>
-          <div class="field"><b>Công dụng:</b> Lem lép, vàng lá, bảo vệ lá đòng</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Azoxystrobin</span><span class="chip">Difenoconazole</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Lem lép, vàng lá, bảo vệ lá đòng</div>
           <div class="desc">Cùng cặp hoạt chất Help, quy cách nhỏ hơn. Bảo vệ lá đòng, lem lép.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>160.000đ</strong></div>
-          <a class="detail-link" href="san-pham/eha-7-til-super-240ml.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>160.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-7-til-super-240ml.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="EHA-7" data-name="EHA - Til super 240ml" data-price="160000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -868,11 +924,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-7</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>VCR USA- X3 vochiron - Đạo ôn 3 hoạt chất feno tricy sulfua</h3>
           <div class="pack">Chai</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Fenoxanil 100</span><span class="chip">Tricyclazole 50</span><span class="chip">Sulfur 300</span></div>
-          <div class="field"><b>Công dụng:</b> Đạo ôn lá, cổ bông, cổ gié</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Fenoxanil 100</span><span class="chip">Tricyclazole 50</span><span class="chip">Sulfur 300</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Đạo ôn lá, cổ bông, cổ gié</div>
           <div class="desc">Fenoxanil (MBI-D) và Tricyclazole (MBI-R) cùng chặn tổng hợp melanin ở hai khâu khác nhau: giác bám nấm mất áp lực xuyên lá. Sulfur tiếp xúc đa điểm, giảm áp lực kháng.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>140.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-7-x3-vochiron-dao-on-3-hoat-chat.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>140.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-7-x3-vochiron-dao-on-3-hoat-chat.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-7" data-name="VCR USA- X3 vochiron - Đạo ôn 3 hoạt chất feno tricy sulfua" data-price="140000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -884,11 +940,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-8</span></div>
           <h3>VCR USA ĐẠO ÔN AN NÔNG NƯỚC</h3>
           <div class="pack">Chai</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Tricyclazole 450g/l</span></div>
-          <div class="field"><b>Công dụng:</b> Đạo ôn lá, cổ bông</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Tricyclazole 450g/l</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Đạo ôn lá, cổ bông</div>
           <div class="desc">MBI-R: ức chế enzyme khử trong tổng hợp DHN-melanin, nấm không tạo được giác bám xuyên lá. Nội hấp, phòng tốt hơn trị.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>125.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-8-dao-on-an-nong-nuoc.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>125.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-8-dao-on-an-nong-nuoc.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-8" data-name="VCR USA ĐẠO ÔN AN NÔNG NƯỚC" data-price="125000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -900,11 +956,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-23</span></div>
           <h3>VCR USA ĐẠO ÔN AN NÔNG NƯỚC</h3>
           <div class="pack">Chai</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Tricyclazole 450g/l</span></div>
-          <div class="field"><b>Công dụng:</b> Đạo ôn lá, cổ bông</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Tricyclazole 450g/l</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Đạo ôn lá, cổ bông</div>
           <div class="desc">MBI-R: ức chế enzyme khử trong tổng hợp DHN-melanin, nấm không tạo được giác bám xuyên lá. Nội hấp, phòng tốt hơn trị.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>125.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-23-dao-on-an-nong-nuoc.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>125.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-23-dao-on-an-nong-nuoc.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-23" data-name="VCR USA ĐẠO ÔN AN NÔNG NƯỚC" data-price="125000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -916,11 +972,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-16</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>EHA BIM SỮA NƯỚC</h3>
           <div class="pack">Chai</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Cyproconazole 50</span><span class="chip">Hexaconazole 50</span><span class="chip">Tricyclazole 250</span></div>
-          <div class="field"><b>Công dụng:</b> Đạo ôn + khô vằn + lem lép</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Cyproconazole 50</span><span class="chip">Hexaconazole 50</span><span class="chip">Tricyclazole 250</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Đạo ôn + khô vằn + lem lép</div>
           <div class="desc">Hai Triazole ức chế ergosterol (khô vằn, lem lép) + Tricyclazole chặn melanin (đạo ôn). Lưu dẫn nhanh.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>120.000đ</strong></div>
-          <a class="detail-link" href="san-pham/eha-16-bim-sua-nuoc.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>120.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-16-bim-sua-nuoc.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="EHA-16" data-name="EHA BIM SỮA NƯỚC" data-price="120000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -932,11 +988,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-14</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>EHA- KHUẨN NHẬT Nước 500ml</h3>
           <div class="pack">Chai 500ml</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Ningnanmycin 20g/l</span></div>
-          <div class="field"><b>Công dụng:</b> Bạc lá, héo rũ</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Ningnanmycin 20g/l</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Bạc lá, héo rũ</div>
           <div class="desc">Ức chế tổng hợp protein, phá màng tế bào; kích thích tính kháng tập nhiễm hệ thống (SAR), tác động cả virus.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>100.000đ</strong></div>
-          <a class="detail-link" href="san-pham/eha-14-khuan-nhat-nuoc-sakimori.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>100.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-14-khuan-nhat-nuoc-sakimori.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="EHA-14" data-name="EHA- KHUẨN NHẬT Nước 500ml" data-price="100000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -948,11 +1004,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-9</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>EHA FUSIONE NHẬT FUJIONE đạo ôn</h3>
           <div class="pack">Chai</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Isoprothiolane 40g/l</span></div>
-          <div class="field"><b>Công dụng:</b> Đạo ôn lá và cổ bông</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Isoprothiolane 40g/l</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Đạo ôn lá và cổ bông</div>
           <div class="desc">FRAC 6: ức chế tổng hợp phospholipid màng tế bào nấm, giác bám và sợi nấm không phát triển. Nội hấp mạnh, lưu dẫn lên lá non.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>90.000đ</strong></div>
-          <a class="detail-link" href="san-pham/eha-9-fusione-nhat-fujione.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>90.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-9-fusione-nhat-fujione.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="EHA-9" data-name="EHA FUSIONE NHẬT FUJIONE đạo ôn" data-price="90000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -964,11 +1020,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-10</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>VCR USA - KATY USA ĐẠO ÔN 3 hoạt chất tricy iso hexa</h3>
           <div class="pack">Gói</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Tricyclazole 40%</span><span class="chip">Isoprothiolane 43%</span><span class="chip">Hexaconazole 3%</span></div>
-          <div class="field"><b>Công dụng:</b> Đạo ôn lá và cổ bông, khô vằn nhẹ</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Tricyclazole 40%</span><span class="chip">Isoprothiolane 43%</span><span class="chip">Hexaconazole 3%</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Đạo ôn lá và cổ bông, khô vằn nhẹ</div>
           <div class="desc">Ba cơ chế: chặn melanin (MBI-R) + ức chế phospholipid (FRAC 6, lưu dẫn diệt sợi nấm) + Triazole ức chế ergosterol (kèm khô vằn nhẹ).</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>65.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-10-katy-usa-3-hoat-chat.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>65.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-10-katy-usa-3-hoat-chat.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-10" data-name="VCR USA - KATY USA ĐẠO ÔN 3 hoạt chất tricy iso hexa" data-price="65000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -980,11 +1036,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-8</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>EHA KHUẨN NHẬT 3 hoạt chất cực mạnh GÓI 100gr</h3>
           <div class="pack">Gói 100g</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Kasugamycin 10</span><span class="chip">Ningnanmycin 40</span><span class="chip">Streptomycin 50</span></div>
-          <div class="field"><b>Công dụng:</b> Bạc lá, đốm sọc, thối gốc</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Kasugamycin 10</span><span class="chip">Ningnanmycin 40</span><span class="chip">Streptomycin 50</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Bạc lá, đốm sọc, thối gốc</div>
           <div class="desc">Ba kháng sinh sinh học chặn tổng hợp protein/RNA vi khuẩn; Ningnanmycin kích kháng tập nhiễm. Kasugamycin có cả tác dụng lên đạo ôn.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>60.000đ</strong></div>
-          <a class="detail-link" href="san-pham/eha-8-khuan-nhat-3-hoat-chat.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>60.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-8-khuan-nhat-3-hoat-chat.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="EHA-8" data-name="EHA KHUẨN NHẬT 3 hoạt chất cực mạnh GÓI 100gr" data-price="60000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -996,11 +1052,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-11</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>EHA BIM NHẬT 100GR đạo ôn</h3>
           <div class="pack">Gói 100g</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Tricyclazole (dữ liệu ghi 75g/kg — kiểm tra nhãn)</span></div>
-          <div class="field"><b>Công dụng:</b> Đạo ôn lá, cổ bông, cổ gié</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Tricyclazole (dữ liệu ghi 75g/kg — kiểm tra nhãn)</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Đạo ôn lá, cổ bông, cổ gié</div>
           <div class="desc">MBI-R, nội hấp. Tương đương Bim USA, thương hiệu EHA.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>60.000đ</strong></div>
-          <a class="detail-link" href="san-pham/eha-11-bim-nhat.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>60.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-11-bim-nhat.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="EHA-11" data-name="EHA BIM NHẬT 100GR đạo ôn" data-price="60000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -1012,11 +1068,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-15</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>VCR KHUẨN MỸ BIO USA 250wp 2 Hoạt chất 100gr</h3>
           <div class="pack">Gói 100g</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Bismerthiazol</span><span class="chip">Streptomycin</span></div>
-          <div class="field"><b>Công dụng:</b> Bạc lá, đốm sọc vi khuẩn</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Bismerthiazol</span><span class="chip">Streptomycin</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Bạc lá, đốm sọc vi khuẩn</div>
           <div class="desc">Bismerthiazol nội hấp ức chế màng tế bào vi khuẩn; Streptomycin gắn ribosome 30S chặn tổng hợp protein.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>60.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-15-khuan-my-bio-usa-250wp.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>60.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-15-khuan-my-bio-usa-250wp.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-15" data-name="VCR KHUẨN MỸ BIO USA 250wp 2 Hoạt chất 100gr" data-price="60000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -1028,11 +1084,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-17</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>VCR USA - ANTIBAC 100gr ( đạo ôn vi khuẩn 3 hoạt chất)</h3>
           <div class="pack">Gói 100g</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Tricyclazole 400</span><span class="chip">Bismerthiazol 200</span><span class="chip">Sulfur 200</span></div>
-          <div class="field"><b>Công dụng:</b> Đạo ôn + bạc lá cùng lúc</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Tricyclazole 400</span><span class="chip">Bismerthiazol 200</span><span class="chip">Sulfur 200</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Đạo ôn + bạc lá cùng lúc</div>
           <div class="desc">Tricyclazole chặn melanin (đạo ôn) + Bismerthiazol nội hấp diệt vi khuẩn Xanthomonas (bạc lá) + Sulfur sát khuẩn tiếp xúc.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>60.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-17-antibac-100g.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>60.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-17-antibac-100g.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-17" data-name="VCR USA - ANTIBAC 100gr ( đạo ôn vi khuẩn 3 hoạt chất)" data-price="60000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -1044,11 +1100,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-11</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>VCR USA RIMIN RIDOMIL</h3>
           <div class="pack">Gói</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Metalaxyl 8%</span><span class="chip">Mancozeb 64%</span></div>
-          <div class="field"><b>Công dụng:</b> Sương mai, thối; nấm tiếp xúc phổ rộng</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Metalaxyl 8%</span><span class="chip">Mancozeb 64%</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Sương mai, thối; nấm tiếp xúc phổ rộng</div>
           <div class="desc">Metalaxyl (FRAC 4) nội hấp ức chế RNA polymerase nấm noãn. Mancozeb tiếp xúc đa điểm, khó kháng.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>35.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-11-rimin-ridomil.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>35.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-11-rimin-ridomil.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-11" data-name="VCR USA RIMIN RIDOMIL" data-price="35000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -1058,7 +1114,7 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
       <div class="cat-head">
         <div class="cat-icon">🌱</div>
         <div>
-          <h2>Dinh dưỡng &amp; Kích thích sinh trưởng <span class="count">11 sản phẩm</span></h2>
+          <h2><span data-i18n="cat_dd">Dinh dưỡng &amp; Kích thích sinh trưởng</span> <span class="count">11 <span data-i18n="lbl_products">sản phẩm</span></span></h2>
           <p class="cat-tag">Ra rễ, hạ phèn, nở bụi, cứng cây chống đổ, đón đòng, nuôi hạt</p>
         </div>
       </div>
@@ -1071,11 +1127,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-22</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>VCR- HUMIC THAY THẾ DAP - SIHU NEW ĐỎ CỨNG CÂY 1 KG</h3>
           <div class="pack">Túi 1kg</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Acid Humic</span></div>
-          <div class="field"><b>Công dụng:</b> Kích rễ, đẻ nhánh, cải tạo đất</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Acid Humic</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Kích rễ, đẻ nhánh, cải tạo đất</div>
           <div class="desc">Humic kích rễ mạnh, giải phèn, giải độc hữu cơ, tăng CEC, đất tơi xốp. Thay một phần DAP.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>125.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-22-humic-thay-dap-sihu-new-do-1kg.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>125.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-22-humic-thay-dap-sihu-new-do-1kg.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-22" data-name="VCR- HUMIC THAY THẾ DAP - SIHU NEW ĐỎ CỨNG CÂY 1 KG" data-price="125000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -1087,11 +1143,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-12</span></div>
           <h3>EHA BIO Nước ORGANIC 500ml</h3>
           <div class="pack">Chai 500ml</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Kali 7,5%</span><span class="chip">Bo 900ppm</span><span class="chip">hữu cơ 20%</span></div>
-          <div class="field"><b>Công dụng:</b> Hạt no, nặng, chín đẹp</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Kali 7,5%</span><span class="chip">Bo 900ppm</span><span class="chip">hữu cơ 20%</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Hạt no, nặng, chín đẹp</div>
           <div class="desc">Kali điều tiết vận chuyển đường về hạt, Bo tăng thụ phấn; hữu cơ giữ lá đòng xanh bền. Không nóng lúa.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>120.000đ</strong></div>
-          <a class="detail-link" href="san-pham/eha-12-bio-nuoc-organic-500ml.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>120.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-12-bio-nuoc-organic-500ml.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="EHA-12" data-name="EHA BIO Nước ORGANIC 500ml" data-price="120000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -1103,11 +1159,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-5</span><span class="tier t-cc">Cao cấp</span></div>
           <h3>EHA Antracol nước 1 lít ( siêu cứng cây, xanh lá)</h3>
           <div class="pack">Chai 1L</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Zn 30.000ppm</span><span class="chip">Bo</span><span class="chip">Mg</span></div>
-          <div class="field"><b>Công dụng:</b> Cứng cây, nở bụi, mập đòng, xanh lá</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Zn 30.000ppm</span><span class="chip">Bo</span><span class="chip">Mg</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Cứng cây, nở bụi, mập đòng, xanh lá</div>
           <div class="desc">Trung vi lượng: Zn cho tổng hợp auxin và dày thành tế bào, Bo cho phân hóa đòng, Mg cho diệp lục. Thời điểm vàng 40 NSS: cùng lúc cứng cây, nở bụi và mập đòng.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>220.000đ</strong></div>
-          <a class="detail-link" href="san-pham/eha-5-antracol-nuoc-1l.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>220.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-5-antracol-nuoc-1l.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="EHA-5" data-name="EHA Antracol nước 1 lít ( siêu cứng cây, xanh lá)" data-price="220000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -1119,11 +1175,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-21</span><span class="tier t-cc">Cao cấp</span></div>
           <h3>VCR USA - Hydrophos 1 Lít</h3>
           <div class="pack">Chai 1L</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Lân 31,4%</span><span class="chip">Mg 4,2%</span><span class="chip">Kali</span></div>
-          <div class="field"><b>Công dụng:</b> Ra rễ cám, xanh lá, hạ phèn</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Lân 31,4%</span><span class="chip">Mg 4,2%</span><span class="chip">Kali</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Ra rễ cám, xanh lá, hạ phèn</div>
           <div class="desc">Lân dễ tiêu lưu dẫn 2 chiều kích rễ, tăng đề kháng; Mg là nhân diệp lục.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>180.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-21-hydrophos-1l.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>180.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-21-hydrophos-1l.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-21" data-name="VCR USA - Hydrophos 1 Lít" data-price="180000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -1135,11 +1191,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-2</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>VCR CỨNG CÂY CHỐNG SẬP 500ml</h3>
           <div class="pack">Chai 500ml</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Zn 15.000ppm</span><span class="chip">Chlormequat (CCC)</span><span class="chip">Mepiquat</span></div>
-          <div class="field"><b>Công dụng:</b> Chống đổ ngã</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Zn 15.000ppm</span><span class="chip">Chlormequat (CCC)</span><span class="chip">Mepiquat</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Chống đổ ngã</div>
           <div class="desc">CCC và Mepiquat ức chế tổng hợp gibberellin nội sinh: lóng ngắn, thành tế bào dày. Phải dùng trước khi lóng vươn, 40–50 NSS.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>160.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-2-cung-cay-chong-sap-500ml.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>160.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-2-cung-cay-chong-sap-500ml.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-2" data-name="VCR CỨNG CÂY CHỐNG SẬP 500ml" data-price="160000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -1151,11 +1207,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-16</span><span class="tier t-ch">Tiêu chuẩn</span></div>
           <h3>GINSENG NYRO 0.01SL 200ml (King Brassinolide)</h3>
           <div class="pack">Chai 200ml</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Brassinolide 0.01% w/w</span></div>
-          <div class="field"><b>Công dụng:</b> Kích rễ đẻ nhánh, trổ thoát mập đòng, hạt chắc mẩy; chống stress hạn – mặn – phèn – lạnh, giải độc thuốc</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Brassinolide 0.01% w/w</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Kích rễ đẻ nhánh, trổ thoát mập đòng, hạt chắc mẩy; chống stress hạn – mặn – phèn – lạnh, giải độc thuốc</div>
           <div class="desc">Brassinolide là hormone sinh trưởng tự nhiên (brassinosteroid): kích thích phân chia và kéo dài tế bào giúp ra rễ, đẻ nhánh, vươn đòng; kích hoạt hệ phòng vệ giúp cây chống chịu hạn – mặn – phèn – lạnh và giải độc thuốc cỏ, thuốc BVTV; hỗ trợ thụ phấn và vận chuyển dinh dưỡng về hạt cho hạt chắc mẩy, sáng bóng.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>160.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-16-ginseng-nyro-0-01sl.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>160.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-16-ginseng-nyro-0-01sl.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-16" data-name="GINSENG NYRO 0.01SL 200ml (King Brassinolide)" data-price="160000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -1167,11 +1223,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-eha">EHA</span><span class="code">EHA-4</span></div>
           <h3>EHA Siêu ra rể nở bụi cứng cây xanh lá 1 lít</h3>
           <div class="pack">Chai 1L</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Zn 30.000ppm</span><span class="chip">Bo</span><span class="chip">Mg</span><span class="chip">phụ gia</span></div>
-          <div class="field"><b>Công dụng:</b> Kích rễ, nở bụi, xanh lá</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Zn 30.000ppm</span><span class="chip">Bo</span><span class="chip">Mg</span><span class="chip">phụ gia</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Kích rễ, nở bụi, xanh lá</div>
           <div class="desc">Zn cần cho tổng hợp auxin và enzyme; Bo, Mg cho lá dày, chồi phát triển.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>140.000đ</strong></div>
-          <a class="detail-link" href="san-pham/eha-4-sieu-ra-re-no-bui-cung-cay-xanh-la-1l.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>140.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-4-sieu-ra-re-no-bui-cung-cay-xanh-la-1l.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="EHA-4" data-name="EHA Siêu ra rể nở bụi cứng cây xanh lá 1 lít" data-price="140000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -1183,11 +1239,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-5</span></div>
           <h3>VCR BLOOM POWER kích trổ, mập đòng</h3>
           <div class="pack">Chai</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">NPK 12-3-3</span><span class="chip">Zn, Fe, Bo</span><span class="chip">GA3, NAA, B1, amino acid</span></div>
-          <div class="field"><b>Công dụng:</b> Mập đòng, trổ đều</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">NPK 12-3-3</span><span class="chip">Zn, Fe, Bo</span><span class="chip">GA3, NAA, B1, amino acid</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Mập đòng, trổ đều</div>
           <div class="desc">GA3 kích thoát đòng, NAA và amino nuôi đòng, Bo cho phấn hoa. Đón đòng 40–45 NSS và trước trổ.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>105.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-5-bloom-power.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>105.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-5-bloom-power.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-5" data-name="VCR BLOOM POWER kích trổ, mập đòng" data-price="105000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -1199,11 +1255,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-6</span></div>
           <h3>VCR USA Comcat nước 500cc</h3>
           <div class="pack">Chai 500cc</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">NPK 10-5-5</span><span class="chip">Humic</span><span class="chip">NAA 3000</span><span class="chip">GA3</span></div>
-          <div class="field"><b>Công dụng:</b> Bén rễ, bung đọt</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">NPK 10-5-5</span><span class="chip">Humic</span><span class="chip">NAA 3000</span><span class="chip">GA3</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Bén rễ, bung đọt</div>
           <div class="desc">NAA kích rễ bất định, GA3 kích kéo dài tế bào, Humic giải độc. Dùng sau sạ/cấy hoặc khi ruộng ngộ độc.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>90.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-6-comcat-nuoc-500cc.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>90.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-6-comcat-nuoc-500cc.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-6" data-name="VCR USA Comcat nước 500cc" data-price="90000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -1215,11 +1271,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-1</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>VCR GÓI BIO RA RỂ HẠ PHÈN NỞ BỤI 50gr</h3>
           <div class="pack">Gói 50g</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">NPK 9-6-3</span><span class="chip">Humic</span><span class="chip">Bo, Zn</span></div>
-          <div class="field"><b>Công dụng:</b> Rễ yếu, phèn, đẻ nhánh kém</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">NPK 9-6-3</span><span class="chip">Humic</span><span class="chip">Bo, Zn</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Rễ yếu, phèn, đẻ nhánh kém</div>
           <div class="desc">Humic tạo phức với Fe/Al giảm độc phèn, kích rễ; NPK cân đối cho đẻ nhánh. Sản phẩm mở đơn giá thấp.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>10.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-1-bio-ra-re-ha-phen-no-bui-50g.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>10.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-1-bio-ra-re-ha-phen-no-bui-50g.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-1" data-name="VCR GÓI BIO RA RỂ HẠ PHÈN NỞ BỤI 50gr" data-price="10000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -1231,11 +1287,11 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
           <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="code">VCR-9</span><span class="tier t-tk">Tiết kiệm</span></div>
           <h3>VCR USA - SUPER BIOCAT ( comcat, supercat usa)</h3>
           <div class="pack">Gói</div>
-          <div class="chips"><span class="chip-label">Hoạt chất</span><span class="chip">Vi lượng chelate Zn, Fe, Mn, Cu, Bo</span></div>
-          <div class="field"><b>Công dụng:</b> Bù vi lượng, dưỡng cây</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Vi lượng chelate Zn, Fe, Mn, Cu, Bo</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Bù vi lượng, dưỡng cây</div>
           <div class="desc">Vi lượng dạng chelate hấp thu qua lá, bù thiếu hụt, kích sinh trưởng. Pha chung với thuốc BVTV.</div>
-          <div class="price"><small>Giá bán lẻ tham khảo</small><strong>10.000đ</strong></div>
-          <a class="detail-link" href="san-pham/vcr-9-super-biocat-usa.html">Xem chi tiết sản phẩm →</a>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>10.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-9-super-biocat-usa.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
           <button class="add-btn" data-code="VCR-9" data-name="VCR USA - SUPER BIOCAT ( comcat, supercat usa)" data-price="10000" data-step="1">＋ Thêm vào đơn</button>
         </div>
       </article>
@@ -1325,7 +1381,7 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
       <div class="cat-head">
         <div class="cat-icon">🤝</div>
         <div>
-          <h2>Nông dân tin dùng <span class="count">Số liệu thật từ hệ thống bán hàng</span></h2>
+          <h2><span data-i18n="title_feedback">Nông dân tin dùng</span> <span class="count">Số liệu thật từ hệ thống bán hàng</span></h2>
           <p class="cat-tag">Kỳ 01/01 – 03/09/2026 · Chi nhánh Lê Nguyễn 2</p>
         </div>
       </div>
@@ -1339,6 +1395,27 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
         <b>🎁 Bà con đã dùng sản phẩm VOCHIRON/EHA hiệu quả?</b>
         <span>Gửi hình ruộng + vài dòng cảm nhận qua <a href="https://zalo.me/84933526086" target="_blank" rel="noopener">Zalo kỹ thuật 0933 526 086</a> — phản hồi được đăng lên đây sẽ nhận <b>ưu đãi cho đơn kế tiếp</b>.</span>
       </div>
+    </section>
+
+    <section class="cat" id="news" style="--cat:#0072bc">
+      <div class="cat-head">
+        <div class="cat-icon">📰</div>
+        <div><h2><span data-i18n="title_news">Tin tức &amp; Thông báo</span></h2>
+          <p class="cat-tag" data-i18n="news_sub">Cập nhật sản phẩm mới, lúa giống, chương trình khuyến mãi từ VOCHIRON &amp; VTNN Lê Nguyễn 2.</p></div>
+      </div>
+      <div class="news-grid"><article class="ncard">
+      <div class="n-top"><span class="n-ic">🌐</span><span class="n-tag">Thông báo</span><span class="n-date">07/09/2026</span></div>
+      <h3>Website chính thức vochironusa.com đã hoạt động</h3>
+      <p>Bà con đặt hàng, tra cứu sản phẩm và phác đồ cây lúa ngay tại địa chỉ mới — nhanh, gọn, đặt 1 chạm cửa hàng gọi lại.</p>
+    </article><article class="ncard">
+      <div class="n-top"><span class="n-ic">🌾</span><span class="n-tag">Lúa giống</span><span class="n-date">05/09/2026</span></div>
+      <h3>Đã về lúa giống OM18 &amp; Nếp IR4625 cho vụ mới</h3>
+      <p>OM18 13.500đ/kg, Nếp IR4625 12.500đ/kg. Mua đủ 1 tấn giảm 200.000đ/tấn. Đặt trước giao tận ruộng trước ngày sạ.</p>
+    </article><article class="ncard">
+      <div class="n-top"><span class="n-ic">🎁</span><span class="n-tag">Khuyến mãi</span><span class="n-date">01/09/2026</span></div>
+      <h3>Mua 1 thùng Sihu New (24 gói) — tặng 10 ghế nhựa</h3>
+      <p>Hoặc giảm trực tiếp 360.000đ/thùng khi chuyển khoản trước. Áp dụng cho sản phẩm bán chạy số 1 — Humic thay DAP, kích rễ cứng cây.</p>
+    </article></div>
     </section>
 </main>
 
@@ -1739,6 +1816,41 @@ var REC={"dao-on": {"codes": ["VCR-12", "VCR-7", "EHA-15", "VCR-13"], "cat": "be
       res.querySelector('.dr-x').addEventListener('click',function(){res.hidden=true;btns.forEach(function(x){x.classList.remove('active');});});
     });
   });
+})();
+// Đa ngôn ngữ (VI/EN/FR/ZH) + menu thả xuống gọn
+var I18N={"en": {"topbar_zalo": "💬 Order via Zalo", "hero_eyebrow": "VOCHIRON & EHA · Crop protection for rice", "hero_h1": "Crop protection & plant nutrition catalog", "hero_sub": "Field-proven solutions for rice: weeds, insects, planthoppers & snails, fungal & bacterial diseases, and whole-plant nutrition. Prioritizing EU / Japan / US-grade actives.", "stat_farmers": "Farmers trust us", "stat_sold": "Products sold", "stat_sku": "Products (SKU)", "cta_view": "View products", "cta_call": "📞 Call for advice", "doc_head": "What's wrong with your rice?", "doc_sub": "Tap the symptom — get the right remedy", "nav_products": "🌾 Products", "nav_protocol": "📋 Rice protocol", "nav_guide": "📚 Guide", "nav_news": "📰 News", "nav_more": "More", "nav_order": "🛒 Order", "search_ph": "🔎 Search products, diseases…", "cat_lg": "Rice seeds", "cat_co": "Herbicides", "cat_sau": "Insect, planthopper & snail control", "cat_benh": "Disease control — fungi & bacteria", "cat_dd": "Nutrition & growth", "lbl_products": "products", "lbl_ai": "Active ingredient", "lbl_uses": "Uses:", "lbl_price": "Ref. retail price", "lbl_detail": "View product details →", "title_combo": "🧺 Combo", "title_feedback": "🤝 Trusted by farmers", "title_news": "📰 News & Announcements", "news_sub": "New products, rice seeds and promotions from VOCHIRON & VTNN Le Nguyen 2."}, "fr": {"topbar_zalo": "💬 Commander via Zalo", "hero_eyebrow": "VOCHIRON & EHA · Protection du riz", "hero_h1": "Catalogue phytosanitaire & nutrition des plantes", "hero_sub": "Solutions éprouvées au champ pour le riz : mauvaises herbes, insectes, cicadelles & escargots, maladies fongiques & bactériennes, et nutrition complète. Priorité aux matières actives normes UE / Japon / USA.", "stat_farmers": "Agriculteurs fidèles", "stat_sold": "Produits vendus", "stat_sku": "Produits (SKU)", "cta_view": "Voir les produits", "cta_call": "📞 Appeler un conseiller", "doc_head": "Quel est le problème de votre riz ?", "doc_sub": "Touchez le symptôme — obtenez le bon remède", "nav_products": "🌾 Produits", "nav_protocol": "📋 Protocole riz", "nav_guide": "📚 Guide", "nav_news": "📰 Actualités", "nav_more": "Plus", "nav_order": "🛒 Commander", "search_ph": "🔎 Rechercher produits, maladies…", "cat_lg": "Semences de riz", "cat_co": "Herbicides", "cat_sau": "Insectes, cicadelles & escargots", "cat_benh": "Maladies — champignons & bactéries", "cat_dd": "Nutrition & croissance", "lbl_products": "produits", "lbl_ai": "Matière active", "lbl_uses": "Usage :", "lbl_price": "Prix de détail indicatif", "lbl_detail": "Voir la fiche produit →", "title_combo": "🧺 Combo", "title_feedback": "🤝 Approuvé par les agriculteurs", "title_news": "📰 Actualités & Annonces", "news_sub": "Nouveaux produits, semences de riz et promotions de VOCHIRON & VTNN Le Nguyen 2."}, "zh": {"topbar_zalo": "💬 通过 Zalo 下单", "hero_eyebrow": "VOCHIRON & EHA · 水稻植保方案", "hero_h1": "农药与作物营养产品目录", "hero_sub": "田间实战水稻方案：除草、防治害虫/飞虱/螺、防治真菌与细菌病害，并从根到叶全面养护。优先选用欧洲／日本／美国标准有效成分。", "stat_farmers": "农户信赖", "stat_sold": "已售产品", "stat_sku": "产品数 (SKU)", "cta_view": "查看产品", "cta_call": "📞 立即咨询", "doc_head": "您的水稻出了什么问题？", "doc_sub": "点击症状 — 立即推荐对症药剂", "nav_products": "🌾 产品", "nav_protocol": "📋 水稻方案", "nav_guide": "📚 技术手册", "nav_news": "📰 新闻", "nav_more": "更多", "nav_order": "🛒 下单", "search_ph": "🔎 搜索产品、病害…", "cat_lg": "水稻种子", "cat_co": "除草剂", "cat_sau": "杀虫、杀飞虱与杀螺", "cat_benh": "病害防治 — 真菌与细菌", "cat_dd": "营养与生长调节", "lbl_products": "种", "lbl_ai": "有效成分", "lbl_uses": "用途：", "lbl_price": "参考零售价", "lbl_detail": "查看产品详情 →", "title_combo": "🧺 套餐", "title_feedback": "🤝 农户信赖", "title_news": "📰 新闻与公告", "news_sub": "VOCHIRON 与 VTNN Le Nguyen 2 的新品、稻种及促销信息。"}};
+(function(){
+  var CODE={vi:'VI',en:'EN',fr:'FR',zh:'中文'};
+  function apply(l){
+    document.documentElement.lang=l;
+    document.querySelectorAll('[data-i18n]').forEach(function(e){
+      var k=e.getAttribute('data-i18n');
+      if(e.dataset.vi===undefined) e.dataset.vi=e.textContent;
+      e.textContent=(l!=='vi'&&I18N[l]&&I18N[l][k]!=null)?I18N[l][k]:e.dataset.vi;
+    });
+    document.querySelectorAll('[data-i18n-ph]').forEach(function(e){
+      var k=e.getAttribute('data-i18n-ph');
+      if(e.dataset.viph===undefined) e.dataset.viph=e.getAttribute('placeholder')||'';
+      e.setAttribute('placeholder',(l!=='vi'&&I18N[l]&&I18N[l][k]!=null)?I18N[l][k]:e.dataset.viph);
+    });
+    var cur=document.getElementById('lang-cur'); if(cur)cur.textContent=CODE[l]||'VI';
+    document.querySelectorAll('#lang-menu button').forEach(function(b){b.classList.toggle('on',b.dataset.lang===l);});
+    try{localStorage.setItem('vcr_lang',l);}catch(e){}
+  }
+  var lb=document.getElementById('lang-btn'), lm=document.querySelector('.lang');
+  if(lb&&lm){ lb.addEventListener('click',function(e){e.stopPropagation();lm.classList.toggle('open');
+    lb.setAttribute('aria-expanded',lm.classList.contains('open'));}); }
+  document.querySelectorAll('#lang-menu button').forEach(function(b){
+    b.addEventListener('click',function(){apply(b.dataset.lang); if(lm)lm.classList.remove('open');}); });
+  document.querySelectorAll('.nav-drop .nav-top').forEach(function(t){
+    t.addEventListener('click',function(e){e.stopPropagation();
+      var d=t.closest('.nav-drop'), open=d.classList.contains('open');
+      document.querySelectorAll('.nav-drop').forEach(function(x){x.classList.remove('open');x.querySelector('.nav-top').classList.remove('open');});
+      if(!open){d.classList.add('open');t.classList.add('open');}}); });
+  document.addEventListener('click',function(){ if(lm)lm.classList.remove('open');
+    document.querySelectorAll('.nav-drop').forEach(function(x){x.classList.remove('open');x.querySelector('.nav-top').classList.remove('open');}); });
+  var saved='vi'; try{saved=localStorage.getItem('vcr_lang')||'vi';}catch(e){}
+  apply(saved);
 })();
 </script>
 </body>
