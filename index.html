@@ -169,6 +169,9 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
     font-weight:600;color:var(--ink);text-decoration:none}
   .nav-drop .nav-menu a:hover{background:#eef5ff;color:var(--blue-d)}
   nav.jump .nav-top.open{background:var(--blue);color:#fff}
+  /* dropdown lọc bệnh: các nút xổ thành lưới pill */
+  .filter-drop .nav-menu{flex-direction:row;flex-wrap:wrap;max-width:340px;gap:7px;padding:12px}
+  .filter-drop .nav-menu .fbtn{font-size:12.5px;padding:6px 12px}
   /* Tin tức */
   .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
   .ncard{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;
@@ -504,6 +507,21 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
         <a href="#dd" data-i18n="cat_dd">Dinh dưỡng</a>
       </span>
     </span>
+    <span class="nav-drop filter-drop">
+      <button class="nav-top"><span data-i18n="nav_filter">🔬 Lọc bệnh</span> <span class="caret">▾</span></button>
+      <span class="nav-menu">
+        <button class="fbtn active" data-q="">✅ Tất cả</button>
+        <button class="fbtn" data-q="đạo ôn">🍂 Đạo ôn</button>
+        <button class="fbtn" data-q="rầy">🦗 Rầy</button>
+        <button class="fbtn" data-q="sâu">🐛 Sâu</button>
+        <button class="fbtn" data-q="khô vằn">🌫️ Khô vằn</button>
+        <button class="fbtn" data-q="lem lép">🌾 Lem lép hạt</button>
+        <button class="fbtn" data-q="bạc lá|khuẩn">🦠 Bạc lá · Khuẩn</button>
+        <button class="fbtn" data-q="cỏ">🌿 Trừ cỏ</button>
+        <button class="fbtn" data-q="ốc bươu">🐌 Ốc bươu</button>
+        <button class="fbtn" data-q="rễ|đòng|dưỡng|hạt no|đổ ngã|nở bụi">🌱 Dưỡng cây</button>
+      </span>
+    </span>
     <a href="#phacdo" data-i18n="nav_protocol">📋 Phác đồ lúa</a>
     <a href="https://vochironusa.com/cam-nang/" data-i18n="nav_guide">📚 Cẩm nang</a>
     <a href="#news" data-i18n="nav_news">📰 Tin tức</a>
@@ -559,21 +577,6 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
   </div>
 </div>
 
-<div class="filterbar">
-  <div class="wrap">
-    <span class="flabel">Lọc theo bệnh / đối tượng:</span>
-    <button class="fbtn active" data-q="">Tất cả</button>
-    <button class="fbtn" data-q="đạo ôn">🍂 Đạo ôn</button>
-    <button class="fbtn" data-q="rầy">🦗 Rầy</button>
-    <button class="fbtn" data-q="sâu">🐛 Sâu</button>
-    <button class="fbtn" data-q="khô vằn">🌫️ Khô vằn</button>
-    <button class="fbtn" data-q="lem lép">🌾 Lem lép hạt</button>
-    <button class="fbtn" data-q="bạc lá|khuẩn">🦠 Bạc lá · Khuẩn</button>
-    <button class="fbtn" data-q="cỏ">🌿 Trừ cỏ</button>
-    <button class="fbtn" data-q="ốc bươu">🐌 Ốc bươu</button>
-    <button class="fbtn" data-q="rễ|đòng|dưỡng|hạt no|đổ ngã|nở bụi">🌱 Dưỡng cây</button>
-  </div>
-</div>
 
 <main class="wrap">
 
@@ -1818,7 +1821,7 @@ var REC={"dao-on": {"codes": ["VCR-12", "VCR-7", "EHA-15", "VCR-13"], "cat": "be
   });
 })();
 // Đa ngôn ngữ (VI/EN/FR/ZH) + menu thả xuống gọn
-var I18N={"en": {"topbar_zalo": "💬 Order via Zalo", "hero_eyebrow": "VOCHIRON & EHA · Crop protection for rice", "hero_h1": "Crop protection & plant nutrition catalog", "hero_sub": "Field-proven solutions for rice: weeds, insects, planthoppers & snails, fungal & bacterial diseases, and whole-plant nutrition. Prioritizing EU / Japan / US-grade actives.", "stat_farmers": "Farmers trust us", "stat_sold": "Products sold", "stat_sku": "Products (SKU)", "cta_view": "View products", "cta_call": "📞 Call for advice", "doc_head": "What's wrong with your rice?", "doc_sub": "Tap the symptom — get the right remedy", "nav_products": "🌾 Products", "nav_protocol": "📋 Rice protocol", "nav_guide": "📚 Guide", "nav_news": "📰 News", "nav_more": "More", "nav_order": "🛒 Order", "search_ph": "🔎 Search products, diseases…", "cat_lg": "Rice seeds", "cat_co": "Herbicides", "cat_sau": "Insect, planthopper & snail control", "cat_benh": "Disease control — fungi & bacteria", "cat_dd": "Nutrition & growth", "lbl_products": "products", "lbl_ai": "Active ingredient", "lbl_uses": "Uses:", "lbl_price": "Ref. retail price", "lbl_detail": "View product details →", "title_combo": "🧺 Combo", "title_feedback": "🤝 Trusted by farmers", "title_news": "📰 News & Announcements", "news_sub": "New products, rice seeds and promotions from VOCHIRON & VTNN Le Nguyen 2."}, "fr": {"topbar_zalo": "💬 Commander via Zalo", "hero_eyebrow": "VOCHIRON & EHA · Protection du riz", "hero_h1": "Catalogue phytosanitaire & nutrition des plantes", "hero_sub": "Solutions éprouvées au champ pour le riz : mauvaises herbes, insectes, cicadelles & escargots, maladies fongiques & bactériennes, et nutrition complète. Priorité aux matières actives normes UE / Japon / USA.", "stat_farmers": "Agriculteurs fidèles", "stat_sold": "Produits vendus", "stat_sku": "Produits (SKU)", "cta_view": "Voir les produits", "cta_call": "📞 Appeler un conseiller", "doc_head": "Quel est le problème de votre riz ?", "doc_sub": "Touchez le symptôme — obtenez le bon remède", "nav_products": "🌾 Produits", "nav_protocol": "📋 Protocole riz", "nav_guide": "📚 Guide", "nav_news": "📰 Actualités", "nav_more": "Plus", "nav_order": "🛒 Commander", "search_ph": "🔎 Rechercher produits, maladies…", "cat_lg": "Semences de riz", "cat_co": "Herbicides", "cat_sau": "Insectes, cicadelles & escargots", "cat_benh": "Maladies — champignons & bactéries", "cat_dd": "Nutrition & croissance", "lbl_products": "produits", "lbl_ai": "Matière active", "lbl_uses": "Usage :", "lbl_price": "Prix de détail indicatif", "lbl_detail": "Voir la fiche produit →", "title_combo": "🧺 Combo", "title_feedback": "🤝 Approuvé par les agriculteurs", "title_news": "📰 Actualités & Annonces", "news_sub": "Nouveaux produits, semences de riz et promotions de VOCHIRON & VTNN Le Nguyen 2."}, "zh": {"topbar_zalo": "💬 通过 Zalo 下单", "hero_eyebrow": "VOCHIRON & EHA · 水稻植保方案", "hero_h1": "农药与作物营养产品目录", "hero_sub": "田间实战水稻方案：除草、防治害虫/飞虱/螺、防治真菌与细菌病害，并从根到叶全面养护。优先选用欧洲／日本／美国标准有效成分。", "stat_farmers": "农户信赖", "stat_sold": "已售产品", "stat_sku": "产品数 (SKU)", "cta_view": "查看产品", "cta_call": "📞 立即咨询", "doc_head": "您的水稻出了什么问题？", "doc_sub": "点击症状 — 立即推荐对症药剂", "nav_products": "🌾 产品", "nav_protocol": "📋 水稻方案", "nav_guide": "📚 技术手册", "nav_news": "📰 新闻", "nav_more": "更多", "nav_order": "🛒 下单", "search_ph": "🔎 搜索产品、病害…", "cat_lg": "水稻种子", "cat_co": "除草剂", "cat_sau": "杀虫、杀飞虱与杀螺", "cat_benh": "病害防治 — 真菌与细菌", "cat_dd": "营养与生长调节", "lbl_products": "种", "lbl_ai": "有效成分", "lbl_uses": "用途：", "lbl_price": "参考零售价", "lbl_detail": "查看产品详情 →", "title_combo": "🧺 套餐", "title_feedback": "🤝 农户信赖", "title_news": "📰 新闻与公告", "news_sub": "VOCHIRON 与 VTNN Le Nguyen 2 的新品、稻种及促销信息。"}};
+var I18N={"en": {"topbar_zalo": "💬 Order via Zalo", "hero_eyebrow": "VOCHIRON & EHA · Crop protection for rice", "hero_h1": "Crop protection & plant nutrition catalog", "hero_sub": "Field-proven solutions for rice: weeds, insects, planthoppers & snails, fungal & bacterial diseases, and whole-plant nutrition. Prioritizing EU / Japan / US-grade actives.", "stat_farmers": "Farmers trust us", "stat_sold": "Products sold", "stat_sku": "Products (SKU)", "cta_view": "View products", "cta_call": "📞 Call for advice", "doc_head": "What's wrong with your rice?", "doc_sub": "Tap the symptom — get the right remedy", "nav_products": "🌾 Products", "nav_filter": "🔬 Filter by disease", "nav_protocol": "📋 Rice protocol", "nav_guide": "📚 Guide", "nav_news": "📰 News", "nav_more": "More", "nav_order": "🛒 Order", "search_ph": "🔎 Search products, diseases…", "cat_lg": "Rice seeds", "cat_co": "Herbicides", "cat_sau": "Insect, planthopper & snail control", "cat_benh": "Disease control — fungi & bacteria", "cat_dd": "Nutrition & growth", "lbl_products": "products", "lbl_ai": "Active ingredient", "lbl_uses": "Uses:", "lbl_price": "Ref. retail price", "lbl_detail": "View product details →", "title_combo": "🧺 Combo", "title_feedback": "🤝 Trusted by farmers", "title_news": "📰 News & Announcements", "news_sub": "New products, rice seeds and promotions from VOCHIRON & VTNN Le Nguyen 2."}, "fr": {"topbar_zalo": "💬 Commander via Zalo", "hero_eyebrow": "VOCHIRON & EHA · Protection du riz", "hero_h1": "Catalogue phytosanitaire & nutrition des plantes", "hero_sub": "Solutions éprouvées au champ pour le riz : mauvaises herbes, insectes, cicadelles & escargots, maladies fongiques & bactériennes, et nutrition complète. Priorité aux matières actives normes UE / Japon / USA.", "stat_farmers": "Agriculteurs fidèles", "stat_sold": "Produits vendus", "stat_sku": "Produits (SKU)", "cta_view": "Voir les produits", "cta_call": "📞 Appeler un conseiller", "doc_head": "Quel est le problème de votre riz ?", "doc_sub": "Touchez le symptôme — obtenez le bon remède", "nav_products": "🌾 Produits", "nav_filter": "🔬 Filtrer par maladie", "nav_protocol": "📋 Protocole riz", "nav_guide": "📚 Guide", "nav_news": "📰 Actualités", "nav_more": "Plus", "nav_order": "🛒 Commander", "search_ph": "🔎 Rechercher produits, maladies…", "cat_lg": "Semences de riz", "cat_co": "Herbicides", "cat_sau": "Insectes, cicadelles & escargots", "cat_benh": "Maladies — champignons & bactéries", "cat_dd": "Nutrition & croissance", "lbl_products": "produits", "lbl_ai": "Matière active", "lbl_uses": "Usage :", "lbl_price": "Prix de détail indicatif", "lbl_detail": "Voir la fiche produit →", "title_combo": "🧺 Combo", "title_feedback": "🤝 Approuvé par les agriculteurs", "title_news": "📰 Actualités & Annonces", "news_sub": "Nouveaux produits, semences de riz et promotions de VOCHIRON & VTNN Le Nguyen 2."}, "zh": {"topbar_zalo": "💬 通过 Zalo 下单", "hero_eyebrow": "VOCHIRON & EHA · 水稻植保方案", "hero_h1": "农药与作物营养产品目录", "hero_sub": "田间实战水稻方案：除草、防治害虫/飞虱/螺、防治真菌与细菌病害，并从根到叶全面养护。优先选用欧洲／日本／美国标准有效成分。", "stat_farmers": "农户信赖", "stat_sold": "已售产品", "stat_sku": "产品数 (SKU)", "cta_view": "查看产品", "cta_call": "📞 立即咨询", "doc_head": "您的水稻出了什么问题？", "doc_sub": "点击症状 — 立即推荐对症药剂", "nav_products": "🌾 产品", "nav_filter": "🔬 按病害筛选", "nav_protocol": "📋 水稻方案", "nav_guide": "📚 技术手册", "nav_news": "📰 新闻", "nav_more": "更多", "nav_order": "🛒 下单", "search_ph": "🔎 搜索产品、病害…", "cat_lg": "水稻种子", "cat_co": "除草剂", "cat_sau": "杀虫、杀飞虱与杀螺", "cat_benh": "病害防治 — 真菌与细菌", "cat_dd": "营养与生长调节", "lbl_products": "种", "lbl_ai": "有效成分", "lbl_uses": "用途：", "lbl_price": "参考零售价", "lbl_detail": "查看产品详情 →", "title_combo": "🧺 套餐", "title_feedback": "🤝 农户信赖", "title_news": "📰 新闻与公告", "news_sub": "VOCHIRON 与 VTNN Le Nguyen 2 的新品、稻种及促销信息。"}};
 (function(){
   var CODE={vi:'VI',en:'EN',fr:'FR',zh:'中文'};
   function apply(l){
