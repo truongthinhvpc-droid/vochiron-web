@@ -42,7 +42,7 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
 
   /* ===== Masthead kiểu Bayer ===== */
   .topbar{background:#fff;border-bottom:1px solid var(--line);font-size:12.5px}
-  .topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;
+  .topbar .wrap{display:flex;justify-content:flex-end;align-items:center;gap:10px;flex-wrap:wrap;
     padding-top:7px;padding-bottom:7px}
   .topbar .slog{font-style:italic;font-weight:700;color:var(--blue-d);letter-spacing:.4px}
   .topbar .tlinks{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
@@ -61,11 +61,8 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
   .lang-menu button:hover{background:#eef5ff}
   .lang-menu button.on{background:var(--blue);color:#fff}
   .caret{font-size:10px;opacity:.8}
-  header.masthead{background:#fff;padding:15px 0;border-bottom:4px solid var(--blue);position:relative;overflow:hidden}
-  header.masthead::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-    width:220px;height:220px;background:url(assets/logo-mark.webp) center/contain no-repeat;opacity:.05;
-    pointer-events:none;z-index:0}
-  header.masthead .wrap{display:flex;align-items:center;gap:16px;justify-content:space-between;flex-wrap:wrap;position:relative;z-index:1}
+  header.masthead{background:#fff;padding:15px 0;border-bottom:4px solid var(--blue)}
+  header.masthead .wrap{display:flex;align-items:center;gap:16px;justify-content:space-between;flex-wrap:wrap}
   .mh-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
   .mh-lockup{height:56px;width:auto;border-radius:12px;display:block}
   .mh-tag{text-align:right;line-height:1.4}
@@ -479,7 +476,6 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
 
 <div class="topbar">
   <div class="wrap">
-    <span class="slog">🌱 Grow Easy · Protect Smart</span>
     <span class="tlinks">
       <a href="tel:0933526086">📞 0933 526 086</a>
       <a data-i18n="topbar_zalo" href="https://zalo.me/84933246086" target="_blank" rel="noopener">💬 Zalo mua hàng</a>
