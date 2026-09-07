@@ -61,8 +61,11 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
   .lang-menu button:hover{background:#eef5ff}
   .lang-menu button.on{background:var(--blue);color:#fff}
   .caret{font-size:10px;opacity:.8}
-  header.masthead{background:#fff;padding:15px 0;border-bottom:4px solid var(--blue)}
-  header.masthead .wrap{display:flex;align-items:center;gap:16px;justify-content:space-between;flex-wrap:wrap}
+  header.masthead{background:#fff;padding:15px 0;border-bottom:4px solid var(--blue);position:relative;overflow:hidden}
+  header.masthead::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    width:220px;height:220px;background:url(assets/logo-mark.webp) center/contain no-repeat;opacity:.05;
+    pointer-events:none;z-index:0}
+  header.masthead .wrap{display:flex;align-items:center;gap:16px;justify-content:space-between;flex-wrap:wrap;position:relative;z-index:1}
   .mh-brand{display:flex;align-items:center;gap:14px;text-decoration:none}
   .mh-lockup{height:56px;width:auto;border-radius:12px;display:block}
   .mh-tag{text-align:right;line-height:1.4}
@@ -488,62 +491,6 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
   </div>
 </header>
 
-<section class="hero">
-  <canvas class="hero-canvas" aria-hidden="true"></canvas>
-  <div class="wrap">
-    <div class="hero-body">
-      <div class="hero-eyebrow" data-i18n="hero_eyebrow">VOCHIRON &amp; EHA · Nông dược cho cây lúa</div>
-      <h1 data-i18n="hero_h1">Danh mục nông dược &amp; dinh dưỡng cây trồng</h1>
-      <p data-i18n="hero_sub">Giải pháp thực chiến trên đồng ruộng: trừ cỏ, trừ sâu rầy ốc, trừ nấm khuẩn và chăm cây khỏe từ gốc đến ngọn. Ưu tiên hoạt chất chuẩn Châu Âu / Nhật / Mỹ.</p>
-      <div class="stats">
-        <div><b class="count" data-count="208">0</b><span><span class="live-dot"></span><span data-i18n="stat_farmers">Nông dân tin dùng</span></span></div>
-        <div><b class="count" data-count="24914">0</b><span data-i18n="stat_sold">Sản phẩm đã bán ra</span></div>
-        <div><b class="count" data-count="41">0</b><span data-i18n="stat_sku">Sản phẩm (SKU)</span></div>
-      </div>
-      <div class="hero-cta">
-        <a class="bay-btn" href="#lg" data-i18n="cta_view">Xem sản phẩm</a>
-        <a class="bay-btn call" href="tel:0933526086" data-i18n="cta_call">📞 Gọi tư vấn ngay</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="doctor">
-  <div class="wrap">
-    <div class="doc-head">🩺 <b data-i18n="doc_head">Lúa của bạn đang bị gì?</b><span data-i18n="doc_sub">Bấm đúng triệu chứng — gợi ý ngay thuốc trị</span></div>
-    <div class="doc-grid">
-      <button class="doc-btn" data-rec="dao-on"><i>🍂</i><b>Cháy lá — đạo ôn</b><small>vết mắt én, cổ bông đen</small></button>
-      <button class="doc-btn" data-rec="ray"><i>🦗</i><b>Rầy nâu — cháy rầy</b><small>vạch gốc thấy rầy, lúa vàng lụi</small></button>
-      <button class="doc-btn" data-rec="sau"><i>🐛</i><b>Sâu cuốn lá — đục thân</b><small>lá cuốn ống, nõn héo</small></button>
-      <button class="doc-btn" data-rec="kho-van"><i>🌫️</i><b>Khô vằn</b><small>vết vằn da beo bẹ lá</small></button>
-      <button class="doc-btn" data-rec="lem-lep"><i>🌾</i><b>Lem lép hạt</b><small>hạt đen lửng, bông xơ xác</small></button>
-      <button class="doc-btn" data-rec="bac-la"><i>🦠</i><b>Bạc lá — thối nhũn</b><small>cháy bìa lá, có mùi hôi</small></button>
-      <button class="doc-btn" data-rec="co"><i>🌿</i><b>Cỏ dại</b><small>lồng vực, đuôi phụng, chác lác</small></button>
-      <button class="doc-btn" data-rec="oc"><i>🐌</i><b>Ốc bươu vàng</b><small>cắn mạ non mới sạ</small></button>
-      <button class="doc-btn" data-rec="yeu"><i>🥀</i><b>Cây yếu — vàng lá</b><small>nghẹt rễ, phèn, chậm nở bụi</small></button>
-      <a class="doc-btn doc-zalo" href="https://zalo.me/84933526086" target="_blank" rel="noopener"><i>📷</i><b>Không rõ bệnh?</b><small>Chụp hình gửi Zalo — kỹ sư trả lời liền</small></a>
-    </div>
-    <div id="doc-result" class="doc-result" hidden></div>
-  </div>
-</section>
-
-<div class="promo">
-  <div class="wrap promo-row">
-    <a class="pcard" href="#card-VCR-22">
-      <span class="p-ic">🪑</span>
-      <span class="p-tx"><b>Mua 1 thùng SIHU NEW (24 gói) — TẶNG 10 GHẾ NHỰA</b>
-      <small>Sản phẩm bán chạy #1 · Humic thay DAP, kích rễ cứng cây</small></span>
-      <span class="p-cta">Xem ngay →</span>
-    </a>
-    <a class="pcard gold" href="#order">
-      <span class="p-ic">👕</span>
-      <span class="p-tx"><b>Mua đủ THÙNG (100 gói · 40 chai · 20 chai 1L) — TẶNG ÁO THUN cao cấp</b>
-      <small>Hoặc giảm 200.000đ/thùng khi chuyển khoản trước</small></span>
-      <span class="p-cta">Đặt hàng →</span>
-    </a>
-  </div>
-</div>
-
 <nav class="jump">
   <div class="wrap">
     <img class="n-logo logo-badge" src="assets/logo-mark.webp" alt="VOCHIRON USA">
@@ -574,6 +521,43 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
     <a href="#order" class="n-order" data-i18n="nav_order">🛒 Đặt hàng</a>
   </div>
 </nav>
+
+<section class="hero">
+  <canvas class="hero-canvas" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="hero-body">
+      <div class="hero-eyebrow" data-i18n="hero_eyebrow">VOCHIRON &amp; EHA · Nông dược cho cây lúa</div>
+      <h1 data-i18n="hero_h1">Danh mục nông dược &amp; dinh dưỡng cây trồng</h1>
+      <p data-i18n="hero_sub">Giải pháp thực chiến trên đồng ruộng: trừ cỏ, trừ sâu rầy ốc, trừ nấm khuẩn và chăm cây khỏe từ gốc đến ngọn. Ưu tiên hoạt chất chuẩn Châu Âu / Nhật / Mỹ.</p>
+      <div class="stats">
+        <div><b class="count" data-count="208">0</b><span><span class="live-dot"></span><span data-i18n="stat_farmers">Nông dân tin dùng</span></span></div>
+        <div><b class="count" data-count="24914">0</b><span data-i18n="stat_sold">Sản phẩm đã bán ra</span></div>
+        <div><b class="count" data-count="41">0</b><span data-i18n="stat_sku">Sản phẩm (SKU)</span></div>
+      </div>
+      <div class="hero-cta">
+        <a class="bay-btn" href="#lg" data-i18n="cta_view">Xem sản phẩm</a>
+        <a class="bay-btn call" href="tel:0933526086" data-i18n="cta_call">📞 Gọi tư vấn ngay</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="promo">
+  <div class="wrap promo-row">
+    <a class="pcard" href="#card-VCR-22">
+      <span class="p-ic">🪑</span>
+      <span class="p-tx"><b>Mua 1 thùng SIHU NEW (24 gói) — TẶNG 10 GHẾ NHỰA</b>
+      <small>Sản phẩm bán chạy #1 · Humic thay DAP, kích rễ cứng cây</small></span>
+      <span class="p-cta">Xem ngay →</span>
+    </a>
+    <a class="pcard gold" href="#order">
+      <span class="p-ic">👕</span>
+      <span class="p-tx"><b>Mua đủ THÙNG (100 gói · 40 chai · 20 chai 1L) — TẶNG ÁO THUN cao cấp</b>
+      <small>Hoặc giảm 200.000đ/thùng khi chuyển khoản trước</small></span>
+      <span class="p-cta">Đặt hàng →</span>
+    </a>
+  </div>
+</div>
 
 <div class="filterbar">
   <div class="wrap">
