@@ -1914,7 +1914,7 @@ var SEED_OFF=200000;
 function seedTons(){var kg=0;for(var c in cart){if(SEED[c])kg+=cart[c].qty*SEED[c];}return Math.floor(kg/1000);}
 function seedDiscount(){return seedTons()*SEED_OFF;}
 // Facebook Pixel events (no-op until Pixel ID is configured)
-function track(ev,params){ if(window.fbq) fbq('track',ev,params||{}); }
+function track(ev,params){ params=params||{}; if(window.fbq) fbq('track',ev,params); if(window.gtag) gtag('event',ev,params); }
 function addToCart(code,name,price,step){
   step=+step||1;
   if(!cart[code])cart[code]={name:name,price:+price,qty:0};
