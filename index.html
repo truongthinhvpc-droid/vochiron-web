@@ -41,6 +41,7 @@ fbq('init','2317460879086370');fbq('track','PageView');</script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}
 gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
 
+
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700;800&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
 <style>
   :root{
@@ -211,16 +212,29 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
   .dr-more a{color:var(--green-d);font-weight:700;text-decoration:none}
 
   /* promo strip */
-  .promo{background:linear-gradient(90deg,#f5a623,#e65100);padding:10px 0}
-  .promo-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:10px}
-  .pcard{display:flex;align-items:center;gap:10px;text-decoration:none;background:rgba(255,255,255,.94);
-    border-radius:12px;padding:9px 14px;color:#3a2c00;transition:.15s}
-  .pcard:hover{transform:translateY(-2px);box-shadow:0 6px 16px rgba(0,0,0,.2)}
-  .p-ic{font-size:26px;flex:none}
-  .p-tx{flex:1;line-height:1.3}
-  .p-tx b{display:block;font-size:13.5px}
-  .p-tx small{font-size:11.5px;color:#7a5c1e}
-  .p-cta{flex:none;font-size:12.5px;font-weight:800;color:#e65100;white-space:nowrap}
+  .promo{background:linear-gradient(120deg,#ff8a00,#e65100);padding:20px 0 22px}
+  .promo-head{display:flex;align-items:center;gap:14px;flex-wrap:wrap;padding:0 4px 14px}
+  .promo-badge{font-size:20px;font-weight:900;color:#fff;letter-spacing:.3px;
+    text-shadow:0 2px 6px rgba(0,0,0,.25)}
+  .promo-sub{font-size:13.5px;font-weight:700;color:#fff4e0}
+  .promo-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:12px}
+  .pcard{display:flex;align-items:center;gap:12px;text-decoration:none;background:#fff;
+    border-radius:14px;padding:14px 16px;color:#3a2c00;transition:.15s;box-shadow:0 4px 12px rgba(0,0,0,.14);
+    border-left:5px solid #e65100}
+  .pcard:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(0,0,0,.24)}
+  .pcard.hot{border-left-color:#d81b1b} .pcard.gold{border-left-color:#c78a00}
+  .pcard.money{border-left-color:#1e9e4a} .pcard.rice{border-left-color:#b8791f}
+  .pcard.combo{border-left-color:#0b4f9e} .pcard.free{border-left-color:#16884d}
+  .p-ic{font-size:32px;flex:none}
+  .p-tx{flex:1;line-height:1.32}
+  .p-tx b{display:block;font-size:14.5px;color:#2a1e00}
+  .p-tx small{font-size:12px;color:#8a6a20}
+  .p-cta{flex:none;font-size:13px;font-weight:800;color:#e65100;white-space:nowrap}
+  @media(max-width:600px){.promo-badge{font-size:17px}.promo-row{grid-template-columns:1fr}}
+  /* Bán chạy lên đầu — nền nổi bật */
+  section.cat.best{background:linear-gradient(180deg,#fff6ef,#fff);border:1.5px solid #ffd9b3;
+    border-radius:18px;padding:10px 14px 6px;margin-top:18px;box-shadow:0 6px 20px rgba(232,89,12,.10)}
+  section.cat.best .cat-icon{filter:drop-shadow(0 2px 4px rgba(232,89,12,.3))}
 
   nav.jump{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);
     backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
@@ -630,7 +644,7 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
         <div><b class="count" data-count="44">0</b><span data-i18n="stat_sku">Sản phẩm (SKU)</span></div>
       </div>
       <div class="hero-cta">
-        <a class="bay-btn" href="#lg" data-i18n="cta_view">Xem sản phẩm</a>
+        <a class="bay-btn" href="#banchay" data-i18n="cta_view">Xem sản phẩm</a>
         <a class="bay-btn call" href="tel:0933526086" data-i18n="cta_call">📞 Gọi tư vấn ngay</a>
       </div>
     </div>
@@ -642,19 +656,49 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
 </div>
 
 <div class="promo">
-  <div class="wrap promo-row">
-    <a class="pcard" href="#card-VCR-22">
-      <span class="p-ic">🪑</span>
-      <span class="p-tx"><b>Mua 1 thùng SIHU NEW (24 gói) — TẶNG 10 GHẾ NHỰA</b>
-      <small>Sản phẩm bán chạy #1 · Humic thay DAP, kích rễ cứng cây</small></span>
-      <span class="p-cta">Xem ngay →</span>
-    </a>
-    <a class="pcard gold" href="#order">
-      <span class="p-ic">👕</span>
-      <span class="p-tx"><b>Mua đủ THÙNG (100 gói · 40 chai · 20 chai 1L) — TẶNG ÁO THUN cao cấp</b>
-      <small>Hoặc giảm 200.000đ/thùng khi chuyển khoản trước</small></span>
-      <span class="p-cta">Đặt hàng →</span>
-    </a>
+  <div class="wrap">
+    <div class="promo-head">
+      <span class="promo-badge">🎁 KHUYẾN MÃI ĐANG CHẠY</span>
+      <span class="promo-sub">Ưu đãi đầu vụ — số lượng có hạn, áp dụng đến hết vụ 🌾</span>
+    </div>
+    <div class="promo-row">
+      <a class="pcard hot" href="#card-VCR-22">
+        <span class="p-ic">🪑</span>
+        <span class="p-tx"><b>Mua 1 thùng SIHU NEW (24 gói) — TẶNG 10 GHẾ NHỰA</b>
+        <small>Bán chạy #1 · Humic thay DAP, kích rễ cứng cây</small></span>
+        <span class="p-cta">Xem ngay →</span>
+      </a>
+      <a class="pcard gold" href="#order" onclick="openCart();return false">
+        <span class="p-ic">👕</span>
+        <span class="p-tx"><b>Mua đủ THÙNG — TẶNG ÁO THUN cao cấp</b>
+        <small>100 gói · 40 chai · 20 chai 1L</small></span>
+        <span class="p-cta">Đặt hàng →</span>
+      </a>
+      <a class="pcard money" href="#order" onclick="openCart();return false">
+        <span class="p-ic">💵</span>
+        <span class="p-tx"><b>Chuyển khoản trước — GIẢM 200.000đ / thùng</b>
+        <small>Chốt nhanh, giao tận ruộng</small></span>
+        <span class="p-cta">Đặt hàng →</span>
+      </a>
+      <a class="pcard rice" href="#lg">
+        <span class="p-ic">🌾</span>
+        <span class="p-tx"><b>Lúa giống đủ TẤN — GIẢM 200.000đ / tấn</b>
+        <small>OM18, Nếp… — giống khỏe, sạch bệnh</small></span>
+        <span class="p-cta">Xem giống →</span>
+      </a>
+      <a class="pcard combo" href="#combo">
+        <span class="p-ic">🧺</span>
+        <span class="p-tx"><b>Bộ COMBO đầu vụ — giá tiết kiệm</b>
+        <small>Hạ phèn · diệt ốc · trừ mầm cỏ trọn gói</small></span>
+        <span class="p-cta">Xem combo →</span>
+      </a>
+      <a class="pcard free" href="https://zalo.me/84933526086" target="_blank" rel="noopener">
+        <span class="p-ic">📋</span>
+        <span class="p-tx"><b>Gửi hình lúa — NHẬN PHÁC ĐỒ MIỄN PHÍ</b>
+        <small>Kỹ sư kê thuốc đúng bệnh, không mua cũng được</small></span>
+        <span class="p-cta">Nhắn Zalo →</span>
+      </a>
+    </div>
   </div>
 </div>
 
@@ -671,6 +715,161 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
 
 <main class="wrap">
 
+    <section class="cat best" id="banchay" style="--cat:#e8590c">
+      <div class="cat-head">
+        <div class="cat-icon">🔥</div>
+        <div>
+          <h2>Bán chạy nhất <span class="count">9 sản phẩm</span></h2>
+          <p class="cat-tag">Được bà con miền Tây tin dùng nhiều nhất — còn phân vân thì chọn mấy loại này cho chắc ăn.</p>
+        </div>
+      </div>
+      <div class="grid">
+      <article class="card" id="best-VCR-22" data-target="kích rễ, đẻ nhánh, cải tạo đất dinh dưỡng · kích rễ humic thay thế dap sihu new đỏ cứng cây 1 kg">
+        <div class="ribbon">★ BÁN CHẠY #1</div>
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-22.webp" alt="HUMIC THAY THẾ DAP SIHU NEW ĐỎ CỨNG CÂY 1 KG"></div>
+        
+        <div class="body">
+          <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="tier t-ch">Tiêu chuẩn</span></div>
+          <h3>HUMIC THAY THẾ DAP SIHU NEW ĐỎ CỨNG CÂY 1 KG</h3>
+          <div class="pack">Túi 1kg</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Acid Humic</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Kích rễ, đẻ nhánh, cải tạo đất</div>
+          <div class="desc">Humic kích rễ mạnh, giải phèn, giải độc hữu cơ, tăng CEC, đất tơi xốp. Thay một phần DAP.</div>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>125.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-22-humic-thay-dap-sihu-new-do-1kg.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
+          <button class="add-btn" data-code="VCR-22" data-name="HUMIC THAY THẾ DAP SIHU NEW ĐỎ CỨNG CÂY 1 KG" data-price="125000" data-step="1">＋ Thêm vào đơn</button>
+        </div>
+      </article>
+      <article class="card" id="best-EHA-15" data-target="đạo ôn nặng, tái đi tái lại trừ nấm · đặc trị đạo ôn katana kiếm nhật bản 480cc đạo ôn">
+        <div class="ribbon">★ BÁN CHẠY #2</div>
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-15.webp" alt="Katana kiếm nhật bản 480cc đạo ôn"></div>
+        
+        <div class="body">
+          <div class="meta"><span class="badge b-eha">VOCHIRON</span><span class="tier t-cc">Cao cấp</span></div>
+          <h3>Katana kiếm nhật bản 480cc đạo ôn</h3>
+          <div class="pack">Chai 480cc</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Fenoxanil 20g/l</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Đạo ôn nặng, tái đi tái lại</div>
+          <div class="desc">MBI-D: ức chế scytalone dehydratase trong tổng hợp melanin; chặn bào tử nảy mầm. Nội hấp, cả phòng lẫn trị sớm. Xoay vòng được với Tricyclazole.</div>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>245.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-15-katana-kiem-nhat-480cc.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
+          <button class="add-btn" data-code="EHA-15" data-name="Katana kiếm nhật bản 480cc đạo ôn" data-price="245000" data-step="1">＋ Thêm vào đơn</button>
+        </div>
+      </article>
+      <article class="card" id="best-VCR-12" data-target="đạo ôn lá, cổ bông, cổ gié trừ nấm · đặc trị đạo ôn bim usa 100gr đạo ôn">
+        <div class="ribbon">★ BÁN CHẠY #3</div>
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-12.webp" alt="BIM USA 100gr đạo ôn"></div>
+        
+        <div class="body">
+          <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="tier t-tk">Tiết kiệm</span></div>
+          <h3>BIM USA 100gr đạo ôn</h3>
+          <div class="pack">Gói 100g</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Tricyclazole</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Đạo ôn lá, cổ bông, cổ gié</div>
+          <div class="desc">MBI-R, nội hấp. Dùng phòng đạo ôn lá giai đoạn đẻ nhánh khi thời tiết âm u, sương nhiều.</div>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>65.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-12-bim-usa.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
+          <button class="add-btn" data-code="VCR-12" data-name="BIM USA 100gr đạo ôn" data-price="65000" data-step="1">＋ Thêm vào đơn</button>
+        </div>
+      </article>
+      <article class="card" id="best-EHA-3" data-target="đạo ôn, lem lép, vàng lá trừ nấm · phổ rộng help châu âu heppy top 400">
+        <div class="ribbon">★ BÁN CHẠY #4</div>
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-3.webp" alt="Help Châu Âu Heppy top 400"></div>
+        
+        <div class="body">
+          <div class="meta"><span class="badge b-eha">VOCHIRON</span><span class="tier t-cc">Cao cấp</span></div>
+          <h3>Help Châu Âu Heppy top 400</h3>
+          <div class="pack">Chai</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Azoxystrobin 250</span><span class="chip">Difenoconazole 150</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Đạo ôn, lem lép, vàng lá</div>
+          <div class="desc">Strobilurin chặn hô hấp nấm + Triazole ức chế ergosterol; giữ lá đòng xanh. Cữ trước trổ.</div>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>250.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-3-help-chau-au-heppy-top-400.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
+          <button class="add-btn" data-code="EHA-3" data-name="Help Châu Âu Heppy top 400" data-price="250000" data-step="1">＋ Thêm vào đơn</button>
+        </div>
+      </article>
+      <article class="card" id="best-VCR-3" data-target="sâu đục thân, cuốn lá, nhện gié, bọ trĩ, rầy nâu thuốc trừ sâu – rầy ichibio sâu đục thân, cuốn lá, nhện gié, bọ trĩ, rầy nâu">
+        <div class="ribbon">★ BÁN CHẠY #5</div>
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-VCR-3.webp" alt="ICHIBIO Sâu đục thân, cuốn lá, nhện gié, bọ trĩ, rầy nâu"></div>
+        
+        <div class="body">
+          <div class="meta"><span class="badge b-vcr">VOCHIRON</span><span class="tier t-cc">Cao cấp</span></div>
+          <h3>ICHIBIO Sâu đục thân, cuốn lá, nhện gié, bọ trĩ, rầy nâu</h3>
+          <div class="pack">Chai</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Bifenthrin 17,1%</span><span class="chip">Imidacloprid 17,1%</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Sâu đục thân, cuốn lá, nhện gié, bọ trĩ, rầy nâu</div>
+          <div class="desc">Bifenthrin (Pyrethroid, IRAC 3A) giữ kênh Natri mở, hạ gục nhanh, có tác động lên nhện. Imidacloprid lưu dẫn chặn thần kinh côn trùng chích hút.</div>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>230.000đ</strong></div>
+          <a class="detail-link" href="san-pham/vcr-3-ichibio.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
+          <button class="add-btn" data-code="VCR-3" data-name="ICHIBIO Sâu đục thân, cuốn lá, nhện gié, bọ trĩ, rầy nâu" data-price="230000" data-step="1">＋ Thêm vào đơn</button>
+        </div>
+      </article>
+      <article class="card" id="best-EHA-6" data-target="khô vằn, lem lép, rỉ sắt, đốm nâu trừ nấm · phổ rộng topvil 50sc ấn độ, công nghệ nano">
+        <div class="ribbon">★ BÁN CHẠY #7</div>
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-6.webp" alt="TOPVIL 50SC ấn độ, công nghệ nano"></div>
+        
+        <div class="body">
+          <div class="meta"><span class="badge b-eha">VOCHIRON</span></div>
+          <h3>TOPVIL 50SC ấn độ, công nghệ nano</h3>
+          <div class="pack">Chai</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Hexaconazole 50g/l</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Khô vằn, lem lép, rỉ sắt, đốm nâu</div>
+          <div class="desc">Triazole: ức chế C14-demethylase, thiếu ergosterol, màng nấm vỡ. Nội hấp hướng ngọn, giữ lá xanh.</div>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>180.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-6-topvil-50sc-nano.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
+          <button class="add-btn" data-code="EHA-6" data-name="TOPVIL 50SC ấn độ, công nghệ nano" data-price="180000" data-step="1">＋ Thêm vào đơn</button>
+        </div>
+      </article>
+      <article class="card" id="best-EHA-12" data-target="hạt no, nặng, chín đẹp dinh dưỡng · nuôi hạt bio nước organic 500ml">
+        <div class="ribbon">★ BÁN CHẠY #8</div>
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-12.webp" alt="BIO Nước ORGANIC 500ml"></div>
+        
+        <div class="body">
+          <div class="meta"><span class="badge b-eha">VOCHIRON</span></div>
+          <h3>BIO Nước ORGANIC 500ml</h3>
+          <div class="pack">Chai 500ml</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Kali 7,5%</span><span class="chip">Bo 900ppm</span><span class="chip">hữu cơ 20%</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Hạt no, nặng, chín đẹp</div>
+          <div class="desc">Kali điều tiết vận chuyển đường về hạt, Bo tăng thụ phấn; hữu cơ giữ lá đòng xanh bền. Không nóng lúa.</div>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>120.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-12-bio-nuoc-organic-500ml.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
+          <button class="add-btn" data-code="EHA-12" data-name="BIO Nước ORGANIC 500ml" data-price="120000" data-step="1">＋ Thêm vào đơn</button>
+        </div>
+      </article>
+      <article class="card" id="best-EHA-1" data-target="cỏ lồng vực, đuôi phụng, chác lác thuốc trừ cỏ eurofit châu âu 1 lít">
+        <div class="ribbon">★ BÁN CHẠY #9</div>
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-1.webp" alt="EUROFIT CHÂU ÂU 1 lít"></div>
+        
+        <div class="body">
+          <div class="meta"><span class="badge b-eha">VOCHIRON</span><span class="tier t-cc">Cao cấp</span></div>
+          <h3>EUROFIT CHÂU ÂU 1 lít</h3>
+          <div class="pack">Chai 1L</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Pretilachlor 350g/l</span><span class="chip">Fenclorim 100g/l</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Cỏ lồng vực, đuôi phụng, chác lác</div>
+          <div class="desc">Pretilachlor khóa phân chia tế bào mầm cỏ (ức chế VLCFA). Fenclorim kích lúa tạo enzyme phân giải thuốc nên lúa an toàn. Phun tiền nảy mầm 0–3 NSS, ruộng đủ ẩm.</div>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>255.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-1-eurofit-chau-au.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
+          <button class="add-btn" data-code="EHA-1" data-name="EUROFIT CHÂU ÂU 1 lít" data-price="255000" data-step="1">＋ Thêm vào đơn</button>
+        </div>
+      </article>
+      <article class="card" id="best-EHA-2" data-target="bạc lá, đốm sọc vi khuẩn, thối gốc thuốc trừ vi khuẩn siêu khuẩn usa 240cc">
+        <div class="ribbon">★ BÁN CHẠY #10</div>
+        <div class="thumb"><img class="mainimg" loading="lazy" src="assets/mk-EHA-2.webp" alt="SIÊU KHUẨN USA 240cc"></div>
+        
+        <div class="body">
+          <div class="meta"><span class="badge b-eha">VOCHIRON</span><span class="tier t-ch">Tiêu chuẩn</span></div>
+          <h3>SIÊU KHUẨN USA 240cc</h3>
+          <div class="pack">Chai 240cc</div>
+          <div class="chips"><span class="chip-label" data-i18n="lbl_ai">Hoạt chất</span><span class="chip">Ningnanmycin 40g/l (4SL)</span></div>
+          <div class="field"><b data-i18n="lbl_uses">Công dụng:</b> Bạc lá, đốm sọc vi khuẩn, thối gốc</div>
+          <div class="desc">Kháng sinh sinh học: ức chế tổng hợp protein, phá màng tế bào vi khuẩn; kích thích tính kháng tập nhiễm hệ thống (SAR). Dạng SL tan hoàn toàn trong nước, thấm nhanh.</div>
+          <div class="price"><small data-i18n="lbl_price">Giá bán lẻ tham khảo</small><strong>95.000đ</strong></div>
+          <a class="detail-link" href="san-pham/eha-2-sieu-khuan-usa-240cc.html" data-i18n="lbl_detail">Xem chi tiết sản phẩm →</a>
+          <button class="add-btn" data-code="EHA-2" data-name="SIÊU KHUẨN USA 240cc" data-price="95000" data-step="1">＋ Thêm vào đơn</button>
+        </div>
+      </article>
+      </div>
+    </section>
     <section class="cat" id="lg" style="--cat:#b8791f">
       <div class="cat-head">
         <div class="cat-icon">🌾</div>
@@ -2044,7 +2243,7 @@ var I18N={"en": {"topbar_zalo": "💬 Order via Zalo", "hero_eyebrow": "VOCHIRON
 })();
 </script>
 <nav class="botbar" aria-label="Thao tác nhanh">
-  <a href="#lg"><span class="bi">🌾</span>Sản phẩm</a>
+  <a href="#banchay"><span class="bi">🌾</span>Sản phẩm</a>
   <a href="https://zalo.me/84933246086" target="_blank" rel="noopener"><span class="bi">💬</span>Zalo</a>
   <a href="tel:0933246086"><span class="bi">📞</span>Gọi</a>
   <a href="#order" class="prim" onclick="openCart();return false"><span class="bi">🛒</span>Đặt hàng</a>
