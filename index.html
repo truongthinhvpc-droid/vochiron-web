@@ -716,14 +716,14 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
 <div class="promo">
   <div class="wrap">
     <div class="promo-head">
-      <span class="promo-badge">🎁 KHUYẾN MÃI ĐANG CHẠY</span>
+      <span class="promo-badge">🔥 BIG SALE ĐANG CHẠY</span>
       <span class="promo-sub">Ưu đãi đầu vụ — số lượng có hạn, áp dụng đến hết vụ 🌾</span>
     </div>
     <div class="promo-row">
       <a class="pcard hot" href="#card-VCR-22">
-        <span class="p-ic">🪑</span>
-        <span class="p-tx"><b>Mua 1 thùng SIHU NEW (24 gói) — TẶNG 10 GHẾ NHỰA</b>
-        <small>Bán chạy #1 · Humic thay DAP, kích rễ cứng cây</small></span>
+        <span class="p-ic">🎁</span>
+        <span class="p-tx"><b>🔥 BIG SALE — Mua 1 thùng 24kg SIHU NEW, TẶNG quà lớn</b>
+        <small>Chọn 1: 10 ghế · 1 bếp gas đôi mặt kiếng · 2 bếp gas mini</small></span>
         <span class="p-cta">Xem ngay →</span>
       </a>
       <a class="pcard gold" href="#order" onclick="openCart();return false">
@@ -1813,9 +1813,9 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
       <h3>Đã về lúa giống OM18 &amp; Nếp IR4625 cho vụ mới</h3>
       <p>OM18 13.500đ/kg, Nếp IR4625 12.500đ/kg. Mua đủ 1 tấn giảm 200.000đ/tấn. Đặt trước giao tận ruộng trước ngày sạ.</p>
     </article><article class="ncard">
-      <div class="n-top"><span class="n-ic">🎁</span><span class="n-tag">Khuyến mãi</span><span class="n-date">01/09/2026</span></div>
-      <h3>Mua 1 thùng Sihu New (24 gói) — tặng 10 ghế nhựa</h3>
-      <p>Hoặc giảm trực tiếp 360.000đ/thùng khi chuyển khoản trước. Áp dụng cho sản phẩm bán chạy số 1 — Humic thay DAP, kích rễ cứng cây.</p>
+      <div class="n-top"><span class="n-ic">🎁</span><span class="n-tag">BIG SALE</span><span class="n-date">08/09/2026</span></div>
+      <h3>BIG SALE: Mua 1 thùng 24kg Sihu New — TẶNG quà lớn</h3>
+      <p>Chọn 1 trong 3 quà: 10 ghế nhựa · 1 bếp gas đôi mặt kiếng · 2 bếp gas mini. Áp dụng cho sản phẩm bán chạy #1 — Humic thay DAP, kích rễ cứng cây. Số lượng có hạn.</p>
     </article></div>
     </section>
 </main>
@@ -1949,12 +1949,17 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
 <script>
 const cart={};
 const money=n=>n.toLocaleString('vi-VN')+'đ';
-// KHUYẾN MÃI SIHU: đủ 24 gói/thùng → chọn 10 ghế nhựa HOẶC giảm 360.000đ/thùng
-var PROMO={code:'VCR-22',per:24,chairsPer:10,offPer:360000};
+// BIG SALE SIHU: mỗi thùng 24kg → tặng (chọn 1): 10 ghế / 1 bếp gas đôi mặt kiếng / 2 bếp gas mini
+var PROMO={code:'VCR-22',per:24,gifts:[
+  {v:'chairs',ic:'🪑',per:10,unit:'ghế nhựa'},
+  {v:'gas2',ic:'🔥',per:1,unit:'bếp gas đôi mặt kiếng'},
+  {v:'gasmini',ic:'🔥',per:2,unit:'bếp gas mini'}
+]};
 var promoChoice='chairs';
 try{promoChoice=localStorage.getItem('vcr_promo')||'chairs';}catch(e){}
 function cartons(){var it=cart[PROMO.code];return it?Math.floor(it.qty/PROMO.per):0;}
-function promoDiscount(){return promoChoice==='off'?cartons()*PROMO.offPer:0;}
+function promoDiscount(){return 0;}
+function promoGift(pn){var g=PROMO.gifts.filter(function(x){return x.v===promoChoice;})[0]||PROMO.gifts[0];return (g.per*pn)+' '+g.unit;}
 function finalTotal(){return total()-promoDiscount()-shirtDiscount()-seedDiscount();}
 // ÁO THUN: mỗi THÙNG đủ quy cách (gói x100 / chai x40) = 1 áo cao cấp HOẶC giảm 200k (chuyển khoản trước)
 var PACK={"EHA-1": 20, "VCR-14": 40, "VCR-4": 40, "VCR-18": 100, "VCR-20": 100, "VCR-3": 40, "EHA-10": 40, "EHA-13": 40, "VCR-7": 40, "VCR-8": 40, "VCR-10": 100, "VCR-12": 100, "EHA-11": 100, "EHA-9": 40, "EHA-15": 40, "EHA-16": 40, "VCR-13": 40, "VCR-19": 100, "EHA-3": 40, "EHA-7": 40, "EHA-6": 40, "VCR-11": 100, "VCR-17": 100, "VCR-15": 100, "EHA-8": 100, "EHA-14": 40, "EHA-2": 40, "VCR-1": 100, "VCR-21": 20, "EHA-4": 20, "VCR-6": 40, "VCR-9": 100, "VCR-2": 40, "VCR-16": 40, "EHA-5": 20, "VCR-5": 40, "EHA-12": 40};
@@ -1992,10 +1997,8 @@ function renderCart(){
   var pb=document.getElementById('promo-box');
   if(pb){var pn=cartons();
     if(pn>0){pb.style.display='block';
-      pb.innerHTML='🎁 <b>Đạt '+pn+' thùng SIHU NEW ('+(pn*PROMO.per)+' gói)</b> — bà con chọn ưu đãi:'
-      +'<label><input type="radio" name="pm" value="chairs"'+(promoChoice==='chairs'?' checked':'')+'> 🪑 Tặng '+(PROMO.chairsPer*pn)+' ghế nhựa</label>'
-      +'<label><input type="radio" name="pm" value="off"'+(promoChoice==='off'?' checked':'')+'> 💸 Giảm '+money(PROMO.offPer*pn)+' vào đơn</label>'
-      +(promoChoice==='off'?'<div class="pm-note">Đã trừ '+money(promoDiscount())+' — tổng bên dưới là số phải trả.</div>':'');
+      pb.innerHTML='🎁 <b>BIG SALE — Đạt '+pn+' thùng SIHU NEW ('+(pn*PROMO.per)+'kg)</b> — chọn 1 quà tặng:'
+      +PROMO.gifts.map(function(g){return '<label><input type="radio" name="pm" value="'+g.v+'"'+(promoChoice===g.v?' checked':'')+'> '+g.ic+' Tặng '+(g.per*pn)+' '+g.unit+'</label>';}).join('');
     } else {pb.style.display='none';pb.innerHTML='';}
     var st=seedTons();
     if(st>0){pb.style.display='block';
@@ -2025,11 +2028,7 @@ function orderText(){
   t+='———————\n';
   t+='TỔNG TẠM TÍNH: '+money(total())+'\n';
   var pn=cartons();
-  if(pn>0){
-    if(promoChoice==='off'){t+='KHUYẾN MÃI: '+pn+' thùng SIHU — GIẢM '+money(PROMO.offPer*pn)+'\n';
-      t+='➡️ TỔNG SAU GIẢM: '+money(finalTotal())+'\n';}
-    else{t+='KHUYẾN MÃI: '+pn+' thùng SIHU — TẶNG '+(PROMO.chairsPer*pn)+' GHẾ NHỰA\n';}
-  }
+  if(pn>0){ t+='🎁 BIG SALE: '+pn+' thùng SIHU (24kg) — TẶNG '+promoGift(pn)+'\n'; }
   var st=seedTons();
   if(st>0){t+='ƯU ĐÃI LÚA GIỐNG: '+st+' tấn — GIẢM '+money(seedDiscount())+'\n';
     t+='➡️ TỔNG PHẢI TRẢ: '+money(finalTotal())+'\n';}
