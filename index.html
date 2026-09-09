@@ -802,6 +802,96 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
 
 <main class="wrap">
 
+<style>
+.chamlua .cl-ctrl{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:2px 0 14px}
+.chamlua .cl-ctrl label{font-weight:700;color:#2F7A3A}
+.chamlua input[type=date]{padding:9px 12px;border:1.5px solid #cfe3c6;border-radius:10px;font:inherit;background:#fff;color:#1b2430}
+.chamlua .cl-hint{font-size:12.5px;color:#6b7363}
+.cl-result{background:#fff;border:1px solid #e3eaf2;border-radius:16px;padding:14px 16px 18px;box-shadow:0 4px 14px rgba(11,79,158,.06)}
+.cl-stepper{display:flex;gap:6px;overflow-x:auto;padding-bottom:10px;margin-bottom:12px;border-bottom:1px solid #eef2f6}
+.cl-step{flex:1 0 auto;min-width:62px;text-align:center;opacity:.42;border-radius:10px;padding:7px 6px;background:#f3f5ef}
+.cl-step b{display:block;font-size:15px;color:#333}
+.cl-step span{font-size:10.5px;color:#5f6b58;display:block;line-height:1.2}
+.cl-step.on{opacity:1;background:var(--sc);box-shadow:0 3px 10px rgba(0,0,0,.14)}
+.cl-step.on b,.cl-step.on span{color:#fff}
+.cl-head{font-size:15px;margin:2px 0 6px;color:#1b2430}
+.cl-badge{display:inline-block;color:#fff;font-weight:800;font-size:12.5px;padding:4px 12px;border-radius:999px;margin-right:8px}
+.cl-result h4{margin:14px 0 7px;font-size:13.5px;color:#0b4f9e}
+.cl-todo p{margin:0;font-size:14.5px;color:#1b2430;line-height:1.6}
+.cl-tags,.cl-chips{display:flex;flex-wrap:wrap;gap:7px}
+.cl-tag{font-size:12.5px;background:#fff8e6;border:1px solid #f5d488;color:#7a5b00;padding:5px 11px;border-radius:999px}
+.cl-tag.pri{background:#ffe3e0;border-color:#f3a89f;color:#a3271a}
+.cl-chip{font-size:12.5px;font-weight:600;background:#eaf3e4;border:1px solid #cfe3c6;color:#1c5320;padding:6px 12px;border-radius:999px;text-decoration:none;transition:.12s}
+.cl-chip:hover{background:#2F7A3A;color:#fff}
+.cl-zalo{display:inline-block;margin-top:14px;background:#1372ea;color:#fff;font-weight:700;padding:11px 18px;border-radius:999px;text-decoration:none;font-size:14px}
+</style>
+<section class="cat chamlua" id="cham-lua" style="--cat:#2F7A3A">
+  <div class="cat-head">
+    <div class="cat-icon">📅</div>
+    <div>
+      <h2>Chăm lúa theo giai đoạn <span class="count">Tự cập nhật theo ngày sạ</span></h2>
+      <p class="cat-tag">Nhập ngày sạ ruộng bạn — web tính đúng giai đoạn hôm nay, việc cần làm, sâu bệnh cần canh và gợi ý sản phẩm phù hợp. Vụ này ĐBSCL sạ 30/09.</p>
+    </div>
+  </div>
+  <div class="cl-ctrl">
+    <label for="cl-sow">🌱 Ngày sạ ruộng bạn</label>
+    <input type="date" id="cl-sow">
+    <span class="cl-hint">Đổi ngày cho hợp ruộng của bạn — web nhớ lần sau.</span>
+  </div>
+  <div id="cl-result" class="cl-result"></div>
+  <a class="cl-zalo" href="https://zalo.me/84933246086" target="_blank" rel="noopener">📋 Nhắn Zalo kỹ thuật — kê phác đồ đúng ruộng (miễn phí)</a>
+</section>
+<script>
+(function(){
+var SG=[{"id": "G0", "name": "Làm đất – Sạ", "color": "#9AA36B", "d0": -7, "d1": 3, "note": "Diệt ốc trước hoặc khi sạ. Phun cỏ tiền nảy mầm 0–3 NSS, giữ ruộng đủ ẩm.", "watch": [{"name": "Ốc bươu vàng", "tag": ""}, {"name": "Cỏ dại tiền nảy mầm", "tag": ""}], "prods": [{"n": "10 Tỷ Vi Sinh", "u": "san-pham/vcr-23-10-ty-vi-sinh-phan-huy-rom-ra-cai-tao-dat.html"}, {"n": "Siêu 3.6", "u": "san-pham/vcr-4-sieu-3-6.html"}, {"n": "Diệt Mầm Mỹ (Tiêu Mầm)", "u": "san-pham/vcr-14-diet-mam-my-tieu-mam.html"}, {"n": "Eurofit — Châu Âu", "u": "san-pham/eha-1-eurofit-chau-au.html"}]}, {"id": "G1", "name": "Mạ", "color": "#8fb845", "d0": 4, "d1": 15, "note": "7–10 NSS kích rễ hạ phèn. Ruộng ngộ độc hữu cơ thì dùng Comcat hoặc Hydrophos.", "watch": [{"name": "Rễ yếu, ngộ độc phèn", "tag": ""}, {"name": "Ốc sót", "tag": ""}, {"name": "Bọ trĩ (lá xoăn)", "tag": ""}], "prods": [{"n": "Bio Ra Rễ Hạ Phèn Nở Bụi 50g", "u": "san-pham/vcr-1-bio-ra-re-ha-phen-no-bui-50g.html"}, {"n": "Humic thay DAP — Sihu New Đỏ 1kg", "u": "san-pham/vcr-22-humic-thay-dap-sihu-new-do-1kg.html"}, {"n": "Hydrophos 1L", "u": "san-pham/vcr-21-hydrophos-1l.html"}, {"n": "Comcat nước 500cc", "u": "san-pham/vcr-6-comcat-nuoc-500cc.html"}, {"n": "Siêu 3.6", "u": "san-pham/vcr-4-sieu-3-6.html"}, {"n": "Ichibio", "u": "san-pham/vcr-3-ichibio.html"}]}, {"id": "G2", "name": "Đẻ nhánh", "color": "#5AA047", "d0": 16, "d1": 40, "note": "Quyết định số bông. Phòng đạo ôn lá 22–30 NSS khi trời âm u. Không phun thuốc sâu sớm nếu chưa tới ngưỡng để giữ thiên địch.", "watch": [{"name": "Nở bụi kém", "tag": ""}, {"name": "Đạo ôn lá", "tag": "ưu tiên"}, {"name": "Sâu cuốn lá, sâu đục thân", "tag": "theo ngưỡng"}, {"name": "Rầy nâu lứa 1", "tag": "theo ngưỡng"}, {"name": "Bạc lá sớm", "tag": ""}], "prods": [{"n": "Siêu Ra Rễ Nở Bụi Cứng Cây Xanh Lá 1L", "u": "san-pham/eha-4-sieu-ra-re-no-bui-cung-cay-xanh-la-1l.html"}, {"n": "Comcat nước 500cc", "u": "san-pham/vcr-6-comcat-nuoc-500cc.html"}, {"n": "Super Biocat USA", "u": "san-pham/vcr-9-super-biocat-usa.html"}, {"n": "Humic thay DAP — Sihu New Đỏ 1kg", "u": "san-pham/vcr-22-humic-thay-dap-sihu-new-do-1kg.html"}, {"n": "Antracol nước 1L", "u": "san-pham/eha-5-antracol-nuoc-1l.html"}, {"n": "Bim USA", "u": "san-pham/vcr-12-bim-usa.html"}, {"n": "Bim Nhật", "u": "san-pham/eha-11-bim-nhat.html"}, {"n": "Đạo Ôn An Nông Nước", "u": "san-pham/vcr-8-dao-on-an-nong-nuoc.html"}, {"n": "Fusione Nhật", "u": "san-pham/eha-9-fusione-nhat.html"}, {"n": "X3 Vochiron — Đạo ôn 3 hoạt chất", "u": "san-pham/vcr-7-x3-vochiron-dao-on-3-hoat-chat.html"}, {"n": "Padan Ledan USA", "u": "san-pham/vcr-20-padan-ledan-usa.html"}, {"n": "Sói Xám 100g (Sói Đỏ bản mới)", "u": "san-pham/vcr-18-soi-xam-100g-soi-do-ban-moi.html"}, {"n": "F21 xông hơi (bản mới F18)", "u": "san-pham/eha-10-f21-xong-hoi-ban-moi-f18.html"}, {"n": "Khuẩn Nhật 3 hoạt chất", "u": "san-pham/eha-8-khuan-nhat-3-hoat-chat.html"}, {"n": "Khuẩn Mỹ Bio USA 250WP", "u": "san-pham/vcr-15-khuan-my-bio-usa-250wp.html"}, {"n": "Antibac 100g", "u": "san-pham/vcr-17-antibac-100g.html"}]}, {"id": "G3", "name": "Làm đòng", "color": "#2F7A3A", "d0": 41, "d1": 60, "note": "40–45 NSS đón đòng và hãm lóng cùng lúc; Antracol nước ở mốc 40 NSS lo cả cứng cây, nở bụi, mập đòng. 50–55 NSS phòng khô vằn, đạo ôn, bạc lá.", "watch": [{"name": "Đòng nhỏ, trổ không đều", "tag": "ưu tiên"}, {"name": "Cây yếu, vươn lóng", "tag": "40–50 NSS"}, {"name": "Khô vằn", "tag": ""}, {"name": "Đạo ôn, bạc lá giai đoạn đòng", "tag": ""}, {"name": "Sâu đục thân, rầy lứa 2", "tag": "theo ngưỡng"}], "prods": [{"n": "Bloom Power", "u": "san-pham/vcr-5-bloom-power.html"}, {"n": "Antracol nước 1L", "u": "san-pham/eha-5-antracol-nuoc-1l.html"}, {"n": "Super Biocat USA", "u": "san-pham/vcr-9-super-biocat-usa.html"}, {"n": "Cứng Cây Chống Sập 500ml", "u": "san-pham/vcr-2-cung-cay-chong-sap-500ml.html"}, {"n": "Topvil 50SC (nano)", "u": "san-pham/eha-6-topvil-50sc-nano.html"}, {"n": "Bim Sữa Nước", "u": "san-pham/eha-16-bim-sua-nuoc.html"}, {"n": "Rimin Ridomil", "u": "san-pham/vcr-11-rimin-ridomil.html"}, {"n": "Katy USA — 3 hoạt chất", "u": "san-pham/vcr-10-katy-usa-3-hoat-chat.html"}, {"n": "Antibac 100g", "u": "san-pham/vcr-17-antibac-100g.html"}, {"n": "Khuẩn Mỹ Bio USA 250WP", "u": "san-pham/vcr-15-khuan-my-bio-usa-250wp.html"}, {"n": "Khuẩn Nhật Nước (Sakimori)", "u": "san-pham/eha-14-khuan-nhat-nuoc-sakimori.html"}, {"n": "F21 xông hơi (bản mới F18)", "u": "san-pham/eha-10-f21-xong-hoi-ban-moi-f18.html"}, {"n": "Sói Xám 100g (Sói Đỏ bản mới)", "u": "san-pham/vcr-18-soi-xam-100g-soi-do-ban-moi.html"}, {"n": "Padan Ledan USA", "u": "san-pham/vcr-20-padan-ledan-usa.html"}]}, {"id": "G4", "name": "Trổ – Phơi màu", "color": "#D3A82F", "d0": 61, "d1": 75, "note": "Hai cữ bắt buộc: trước trổ 5–7 ngày và sau trổ đều 5–7 ngày. Không phun lúc lúa phơi màu 9–14h.", "watch": [{"name": "Đạo ôn cổ bông", "tag": "cữ 1"}, {"name": "Lem lép hạt, vàng lá chín sớm", "tag": "cữ 1 + 2"}, {"name": "Bọ xít hôi, nhện gié, rầy", "tag": ""}, {"name": "Nuôi hạt sau trổ đều", "tag": "cữ 2"}], "prods": [{"n": "X3 Vochiron — Đạo ôn 3 hoạt chất", "u": "san-pham/vcr-7-x3-vochiron-dao-on-3-hoat-chat.html"}, {"n": "Katana Kiếm Nhật 480cc", "u": "san-pham/eha-15-katana-kiem-nhat-480cc.html"}, {"n": "Bim Sữa Nước", "u": "san-pham/eha-16-bim-sua-nuoc.html"}, {"n": "Katy USA — 3 hoạt chất", "u": "san-pham/vcr-10-katy-usa-3-hoat-chat.html"}, {"n": "Help Châu Âu — Heppy Top 400", "u": "san-pham/eha-3-help-chau-au-heppy-top-400.html"}, {"n": "Thần Y Pirastar", "u": "san-pham/vcr-13-than-y-pirastar.html"}, {"n": "NATIVAX 90g", "u": "san-pham/vcr-19-nativax-90g.html"}, {"n": "Til Super 240ml", "u": "san-pham/eha-7-til-super-240ml.html"}, {"n": "F21 xông hơi (bản mới F18)", "u": "san-pham/eha-10-f21-xong-hoi-ban-moi-f18.html"}, {"n": "Diệt Sạch", "u": "san-pham/eha-13-diet-sach.html"}, {"n": "Ichibio", "u": "san-pham/vcr-3-ichibio.html"}, {"n": "Bio Nước Organic 500ml", "u": "san-pham/eha-12-bio-nuoc-organic-500ml.html"}]}, {"id": "G5", "name": "Chín", "color": "#B8742A", "d0": 76, "d1": 95, "note": "Dưỡng hạt khi chín sữa. Kiểm tra rầy gốc. Ngưng thuốc đúng thời gian cách ly trước thu hoạch.", "watch": [{"name": "Hạt lép, lá đòng già sớm", "tag": ""}, {"name": "Rầy nâu cuối vụ (cháy rầy)", "tag": "theo ngưỡng"}], "prods": [{"n": "Bio Nước Organic 500ml", "u": "san-pham/eha-12-bio-nuoc-organic-500ml.html"}, {"n": "Antracol nước 1L", "u": "san-pham/eha-5-antracol-nuoc-1l.html"}, {"n": "Sói Xám 100g (Sói Đỏ bản mới)", "u": "san-pham/vcr-18-soi-xam-100g-soi-do-ban-moi.html"}, {"n": "Diệt Sạch", "u": "san-pham/eha-13-diet-sach.html"}]}];
+var PU={"VCR-23": {"n": "10 Tỷ Vi Sinh — phân hủy rơm rạ, cải tạo đất", "u": "san-pham/vcr-23-10-ty-vi-sinh-phan-huy-rom-ra-cai-tao-dat.html"}, "VCR-4": {"n": "Siêu 3.6", "u": "san-pham/vcr-4-sieu-3-6.html"}, "VCR-22": {"n": "Humic thay DAP — Sihu New Đỏ 1kg", "u": "san-pham/vcr-22-humic-thay-dap-sihu-new-do-1kg.html"}};
+var SOWD="2026-09-30";
+function chip(p){return '<a class="cl-chip" href="'+p.u+'">'+p.n+'</a>';}
+function stageOf(nss){
+  var g0=SG[0];
+  if(nss<g0.d0) return {pre:true,days:-nss};
+  for(var i=0;i<SG.length;i++){ if(nss<=SG[i].d1) return {idx:i}; }
+  return {post:true};
+}
+function render(){
+  var el=document.getElementById('cl-result'); if(!el) return;
+  var inp=document.getElementById('cl-sow');
+  var sow=(inp&&inp.value)||SOWD;
+  var d=new Date(sow+'T00:00:00'), now=new Date(); now.setHours(0,0,0,0);
+  var nss=Math.round((now-d)/86400000);
+  var st=stageOf(nss), curIdx=(st.idx!=null)?st.idx:(st.pre?0:SG.length-1);
+  var stepper='';
+  for(var i=0;i<SG.length;i++){ var s=SG[i];
+    stepper+='<div class="cl-step'+(i===curIdx?' on':'')+'" style="--sc:'+s.color+'"><b>'+s.id+'</b><span>'+s.name+'</span></div>'; }
+  var head='', body='';
+  if(st.pre){
+    head='<div class="cl-head"><span class="cl-badge" style="background:#9AA36B">CHUẨN BỊ ĐẤT</span> Còn <b>'+st.days+' ngày</b> nữa tới ngày sạ</div>';
+    body='<h4>📋 Việc cần làm</h4><p class="cl-todo" style="margin:0">Vệ sinh đồng ruộng, phân hủy rơm rạ – gốc rạ, diệt ốc bươu vàng và cải tạo đất trước khi sạ. Xử lý rơm rạ sớm để lúa non không bị ngộ độc hữu cơ, nghẹt rễ.</p>';
+    var pp=[]; if(PU['VCR-23'])pp.push(PU['VCR-23']); if(PU['VCR-4'])pp.push(PU['VCR-4']); if(PU['VCR-22'])pp.push(PU['VCR-22']);
+    if(pp.length) body+='<h4>🛒 Sản phẩm phù hợp</h4><div class="cl-chips">'+pp.map(chip).join('')+'</div>';
+  } else if(st.post){
+    head='<div class="cl-head"><span class="cl-badge" style="background:#B8742A">THU HOẠCH</span> Lúa đã <b>'+nss+' ngày</b> — tới kỳ thu hoạch 🌾</div>';
+    body='<h4>📋 Việc cần làm</h4><p class="cl-todo" style="margin:0">Chúc bà con trúng mùa được giá! Gặt xong nên xử lý rơm rạ ngay để cải tạo đất cho vụ sau — đất tơi, đỡ ngộ độc hữu cơ, đỡ phèn.</p>';
+    var pp2=[]; if(PU['VCR-23'])pp2.push(PU['VCR-23']); if(PU['VCR-22'])pp2.push(PU['VCR-22']);
+    if(pp2.length) body+='<h4>🛒 Chuẩn bị vụ mới</h4><div class="cl-chips">'+pp2.map(chip).join('')+'</div>';
+  } else {
+    var s=SG[curIdx];
+    head='<div class="cl-head"><span class="cl-badge" style="background:'+s.color+'">'+s.id+' · '+s.name+'</span> Hôm nay: <b>'+nss+' ngày sau sạ</b></div>';
+    body='<h4>📋 Việc cần làm</h4><p class="cl-todo" style="margin:0">'+s.note+'</p>';
+    if(s.watch&&s.watch.length) body+='<h4>⚠️ Cần canh giai đoạn này</h4><div class="cl-tags">'+s.watch.map(function(w){return '<span class="cl-tag'+(w.tag?' pri':'')+'">'+w.name+(w.tag?' · '+w.tag:'')+'</span>';}).join('')+'</div>';
+    if(s.prods&&s.prods.length) body+='<h4>🛒 Sản phẩm phù hợp giai đoạn này</h4><div class="cl-chips">'+s.prods.map(chip).join('')+'</div>';
+  }
+  el.innerHTML='<div class="cl-stepper">'+stepper+'</div>'+head+body;
+}
+var inp=document.getElementById('cl-sow');
+if(inp){ var saved=null; try{saved=localStorage.getItem('vcr_sow');}catch(e){}
+  inp.value=saved||SOWD;
+  inp.addEventListener('change',function(){ try{localStorage.setItem('vcr_sow',inp.value);}catch(e){} render(); });
+  render();
+}
+})();
+</script>
+
     <section class="cat best" id="banchay" style="--cat:#e8590c">
       <div class="cat-head">
         <div class="cat-icon">🔥</div>
