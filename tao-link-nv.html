@@ -1,0 +1,75 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tạo link giới thiệu cho Nhân viên | VOCHIRON USA</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Công cụ nội bộ: nhân viên sale VOCHIRON tạo link giới thiệu + QR để đưa nông dân đặt hàng, cộng hoa hồng 2%.">
+<link rel="icon" href="/favicon.ico" sizes="any"><meta name="theme-color" content="#1372ea">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap">
+<style>
+:root{--blue:#1372ea;--blue-d:#0b4f9e;--vblue:#0072bc;--green:#218b03;--ink:#16202e;--muted:#5d6b7d;--bg:#e9edf1;--card:#fff;--line:#dbe6f4}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);line-height:1.65;font-family:"Source Sans 3",-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+h1,h2,.mh{font-family:"Be Vietnam Pro","Source Sans 3",Arial,sans-serif}
+.wrap{max-width:620px;margin:0 auto;padding:0 16px}
+.masthead{background:#fff;border-bottom:4px solid var(--blue);padding:12px 0}
+.masthead .wrap{display:flex;align-items:center;gap:12px}
+.masthead img{height:46px;border-radius:10px}
+.crumb{font-size:13px;color:var(--muted);padding:14px 0 2px}.crumb a{color:var(--vblue);text-decoration:none}
+.doc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;margin:10px 0 24px;box-shadow:0 2px 10px rgba(16,42,80,.05)}
+h1{font-size:23px;color:var(--vblue);margin:0 0 4px}
+.sub{font-size:14px;color:var(--muted);margin-bottom:14px}
+label{display:block;font-weight:700;font-size:14px;margin:10px 0 5px}
+input[type=text]{width:100%;font-family:inherit;font-size:16px;padding:11px 13px;border:1.5px solid var(--line);border-radius:11px}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+.out{margin-top:16px;border-top:1px dashed var(--line);padding-top:16px}
+.linkbox{display:flex;gap:8px}
+.linkbox input{flex:1;font-family:ui-monospace,Menlo,monospace;font-size:14px;background:#eaf3fd;border-color:#bcd8f6;color:var(--blue-d)}
+.btn{border:0;font-family:inherit;font-weight:700;font-size:14px;border-radius:11px;cursor:pointer;padding:11px 16px;background:var(--blue);color:#fff}
+.btn.done{background:var(--green)}
+.qrwrap{text-align:center;margin:16px 0 2px}
+#qr{display:inline-block;background:#fff;padding:12px;border-radius:12px;box-shadow:0 2px 10px rgba(16,42,80,.1)}
+.qrcap{font-size:13px;color:var(--muted);margin-top:8px}
+.share{display:flex;gap:8px;margin-top:12px}
+.share a{flex:1;text-align:center;text-decoration:none;font-weight:700;font-size:13.5px;padding:11px;border-radius:11px;border:1px solid var(--line);color:var(--ink)}
+.share a.z{background:#0068ff;color:#fff;border-color:#0068ff}
+.note{background:#fff8e6;border-left:4px solid #f5a623;border-radius:0 10px 10px 0;padding:12px 14px;font-size:13px;margin:16px 0}
+footer{background:#212121;color:#c9d2dc;padding:22px 0;font-size:13px}footer a{color:#9ec3f5;text-decoration:none}
+</style></head><body>
+<header class="masthead"><div class="wrap"><a href="/"><img src="/assets/logo-lockup-mh.webp" alt="VOCHIRON USA"></a></div></header>
+<div class="wrap">
+  <div class="crumb"><a href="/">Trang chủ</a> › Tạo link giới thiệu (nội bộ NV)</div>
+  <div class="doc">
+    <h1>🤝 Tạo link giới thiệu cho Nhân viên</h1>
+    <p class="sub">Nhập tên NV → ra link riêng + mã QR đưa cho nông dân. Nông dân đặt hàng trên web (giá không đổi), đơn tự gắn tên bạn → cộng <b>hoa hồng 2%</b>, có báo cáo cuối tháng.</p>
+    <label for="nv">Tên / mã nhân viên *</label>
+    <input type="text" id="nv" placeholder="VD: NV TUNG, Hằng, NV01…" autocomplete="off">
+    <div class="hint">Gõ đúng tên bạn muốn hiện trong báo cáo (nên thống nhất 1 cách viết).</div>
+    <div class="out" id="out" hidden>
+      <label>🔗 Link gửi cho nông dân</label>
+      <div class="linkbox"><input type="text" id="link" readonly><button class="btn" id="copy" onclick="cp()">Chép</button></div>
+      <div class="qrwrap"><div id="qr"></div><div class="qrcap">📱 Cho nông dân quét QR (hoặc chụp màn hình gửi)</div></div>
+      <div class="share">
+        <a class="z" id="sz" target="_blank" rel="noopener">💬 Gửi qua Zalo</a>
+        <a id="sc" href="#" onclick="cp();return false;">📋 Copy link</a>
+      </div>
+    </div>
+    <div class="note"><b>Cách hoạt động:</b> Nông dân bấm link → ô "Nhân viên giới thiệu" tự điền tên bạn → đặt hàng. Đơn về email cửa hàng kèm tên NV + hoa hồng 2%. Mùng 1 hàng tháng hệ thống gửi báo cáo "Kết Quả Kinh Doanh NV [bạn]" về công ty.</div>
+  </div>
+</div>
+<footer><div class="wrap"><b>CÔNG TY TNHH VOCHIRON USA</b> · MST 0318890837 · <a href="/">Về trang chủ</a> · Zalo 0933 246 086<br>Trang công cụ nội bộ cho nhân viên kinh doanh.</div></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+var BASE="https://vochironusa.com/";
+var nvEl=document.getElementById('nv'),out=document.getElementById('out'),linkEl=document.getElementById('link'),qrEl=document.getElementById('qr'),szEl=document.getElementById('sz');
+function build(){
+  var nv=(nvEl.value||'').trim();
+  if(!nv){out.hidden=true;return;}
+  var url=BASE+'?nv='+encodeURIComponent(nv);
+  linkEl.value=url; out.hidden=false; qrEl.innerHTML='';
+  try{new QRCode(qrEl,{text:url,width:196,height:196,correctLevel:QRCode.CorrectLevel.M});}catch(e){}
+  szEl.href='https://zalo.me/?text='+encodeURIComponent('Xem sản phẩm & đặt hàng VOCHIRON: '+url);
+}
+function cp(){var b=document.getElementById('copy');var o=b.textContent;var ok=function(){b.textContent='✓ Đã chép';b.classList.add('done');setTimeout(function(){b.textContent=o;b.classList.remove('done');},1400);};
+  try{navigator.clipboard.writeText(linkEl.value).then(ok,function(){linkEl.select();document.execCommand('copy');ok();});}catch(e){linkEl.select();}}
+nvEl.addEventListener('input',build);
+</script>
+</body></html>
