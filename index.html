@@ -2224,10 +2224,6 @@ async function submitOrder(){
     hoa_hong_nv_2pt:nvName()?money(commission()):'(không)',
     don_hang:orderText()
   };
-  if(ORDER_SHEET && ORDER_SHEET.indexOf('http')===0){ try{ fetch(ORDER_SHEET,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({
-    ngay:new Date().toISOString(), nv:nvName(), khach:g('c-name'), sdt:g('c-phone'), dia_chi:g('c-addr'),
-    tong:finalTotal(), hoa_hong:commission(), don:orderText()
-  })}); }catch(e){} }
   try{
     var r=await fetch('https://formsubmit.co/ajax/vochiron.usa@gmail.com',{method:'POST',
       headers:{'Content-Type':'application/json','Accept':'application/json'},
@@ -2235,6 +2231,10 @@ async function submitOrder(){
     var j=await r.json();
     if(!(j.success==='true'||j.success===true)) throw 0;
     track('Lead',{value:finalTotal(),currency:'VND'});
+    if(ORDER_SHEET && ORDER_SHEET.indexOf('http')===0){ try{ fetch(ORDER_SHEET,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({
+      ngay:new Date().toISOString(), nv:nvName(), khach:g('c-name'), sdt:g('c-phone'), dia_chi:g('c-addr'),
+      tong:finalTotal(), hoa_hong:commission(), don:orderText()
+    })}); }catch(e){} }
     var c=document.getElementById('order-copied');
     if(c){c.style.display='block';
       c.textContent='🎉 ĐÃ GỬI ĐƠN THÀNH CÔNG! VOCHIRON sẽ GỌI LẠI số '+g('c-phone')+' để xác nhận. Cảm ơn bà con!';}
