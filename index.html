@@ -2214,34 +2214,22 @@ async function submitOrder(){
     document.getElementById('c-phone').focus();return;}
   var btn=document.getElementById('btn-order');
   btn.disabled=true; var old=btn.textContent; btn.textContent='⏳ Đang gửi đơn…';
-  var payload={
-    _subject:'🛒 ĐƠN WEB'+(nvName()?(' [NV '+nvName()+']'):'')+': '+(g('c-name')||'Khách')+' — '+money(finalTotal())+' — '+g('c-phone'),
-    _template:'box',
-    ten_khach:g('c-name')||'(chưa điền)', so_dien_thoai:g('c-phone'),
-    dia_chi:g('c-addr')||'(chưa điền)', ghi_chu:g('c-note')||'',
-    nhan_vien_gioi_thieu:nvName()||'(không)',
-    tong_don:money(finalTotal()),
-    hoa_hong_nv_2pt:nvName()?money(commission()):'(không)',
-    don_hang:orderText()
-  };
-  try{
-    var r=await fetch('https://formsubmit.co/ajax/vochiron.usa@gmail.com',{method:'POST',
-      headers:{'Content-Type':'application/json','Accept':'application/json'},
-      body:JSON.stringify(payload)});
-    var j=await r.json();
-    if(!(j.success==='true'||j.success===true)) throw 0;
-    track('Lead',{value:finalTotal(),currency:'VND'});
-    if(ORDER_SHEET && ORDER_SHEET.indexOf('http')===0){ try{ fetch(ORDER_SHEET,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({
+  var ok=false;
+  if(ORDER_SHEET && ORDER_SHEET.indexOf('http')===0){
+    try{ await fetch(ORDER_SHEET,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({
       ngay:new Date().toISOString(), nv:nvName(), khach:g('c-name'), sdt:g('c-phone'), dia_chi:g('c-addr'),
       tong:finalTotal(), hoa_hong:commission(), don:orderText()
-    })}); }catch(e){} }
+    })}); ok=true; }catch(e){}
+  }
+  if(ok){
+    track('Lead',{value:finalTotal(),currency:'VND'});
     var c=document.getElementById('order-copied');
     if(c){c.style.display='block';
       c.textContent='🎉 ĐÃ GỬI ĐƠN THÀNH CÔNG! VOCHIRON sẽ GỌI LẠI số '+g('c-phone')+' để xác nhận. Cảm ơn bà con!';}
     for(var k in cart) delete cart[k];
     renderCart();
     btn.textContent='✅ Đã gửi đơn — chờ cửa hàng gọi lại';
-  }catch(e){
+  }else{
     btn.disabled=false; btn.textContent=old;
     alert('Mạng đang trục trặc, chưa gửi được — bà con bấm nút “💬 Nhắn Zalo” bên dưới giúp cửa hàng nhé!');
   }
