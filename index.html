@@ -2069,6 +2069,7 @@ if(inp){ var saved=null; try{saved=localStorage.getItem('vcr_sow');}catch(e){}
       <input id="c-name" placeholder="Họ tên người nhận">
       <input id="c-phone" inputmode="tel" placeholder="Số điện thoại">
       <input id="c-addr" placeholder="Địa chỉ nhận hàng (xã/huyện/tỉnh)">
+      <input id="c-nv" placeholder="Nhân viên giới thiệu (VD: NV TUNG) — nếu có">
       <textarea id="c-note" rows="2" placeholder="Ghi chú: diện tích ruộng, loại cây, giai đoạn, sâu bệnh đang gặp…"></textarea>
     </div>
     <p id="order-copied" class="om-copied">✅ Đã sao chép nội dung đơn — dán (Ctrl/⌘+V) vào khung chat Zalo rồi gửi nhé!</p>
@@ -2085,25 +2086,18 @@ if(inp){ var saved=null; try{saved=localStorage.getItem('vcr_sow');}catch(e){}
 <script>
 const cart={};
 const money=n=>n.toLocaleString('vi-VN')+'đ';
-// ===== Affiliate cho sale: link ?nv=TÊN&ck=% (chiết khấu tối đa 30%) =====
-var NV="",CK=0;
+// ===== Affiliate cho sale: nông dân nhập tên NV khi đặt (link ?nv=TÊN sẽ tự điền sẵn). Hoa hồng NV = 2% =====
+var COMM=0.02; var NV=""; var ORDER_SHEET="";
 (function(){try{
   var q=new URLSearchParams(location.search);
-  var qnv=q.get('nv'), qck=q.get('ck');
-  if(qnv){ NV=qnv.replace(/[<>]/g,'').slice(0,40); localStorage.setItem('vcr_nv',NV); localStorage.setItem('vcr_nv_t',''+Date.now());
-    CK = qck!=null ? Math.max(0,Math.min(30,parseInt(qck)||0)) : 0; localStorage.setItem('vcr_ck',''+CK); }
-  if(!NV){ var t=+(localStorage.getItem('vcr_nv_t')||0); if(t && (Date.now()-t) < 90*864e5){ NV=localStorage.getItem('vcr_nv')||""; CK=Math.max(0,Math.min(30,parseInt(localStorage.getItem('vcr_ck'))||0)); } }
+  var qnv=q.get('nv');
+  if(qnv){ NV=qnv.replace(/[<>]/g,'').slice(0,40); localStorage.setItem('vcr_nv',NV); localStorage.setItem('vcr_nv_t',''+Date.now()); }
+  if(!NV){ var t=+(localStorage.getItem('vcr_nv_t')||0); if(t && (Date.now()-t) < 90*864e5){ NV=localStorage.getItem('vcr_nv')||""; } }
 }catch(e){}})();
-function clearNV(){try{localStorage.removeItem('vcr_nv');localStorage.removeItem('vcr_ck');localStorage.removeItem('vcr_nv_t');}catch(e){}NV="";CK=0;var b=document.getElementById('nvbar');if(b)b.remove();if(window.renderCart)renderCart();}
-function initNVBar(){
-  if(!NV||document.getElementById('nvbar'))return;
-  var nav=document.querySelector('nav.jump');
-  var bar=document.createElement('div');bar.id='nvbar';
-  bar.style.cssText='background:#0b4f9e;color:#fff;font-size:13px;font-weight:600;padding:8px 14px;text-align:center;line-height:1.45';
-  bar.innerHTML='🤝 Chế độ ĐẠI LÝ — NV phụ trách: <b>'+NV+'</b>'+(CK>0?(' · giá đã trừ chiết khấu <b>'+CK+'%</b> ở giỏ hàng &amp; đơn'):'')+' <a href="#" onclick="clearNV();return false;" style="color:#ffd54f;margin-left:6px;text-decoration:underline">Thoát</a>';
-  if(nav&&nav.parentNode){nav.insertAdjacentElement('afterend',bar);}else{document.body.insertBefore(bar,document.body.firstChild);}
-}
-if(document.readyState!=='loading'){initNVBar();}else{document.addEventListener('DOMContentLoaded',initNVBar);}
+function prefillNV(){var el=document.getElementById('c-nv'); if(el && !el.value && NV) el.value=NV;}
+function nvName(){var el=document.getElementById('c-nv'); return ((el&&el.value)||NV||'').trim();}
+function commission(){return nvName()?Math.round(finalTotal()*COMM):0;}
+if(document.readyState!=='loading'){prefillNV();}else{document.addEventListener('DOMContentLoaded',prefillNV);}
 // BIG SALE SIHU: mỗi thùng 24kg → tặng (chọn 1): 10 ghế / 1 bếp gas đôi mặt kiếng / 2 bếp gas mini
 var PROMO={code:'VCR-22',per:24,gifts:[
   {v:'chairs',ic:'🪑',per:10,unit:'ghế nhựa'},
@@ -2115,9 +2109,7 @@ try{promoChoice=localStorage.getItem('vcr_promo')||'chairs';}catch(e){}
 function cartons(){var it=cart[PROMO.code];return it?Math.floor(it.qty/PROMO.per):0;}
 function promoDiscount(){return 0;}
 function promoGift(pn){var g=PROMO.gifts.filter(function(x){return x.v===promoChoice;})[0]||PROMO.gifts[0];return (g.per*pn)+' '+g.unit;}
-function nvBase(){return total()-promoDiscount()-shirtDiscount()-seedDiscount();}
-function nvDiscount(){return CK>0?Math.round(nvBase()*CK/100):0;}
-function finalTotal(){return nvBase()-nvDiscount();}
+function finalTotal(){return total()-promoDiscount()-shirtDiscount()-seedDiscount();}
 // ÁO THUN: mỗi THÙNG đủ quy cách (gói x100 / chai x40) = 1 áo cao cấp HOẶC giảm 200k (chuyển khoản trước)
 var PACK={"EHA-1": 20, "VCR-14": 40, "VCR-4": 40, "VCR-18": 100, "VCR-20": 100, "VCR-3": 40, "EHA-10": 40, "EHA-13": 40, "VCR-7": 40, "VCR-8": 40, "VCR-10": 100, "VCR-12": 100, "EHA-11": 100, "EHA-9": 40, "EHA-15": 40, "EHA-16": 40, "VCR-13": 40, "VCR-19": 100, "EHA-3": 40, "EHA-7": 40, "EHA-6": 40, "VCR-11": 100, "VCR-17": 100, "VCR-15": 100, "EHA-8": 100, "EHA-14": 40, "EHA-2": 40, "VCR-1": 100, "VCR-21": 20, "EHA-4": 20, "VCR-6": 40, "VCR-9": 100, "VCR-2": 40, "VCR-16": 40, "EHA-5": 20, "VCR-5": 40, "EHA-12": 40, "VCR-23": 40};
 var SHIRT_OFF=200000;
@@ -2170,11 +2162,9 @@ function renderCart(){
       +'</div>';
     }
   }
-  var nvb=document.getElementById('promo-box');
-  if(nvb && CK>0 && NV){ nvb.style.display='block'; nvb.innerHTML+='<div class="pm-sep">🤝 <b>Đại lý — NV '+NV+'</b>: chiết khấu −'+CK+'% = <b>−'+money(nvDiscount())+'</b> (đã trừ vào tổng)</div>'; }
   document.getElementById('order-total').textContent=money(finalTotal());
 }
-function openCart(){document.getElementById('order-modal').classList.add('open');document.body.style.overflow='hidden';}
+function openCart(){document.getElementById('order-modal').classList.add('open');document.body.style.overflow='hidden';prefillNV();}
 function closeCart(){document.getElementById('order-modal').classList.remove('open');document.body.style.overflow='';}
 function orderText(){
   var g=function(id){return (document.getElementById(id).value||'').trim();};
@@ -2182,12 +2172,11 @@ function orderText(){
   t+='• Khách: '+(g('c-name')||'(chưa điền)')+'\n';
   t+='• SĐT: '+(g('c-phone')||'(chưa điền)')+'\n';
   t+='• Địa chỉ: '+(g('c-addr')||'(chưa điền)')+'\n';
-  if(NV){t+='• NV giới thiệu: '+NV+(CK>0?(' — chiết khấu '+CK+'%'):'')+'\n';}
+  if(nvName()){t+='• NV giới thiệu: '+nvName()+'\n';}
   t+='———————\n';
   var i=1; for(var c in cart){var it=cart[c]; t+=(i++)+'. '+it.name+' ['+c+'] x'+it.qty+(SEED[c]?' kg':'')+' = '+money(it.price*it.qty)+'\n';}
   t+='———————\n';
   t+='TỔNG TẠM TÍNH: '+money(total())+'\n';
-  if(CK>0){t+='CHIẾT KHẤU ĐẠI LÝ (NV '+NV+') −'+CK+'%: −'+money(nvDiscount())+'\n';t+='➡️ TỔNG SAU CHIẾT KHẤU: '+money(finalTotal())+'\n(giá cuối xác nhận qua Zalo)\n';}
   var pn=cartons();
   if(pn>0){ t+='🎁 BIG SALE: '+pn+' thùng SIHU (24kg) — TẶNG '+promoGift(pn)+'\n'; }
   var st=seedTons();
@@ -2226,12 +2215,19 @@ async function submitOrder(){
   var btn=document.getElementById('btn-order');
   btn.disabled=true; var old=btn.textContent; btn.textContent='⏳ Đang gửi đơn…';
   var payload={
-    _subject:'🛒 ĐƠN WEB'+(NV?(' ['+NV+(CK>0?' -'+CK+'%':'')+']'):'')+': '+(g('c-name')||'Khách')+' — '+money(finalTotal())+' — '+g('c-phone'),
+    _subject:'🛒 ĐƠN WEB'+(nvName()?(' [NV '+nvName()+']'):'')+': '+(g('c-name')||'Khách')+' — '+money(finalTotal())+' — '+g('c-phone'),
     _template:'box',
     ten_khach:g('c-name')||'(chưa điền)', so_dien_thoai:g('c-phone'),
     dia_chi:g('c-addr')||'(chưa điền)', ghi_chu:g('c-note')||'',
+    nhan_vien_gioi_thieu:nvName()||'(không)',
+    tong_don:money(finalTotal()),
+    hoa_hong_nv_2pt:nvName()?money(commission()):'(không)',
     don_hang:orderText()
   };
+  if(ORDER_SHEET && ORDER_SHEET.indexOf('http')===0){ try{ fetch(ORDER_SHEET,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({
+    ngay:new Date().toISOString(), nv:nvName(), khach:g('c-name'), sdt:g('c-phone'), dia_chi:g('c-addr'),
+    tong:finalTotal(), hoa_hong:commission(), don:orderText()
+  })}); }catch(e){} }
   try{
     var r=await fetch('https://formsubmit.co/ajax/vochiron.usa@gmail.com',{method:'POST',
       headers:{'Content-Type':'application/json','Accept':'application/json'},
