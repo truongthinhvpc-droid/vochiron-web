@@ -1741,7 +1741,7 @@ if(inp){ var saved=null; try{saved=localStorage.getItem('vcr_sow');}catch(e){}
   </div>
 </section>
 
-    <section class="cat" id="combo" style="--cat:#e65100">
+    <section class="cat" id="combo" style="--cat:#e65100;display:none">
       <div class="cat-head">
         <div class="cat-icon">🧺</div>
         <div>
@@ -2409,7 +2409,8 @@ var I18N={"en": {"topbar_zalo": "💬 Order via Zalo", "hero_eyebrow": "VOCHIRON
     var t=e.target;
     var a=t.closest?t.closest('a[href^="#"]'):null;
     if(a){ var id=a.getAttribute("href").slice(1); var el=id&&document.getElementById(id);
-      if(el&&(el===all||all.contains(el))) showAll(); }
+      if(el){ if(el===all||all.contains(el)) showAll();
+        if(el.style&&el.style.display==="none"){ el.style.display=""; setTimeout(function(){el.scrollIntoView({behavior:"smooth",block:"start"});},30); } } }
     if(t.closest&&t.closest(".mega-drop .nav-top")) showAll();
   }, true);
   var btn=document.getElementById("show-all-btn");
