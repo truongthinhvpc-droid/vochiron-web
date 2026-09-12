@@ -2506,7 +2506,7 @@ var I18N={"en": {"topbar_zalo": "💬 Order via Zalo", "hero_eyebrow": "VOCHIRON
     for(var i=0;i<list.length;i++){var b=list[i]; if(b.getAttribute("data-consult"))continue;
       var tx=(b.textContent||"").replace(/\s+/g," ").trim();
       if(/＋ ?Thêm/.test(tx)||/Thêm vào đơn/.test(tx)||/Thêm cả combo/.test(tx)){
-        b.setAttribute("data-consult","1");b.classList.add("consult-btn");b.innerHTML="\u{1F4AC} Tư vấn / Đặt mua";
+        b.setAttribute("data-consult","1");b.classList.add("consult-btn");b.innerHTML="\u{1F4AC} Tư Vấn / Liên Hệ";
       } else if(tx==="Đặt hàng"||/^\u{1F6D2}? ?Đặt hàng$/u.test(tx)){
         b.setAttribute("data-consult","1");b.classList.add("consult-btn");b.innerHTML="\u{1F4AC} Liên hệ tư vấn";
       }
