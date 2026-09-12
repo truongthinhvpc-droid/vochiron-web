@@ -2455,6 +2455,66 @@ var I18N={"en": {"topbar_zalo": "💬 Order via Zalo", "hero_eyebrow": "VOCHIRON
   apply(saved);
 })();
 </script>
+(function(){
+  if(window.__consult)return; window.__consult=true;
+  var ZALO="https://zalo.me/84933246086", FB="https://m.me/Vochiron";
+  var st=document.createElement("style");
+  st.textContent="#fab,#order-modal{display:none!important}"
+    +".consult-btn{background:#0b8f3a!important;border-color:#0b8f3a!important;color:#fff!important}"
+    +"#consult-modal{position:fixed;inset:0;z-index:99999;display:none}"
+    +"#consult-modal .cm-bg{position:absolute;inset:0;background:rgba(10,20,30,.55)}"
+    +"#consult-modal .cm-card{position:relative;max-width:360px;margin:16vh auto 0;background:#fff;border-radius:16px;padding:20px 18px;box-shadow:0 20px 60px rgba(0,0,0,.3);font-family:inherit}"
+    +"#consult-modal h3{margin:0 0 6px;color:#0b4f9e;font-size:19px}"
+    +"#consult-modal p{margin:0 0 14px;color:#555;font-size:14px;line-height:1.5}"
+    +"#consult-modal .cm-b{display:block;text-align:center;text-decoration:none;font-weight:700;font-size:15px;padding:13px;border-radius:12px;margin:8px 0}"
+    +"#consult-modal .cm-b.zalo{background:#0068ff;color:#fff}#consult-modal .cm-b.fb{background:#0866ff;color:#fff}"
+    +"#consult-modal .cm-b.tel{background:#eef3f8;color:#0b4f9e}"
+    +"#consult-modal .cm-x{position:absolute;top:8px;right:10px;border:0;background:none;font-size:22px;color:#889;cursor:pointer}";
+  (document.head||document.documentElement).appendChild(st);
+  function showConsult(){
+    var m=document.getElementById("consult-modal");
+    if(!m){
+      m=document.createElement("div"); m.id="consult-modal";
+      var fb=(FB&&FB.indexOf("http")===0)?'<a class="cm-b fb" href="'+FB+'" target="_blank" rel="noopener">\u{1F4E9} Nhắn Fanpage Bác Sĩ Cây Trồng</a>':"";
+      m.innerHTML='<div class="cm-bg"></div><div class="cm-card"><button class="cm-x" aria-label="Đóng">✕</button>'
+        +'<h3>Liên hệ tư vấn &amp; đặt mua</h3>'
+        +'<p>Bà con để lại nhu cầu, cửa hàng tư vấn kỹ thuật, báo giá và giao tận nơi nhé:</p>'
+        +'<a class="cm-b zalo" href="'+ZALO+'" target="_blank" rel="noopener">\u{1F4AC} Nhắn Zalo 0933 246 086</a>'+fb
+        +'<a class="cm-b tel" href="tel:0933246086">\u{1F4DE} Gọi 0933 246 086</a></div>';
+      document.body.appendChild(m);
+      function hide(){m.style.display="none";document.body.style.overflow="";}
+      m.querySelector(".cm-bg").onclick=hide; m.querySelector(".cm-x").onclick=hide;
+    }
+    m.style.display="block"; document.body.style.overflow="hidden";
+  }
+  window.__showConsult=showConsult;
+  try{window.addToCart=function(){showConsult();};}catch(e){}
+  try{window.openCart=function(){showConsult();};}catch(e){}
+  try{window.submitOrder=function(){showConsult();};}catch(e){}
+  document.addEventListener("click",function(e){
+    var t=e.target&&e.target.closest?e.target.closest("button,a"):null; if(!t)return;
+    if(t.hasAttribute("data-consult")||(t.hasAttribute("data-code")&&t.hasAttribute("data-price"))){
+      e.preventDefault();e.stopPropagation();showConsult();
+    }
+  },true);
+  function apply(){
+    var f=document.getElementById("fab"); if(f)f.style.display="none";
+    var om=document.getElementById("order-modal"); if(om)om.style.display="none";
+    var list=document.querySelectorAll("button,a");
+    for(var i=0;i<list.length;i++){var b=list[i]; if(b.getAttribute("data-consult"))continue;
+      var tx=(b.textContent||"").replace(/\s+/g," ").trim();
+      if(/＋ ?Thêm/.test(tx)||/Thêm vào đơn/.test(tx)||/Thêm cả combo/.test(tx)){
+        b.setAttribute("data-consult","1");b.classList.add("consult-btn");b.innerHTML="\u{1F4AC} Tư vấn / Đặt mua";
+      } else if(tx==="Đặt hàng"||/^\u{1F6D2}? ?Đặt hàng$/u.test(tx)){
+        b.setAttribute("data-consult","1");b.classList.add("consult-btn");b.innerHTML="\u{1F4AC} Liên hệ tư vấn";
+      }
+    }
+  }
+  var pend=false;function sched(){if(pend)return;pend=true;(window.requestAnimationFrame||setTimeout)(function(){pend=false;apply();},60);}
+  if(document.readyState!=="loading")apply();else document.addEventListener("DOMContentLoaded",apply);
+  try{new MutationObserver(sched).observe(document.documentElement,{childList:true,subtree:true});}catch(e){}
+})();
+
 <button id="cbot-launch" class="cbot-launch" aria-label="Chat tư vấn VOCHIRON">💬</button><div id="cbot" class="cbot-panel"><div class="cbot-head"><b>🌾 Trợ lý VOCHIRON</b><button id="cbot-x" class="cbot-x" aria-label="Đóng">✕</button></div><div id="cbot-body" class="cbot-body"></div><div id="cbot-qr" class="cbot-qr"></div><div class="cbot-foot">Trợ lý tự động · ca khó bấm “Gặp kỹ sư”. Đọc kỹ nhãn thuốc.</div></div><script>
 var BOTDATA={"issues": [{"q": "🌾 Đạo ôn lá / cổ bông", "a": "Đạo ôn là nấm — vết cháy hình mắt én, nặng thì cổ bông thâm đen, lép hạt. Ruộng sạ dày/thừa đạm rủi ro cao: ngưng đạm, phun phòng trước trổ 5–7 ngày.", "p": ["VCR-12", "EHA-15", "EHA-3"], "g": "cam-nang/dao-on-la-lua-g2.html"}, {"q": "🍂 Khô vằn", "a": "Khô vằn leo từ bẹ gốc lên lá đòng, vết loang như da rắn. Phun kỹ phần thân dưới khi bệnh chớm.", "p": ["EHA-6"], "g": "cam-nang/kho-van-lua-g3.html"}, {"q": "🌾 Lem lép hạt / vàng lá", "a": "Giai đoạn đòng–trổ dễ lem lép, vàng lá. Phun phổ rộng cữ trước & sau trổ để giữ lá đòng xanh, nuôi hạt chắc.", "p": ["EHA-3", "VCR-19", "EHA-6"]}, {"q": "🦠 Bạc lá / đốm sọc (vi khuẩn)", "a": "Bạc lá, đốm sọc là VI KHUẨN — thuốc nấm KHÔNG trị được. Dùng kháng sinh sinh học, phun sớm sau mưa bão.", "p": ["EHA-2", "EHA-8", "EHA-14"]}, {"q": "🐛 Sâu cuốn lá / đục thân", "a": "Chỉ phun khi tới ngưỡng, sâu tuổi nhỏ; phun đều thân–gốc. Đục thân gây bông bạc nên canh sớm.", "p": ["VCR-3", "VCR-20", "EHA-10"]}, {"q": "🦗 Rầy nâu", "a": "Phun khi ≥3 rầy/dảnh, rầy tuổi nhỏ. Phun sớm tràn lan sẽ mất thiên địch. Né rầy theo lịch địa phương.", "p": ["VCR-3", "VCR-18", "EHA-13"]}, {"q": "🐌 Ốc bươu vàng", "a": "Diệt sớm khi lúa 0–20 ngày và trước sạ, đừng đợi thấy ổ trứng hồng.", "p": ["VCR-4"], "g": "cam-nang/oc-buou-vang-lua-g0.html"}, {"q": "🌱 Cỏ dại đầu vụ", "a": "Trừ cỏ tiền nảy mầm 3–5 ngày sau sạ, ruộng đủ ẩm, lúa đã ra lá (an toàn nhờ Fenclorim).", "p": ["EHA-1", "VCR-14"]}, {"q": "🪫 Ngộ độc phèn / nghẹt rễ", "a": "Sau mưa lớn đất phèn, rễ đen, lúa đứng khựng: xả nước, hạ phèn, kích rễ trước khi bón phân.", "p": ["VCR-1", "VCR-22", "EHA-4"]}, {"q": "💪 Cứng cây chống đổ", "a": "Trước mưa bão/lũ: cứng cây, ngắn lóng để gặt được, không nằm rạp.", "p": ["VCR-2", "VCR-22"]}, {"q": "🌾 Nuôi hạt / đón đòng", "a": "Đón đòng & sau trổ: bổ sung Kali–Bo nuôi hạt no, nặng, chín đẹp.", "p": ["EHA-12", "VCR-5"]}], "products": {"EHA-1": {"n": "EUROFIT CHÂU ÂU 1 lít", "u": "san-pham/eha-1-eurofit-chau-au.html"}, "EHA-2": {"n": "SIÊU KHUẨN USA 240cc", "u": "san-pham/eha-2-sieu-khuan-usa-240cc.html"}, "EHA-3": {"n": "Help Châu Âu Heppy top 400", "u": "san-pham/eha-3-help-chau-au-heppy-top-400.html"}, "EHA-4": {"n": "Siêu ra rể nở bụi cứng cây xanh lá 1 lít", "u": "san-pham/eha-4-sieu-ra-re-no-bui-cung-cay-xanh-la-1l.html"}, "EHA-5": {"n": "Antracol nước 1 lít (siêu cứng cây, xanh lá)", "u": "san-pham/eha-5-antracol-nuoc-1l.html"}, "EHA-6": {"n": "TOPVIL 50SC ấn độ, công nghệ nano", "u": "san-pham/eha-6-topvil-50sc-nano.html"}, "EHA-7": {"n": "Til super 240ml", "u": "san-pham/eha-7-til-super-240ml.html"}, "EHA-8": {"n": "KHUẨN NHẬT 3 hoạt chất cực mạnh GÓI 100gr", "u": "san-pham/eha-8-khuan-nhat-3-hoat-chat.html"}, "EHA-9": {"n": "FUSIONE NHẬT đạo ôn", "u": "san-pham/eha-9-fusione-nhat.html"}, "EHA-10": {"n": "F21 xông hơi sâu đục thân, rầy rệp bản mới F18", "u": "san-pham/eha-10-f21-xong-hoi-ban-moi-f18.html"}, "EHA-11": {"n": "BIM NHẬT 100GR đạo ôn", "u": "san-pham/eha-11-bim-nhat.html"}, "EHA-12": {"n": "BIO Nước ORGANIC 500ml", "u": "san-pham/eha-12-bio-nuoc-organic-500ml.html"}, "EHA-13": {"n": "DIỆT SẠCH sâu rầy rệp, xông hơi lưu dẫn", "u": "san-pham/eha-13-diet-sach.html"}, "EHA-14": {"n": "KHUẨN NHẬT Nước 500ml", "u": "san-pham/eha-14-khuan-nhat-nuoc-sakimori.html"}, "EHA-15": {"n": "Katana kiếm nhật bản 480cc đạo ôn", "u": "san-pham/eha-15-katana-kiem-nhat-480cc.html"}, "EHA-16": {"n": "BIM SỮA NƯỚC", "u": "san-pham/eha-16-bim-sua-nuoc.html"}, "LG-1": {"n": "Lúa giống OM18 — Tấn Thịnh", "u": "san-pham/lg-1-lua-giong-om18-tan-thinh.html"}, "LG-2": {"n": "Nếp IR4625", "u": "san-pham/lg-2-nep-ir4625.html"}, "PB-1": {"n": "Phân Ure", "u": "san-pham/pb-1-phan-ure.html"}, "PB-2": {"n": "Phân DAP", "u": "san-pham/pb-2-phan-dap.html"}, "PB-3": {"n": "Phân Kali", "u": "san-pham/pb-3-phan-kali.html"}, "PB-4": {"n": "Phân NPK", "u": "san-pham/pb-4-phan-npk.html"}, "VCR-1": {"n": "GÓI BIO RA RỂ HẠ PHÈN NỞ BỤI 50gr", "u": "san-pham/vcr-1-bio-ra-re-ha-phen-no-bui-50g.html"}, "VCR-2": {"n": "CỨNG CÂY CHỐNG SẬP 500ml", "u": "san-pham/vcr-2-cung-cay-chong-sap-500ml.html"}, "VCR-3": {"n": "ICHIBIO Sâu đục thân, cuốn lá, nhện gié, bọ trĩ, rầy nâu", "u": "san-pham/vcr-3-ichibio.html"}, "VCR-4": {"n": "Siêu 3.6 siêu diệt ốc", "u": "san-pham/vcr-4-sieu-3-6.html"}, "VCR-5": {"n": "BLOOM POWER kích trổ, mập đòng", "u": "san-pham/vcr-5-bloom-power.html"}, "VCR-6": {"n": "Comcat nước 500cc", "u": "san-pham/vcr-6-comcat-nuoc-500cc.html"}, "VCR-7": {"n": "X3 vochiron Đạo ôn 3 hoạt chất feno tricy sulfua", "u": "san-pham/vcr-7-x3-vochiron-dao-on-3-hoat-chat.html"}, "VCR-8": {"n": "ĐẠO ÔN AN NÔNG NƯỚC", "u": "san-pham/vcr-8-dao-on-an-nong-nuoc.html"}, "VCR-9": {"n": "SUPER BIOCAT (comcat, supercat usa)", "u": "san-pham/vcr-9-super-biocat-usa.html"}, "VCR-10": {"n": "KATY USA ĐẠO ÔN 3 hoạt chất tricy iso hexa", "u": "san-pham/vcr-10-katy-usa-3-hoat-chat.html"}, "VCR-11": {"n": "RIMIN RIDOMIL", "u": "san-pham/vcr-11-rimin-ridomil.html"}, "VCR-12": {"n": "BIM USA 100gr đạo ôn", "u": "san-pham/vcr-12-bim-usa.html"}, "VCR-13": {"n": "Thần Y Pirastar (diệt sạch đạo ôn, vàng lá chín sớm, hơn 100 loại nấm bệnh)", "u": "san-pham/vcr-13-than-y-pirastar.html"}, "VCR-14": {"n": "Diệt Mầm MỸ 500ml Tiêu Mầm", "u": "san-pham/vcr-14-diet-mam-my-tieu-mam.html"}, "VCR-15": {"n": "KHUẨN MỸ BIO USA 250wp 2 Hoạt chất 100gr", "u": "san-pham/vcr-15-khuan-my-bio-usa-250wp.html"}, "VCR-16": {"n": "GINSENG NYRO 0.01SL 200ml (King Brassinolide)", "u": "san-pham/vcr-16-ginseng-nyro-0-01sl.html"}, "VCR-17": {"n": "ANTIBAC 100gr (đạo ôn vi khuẩn 3 hoạt chất)", "u": "san-pham/vcr-17-antibac-100g.html"}, "VCR-18": {"n": "SÓI XÁM 100g Sói đỏ bản mới (sâu đục thân, rầy nâu)", "u": "san-pham/vcr-18-soi-xam-100g-soi-do-ban-moi.html"}, "VCR-19": {"n": "NATIVAX 90gr", "u": "san-pham/vcr-19-nativax-90g.html"}, "VCR-20": {"n": "PADAN LEDAN USA (cartap, imidac, sâu đục thân, cuốn lá) 100gr", "u": "san-pham/vcr-20-padan-ledan-usa.html"}, "VCR-21": {"n": "Hydrophos 1 Lít", "u": "san-pham/vcr-21-hydrophos-1l.html"}, "VCR-22": {"n": "HUMIC THAY THẾ DAP SIHU NEW ĐỎ CỨNG CÂY 1 KG", "u": "san-pham/vcr-22-humic-thay-dap-sihu-new-do-1kg.html"}, "VCR-23": {"n": "10 Tỷ Vi Sinh — phân hủy rơm rạ, cải tạo đất", "u": "san-pham/vcr-23-10-ty-vi-sinh-phan-huy-rom-ra-cai-tao-dat.html"}}, "price": "Lúa tươi ĐBSCL: OM18 6.500–6.700đ · OM5451 6.400–6.500đ · IR50404 6.200–6.400đ/kg — thị trường cân bằng.", "bulletin": "Rầy nâu lứa 6 nở rộ & đạo ôn cổ bông giai đoạn trổ — Đồng Tháp đã hơn 2.000 ha đạo ôn lá.", "bulletinUrl": "cam-nang/ban-tin-dich-hai-dong-thap-muoi.html", "zaloBuy": "84933246086", "zaloTech": "84933246086"};
 
