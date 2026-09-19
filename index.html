@@ -782,6 +782,23 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
 </nav>
 <script>(function(){var nav=document.querySelector("nav.jump");if(!nav)return;var b=nav.querySelector(".nav-burger");if(!b)return;b.addEventListener("click",function(){var o=nav.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");});nav.addEventListener("click",function(e){var a=e.target.closest("a");if(a&&nav.classList.contains("open")){nav.classList.remove("open");b.setAttribute("aria-expanded","false");}});})();</script>
 
+<style>
+.px-band{background:linear-gradient(90deg,#06265a,#0b4f9e);overflow:hidden;position:relative;z-index:5}
+.px-view{overflow:hidden}
+.px-move{display:flex;width:max-content;white-space:nowrap;will-change:transform;animation:pxRoll 36s linear infinite}
+.px-band:hover .px-move{animation-play-state:paused}
+@keyframes pxRoll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.px-band .hero-alert.price{margin:0!important;background:transparent!important;border:0!important;border-left:0!important;box-shadow:none!important;
+  border-radius:0!important;display:inline-flex!important;flex-wrap:nowrap!important;align-items:center;gap:12px;padding:9px 44px 9px 18px;text-decoration:none}
+.px-band .ha-tag{flex:none!important;font-size:11.5px;font-weight:900;letter-spacing:.4px;color:#fff!important;background:#4a9d2e!important;padding:4px 10px;border-radius:6px;white-space:nowrap}
+.px-band .ha-tx{flex:none!important;min-width:0!important;color:#eaf3ff!important;font-size:13.5px;font-weight:700;white-space:nowrap}
+.px-band .ha-meta{flex:none!important;width:auto!important;color:#bcd4f5!important;font-size:11.5px;font-weight:600;white-space:nowrap}
+@media (prefers-reduced-motion: reduce){.px-move{animation:none;transform:none}}
+</style>
+<div class="px-band" aria-label="Giá lúa hôm nay">
+  <div class="px-view"><div class="px-move" id="pxTicker"><a class="hero-alert price" href="gia-lua-gao.html"><span class="ha-tag">💵 GIÁ LÚA HÔM NAY</span><span class="ha-tx">Lúa tươi ĐBSCL: OM18 5.900-6.100đ · OM5451 5.900-6.000đ · IR50404 5.800-6.000đ/kg — Giá lúa tươi tại ĐBSCL biến động trái ch</span><span class="ha-meta">Cập nhật 19/09/2026 · 8h sáng mỗi ngày →</span></a></div></div>
+</div>
+<script>(function(){var t=document.getElementById('pxTicker');if(t)t.innerHTML+=t.innerHTML;})();</script>
 <section class="hero">
   <canvas class="hero-canvas" aria-hidden="true"></canvas>
   <canvas class="hero-fibers" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none"></canvas>
@@ -790,13 +807,7 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
       <div class="hero-eyebrow" data-i18n="hero_eyebrow">VOCHIRON · Nông dược cho cây lúa</div>
       <h1>Grow Easy,<br>Protect Smart.</h1>
       <p data-i18n="hero_sub">Giải pháp thực chiến trên đồng ruộng: trừ cỏ, trừ sâu rầy ốc, trừ nấm khuẩn và chăm cây khỏe từ gốc đến ngọn.</p>
-      
-      <a class="hero-alert price" href="gia-lua-gao.html">
-        <span class="ha-tag">💵 GIÁ LÚA HÔM NAY</span>
-        <span class="ha-tx">Lúa tươi ĐBSCL: OM18 5.900-6.100đ · OM5451 5.900-6.000đ · IR50404 5.800-6.000đ/kg — Giá lúa tươi tại ĐBSCL biến động trái ch</span>
-        <span class="ha-meta">Cập nhật 19/09/2026 · 8h sáng mỗi ngày →</span>
-      </a>
-      
+
       <div class="stats">
         <div><b class="count" data-count="208">0</b><span><span class="live-dot"></span><span data-i18n="stat_farmers">Nông dân tin dùng</span></span></div>
         <div><b class="count" data-count="24914">0</b><span data-i18n="stat_sold">Sản phẩm đã bán ra</span></div>
@@ -1929,7 +1940,7 @@ if(inp){ var saved=null; try{saved=localStorage.getItem('vcr_sow');}catch(e){}
   <div class="wrap">
     <div class="cols">
       <div style="max-width:440px">
-        <div class="flogo"><img class="f-logo logo-badge" src="assets/logo-mark.webp" alt="VOCHIRON USA"><span class="name">VOCHIRON USA</span></div>
+        <div class="flogo"><img class="f-logo logo-badge" src="assets/logo-mark-white.png" alt="VOCHIRON USA" style="object-fit:contain;background:transparent;border-radius:0"><span class="name">VOCHIRON USA</span></div>
         <p style="color:#9aa6b2;font-size:14px">Thương hiệu VOCHIRON — nông dược, phân bón và giải pháp dinh dưỡng cây trồng. Grow Easy · Protect Smart.</p>
       </div>
       <div class="contact">
