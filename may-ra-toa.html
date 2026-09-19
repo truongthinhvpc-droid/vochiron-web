@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Máy Ra Toa Theo Phác Đồ Lúa — VOCHIRON USA</title>
+<meta name="description" content="Nhập số ngày sau sạ và diện tích, VOCHIRON gợi ý gói toàn diện cover đủ dịch hại từng giai đoạn lúa. Cần liều cụ thể gọi kỹ sư 0933 526 086.">
+<link rel="icon" href="favicon.ico">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@600;700&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#1372ea; --blue-d:#0b4f9e; --vblue:#0072bc;
+  --green:#4a9d2e; --green-d:#218b03;
+  --ink:#15263F; --muted:#5b6b80;
+  --bg:#EAF2FD; --card:#ffffff; --line:#dce6f4;
+  --warn-bg:#fff5e6; --warn-line:#ffd591; --warn-ink:#8a5a00;
+  --serif:'Lora',Georgia,serif;
+  --sans:'Be Vietnam Pro',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--sans);color:var(--ink);background:var(--bg);line-height:1.5;-webkit-text-size-adjust:100%}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 120px}
+a{color:var(--blue-d)}
+h1,h2,h3{font-family:var(--serif);line-height:1.2}
+/* Header */
+header{background:linear-gradient(135deg,var(--vblue),var(--blue-d));color:#fff;padding:22px 0 26px}
+header .wrap{padding-bottom:0}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:15px;letter-spacing:.02em}
+.brand .logo{width:34px;height:34px;border-radius:50%;background:#fff;display:grid;place-items:center;color:var(--vblue);font-family:var(--serif);font-weight:700}
+h1{font-size:26px;margin:14px 0 6px}
+.sub{opacity:.92;font-size:14.5px;max-width:52ch}
+/* Steps */
+.step{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 16px;margin-top:16px;box-shadow:0 6px 20px rgba(11,79,158,.06)}
+.step-h{display:flex;align-items:center;gap:10px;margin:0 0 12px}
+.step-n{flex:none;width:26px;height:26px;border-radius:50%;background:var(--green);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center;font-family:var(--sans)}
+.step-h h2{font-size:18px;margin:0}
+label{font-weight:600;font-size:14px;display:block;margin-bottom:6px}
+.row{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end}
+.field{flex:1;min-width:150px}
+input[type=number]{width:100%;font:600 17px var(--sans);padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;color:var(--ink);background:#fbfdff}
+input[type=number]:focus{outline:none;border-color:var(--blue)}
+.hint{font-size:12.5px;color:var(--muted);margin-top:6px}
+/* stage chips */
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.chip{border:1.5px solid var(--line);background:#fff;color:var(--ink);font:600 13.5px var(--sans);padding:9px 12px;border-radius:999px;cursor:pointer;transition:.15s}
+.chip:hover{border-color:var(--blue)}
+.chip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+/* result */
+#result{display:none}
+.stage-banner{background:linear-gradient(135deg,#eafbe6,#dff3ff);border:1px solid #cfeec7;border-radius:14px;padding:14px 16px;margin-bottom:14px}
+.stage-banner .st{font-family:var(--serif);font-weight:700;font-size:19px;color:var(--green-d)}
+.stage-banner .nss{font-size:13px;color:var(--muted);font-weight:600}
+.stage-banner .note{font-size:13.5px;color:var(--ink);margin-top:6px}
+.covers{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.covers span{background:#fff;border:1px solid #cfeec7;color:var(--green-d);font-weight:600;font-size:12px;padding:4px 9px;border-radius:999px}
+/* product group */
+.grp{margin-top:12px}
+.grp-h{font-weight:700;font-size:13px;color:var(--vblue);text-transform:uppercase;letter-spacing:.03em;margin:0 0 8px}
+.prod{display:flex;gap:12px;align-items:flex-start;padding:11px 12px;border:1px solid var(--line);border-radius:12px;margin-bottom:8px;background:#fbfdff}
+.prod .pn{font-weight:700;font-size:14.5px}
+.prod .pu{font-size:13px;color:var(--muted)}
+.prod .qty{flex:none;text-align:right;min-width:74px;font-weight:700;font-size:14px;color:var(--blue-d)}
+.prod .qty small{display:block;font-weight:600;font-size:11px;color:var(--muted)}
+/* toa note */
+.toanote{background:var(--warn-bg);border:1px solid var(--warn-line);color:var(--warn-ink);border-radius:12px;padding:12px 14px;font-size:13.5px;margin-top:12px}
+.toanote b{color:var(--warn-ink)}
+/* CTA */
+.cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.btn{flex:1;min-width:150px;text-align:center;text-decoration:none;font-weight:700;font-size:15px;padding:14px 12px;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;gap:8px}
+.btn.call{background:var(--green);color:#fff}
+.btn.zalo{background:var(--blue);color:#fff}
+.btn.web{background:#fff;color:var(--blue-d);border:1.5px solid var(--line)}
+.disclaim{font-size:12px;color:var(--muted);margin-top:18px;text-align:center}
+.foot{text-align:center;font-size:12.5px;color:var(--muted);margin-top:22px}
+@media (max-width:520px){h1{font-size:22px}.prod .qty{min-width:64px}}
+@media print{header{background:#0b4f9e!important;-webkit-print-color-adjust:exact}.cta,.chips,#nssRow{display:none}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="brand"><span class="logo">V</span> VOCHIRON USA · Nông dược cho cây lúa</div>
+    <h1>Máy Ra Toa Theo Phác Đồ Lúa</h1>
+    <p class="sub">Nhập lúa mấy ngày sau sạ (hoặc chọn giai đoạn), tụi em gợi ý <b>gói toàn diện cover đủ dịch hại</b> của giai đoạn đó. Cần liều với số lượng chính xác cho ruộng mình thì gọi kỹ sư <b>0933&nbsp;526&nbsp;086</b>.</p>
+  </div>
+</header>
+
+<div class="wrap">
+  <!-- Step 1 -->
+  <section class="step">
+    <div class="step-h"><span class="step-n">1</span><h2>Lúa nhà mình đang giai đoạn nào?</h2></div>
+    <div class="row" id="nssRow">
+      <div class="field">
+        <label for="nss">Sạ khoảng bao nhiêu ngày rồi? (ngày sau sạ)</label>
+        <input type="number" id="nss" min="0" max="140" inputmode="numeric" placeholder="Ví dụ: 25">
+        <div class="hint">Không nhớ ngày thì bấm chọn giai đoạn bên dưới.</div>
+      </div>
+    </div>
+    <div class="chips" id="chips"></div>
+  </section>
+
+  <!-- Result -->
+  <section class="step" id="result">
+    <div class="stage-banner">
+      <div class="st" id="stName"></div>
+      <div class="nss" id="stNss"></div>
+      <div class="note" id="stNote"></div>
+      <div class="covers" id="stCovers"></div>
+    </div>
+
+    <div class="step-h"><span class="step-n">2</span><h2>Gói toàn diện đề xuất</h2></div>
+    <div id="groups"></div>
+
+    <div class="step-h" style="margin-top:20px"><span class="step-n">3</span><h2>Ruộng mình mấy công?</h2></div>
+    <div class="row">
+      <div class="field">
+        <label for="cong">Diện tích (công) — 1 công ≈ 1.000 m²</label>
+        <input type="number" id="cong" min="0" step="0.5" inputmode="decimal" placeholder="Ví dụ: 10">
+      </div>
+    </div>
+    <div class="toanote" id="toanote"></div>
+
+    <div class="cta">
+      <a class="btn call" href="tel:0933526086">☎️ Gọi kỹ sư 526</a>
+      <a class="btn zalo" href="https://zalo.me/3719831189075390236" target="_blank" rel="noopener">💬 Chat Zalo OA</a>
+      <a class="btn web" href="/" >🛒 Xem bảng giá</a>
+    </div>
+    <p class="disclaim">* Sản phẩm &amp; công dụng lấy từ dữ liệu VOCHIRON. Liều lượng &amp; số lượng cụ thể tùy ruộng (giai đoạn, mật độ, thời tiết) — kỹ sư 526 chốt cho trúng.</p>
+  </section>
+
+  <p class="foot">VOCHIRON USA — Grow Easy · Protect Smart · <a href="/">vochironusa.com</a> · Zalo/Hotline 0933 526 086</p>
+</div>
+
+<script>
+/* ===== DỮ LIỆU THẬT: phác đồ 6 giai đoạn + gói toàn diện (từ product-data.json + phác đồ web) =====
+   dose: liều/công — HIỆN CHƯA CÓ (chờ CEO). Khi có, điền dose (số) vào từng item -> tự tính số lượng. */
+var STAGES=[
+ {code:'G0',name:'Làm đất – Sạ',d0:-7,d1:3,
+  note:'Diệt ốc TRƯỚC/ngay khi sạ · phun cỏ tiền nảy mầm 0–3 ngày · xử lý gốc rạ cho mục.',
+  covers:['ốc bươu vàng','cỏ dại','rơm rạ – phèn'],
+  groups:[
+   {label:'Trừ ốc',items:[{n:'Siêu 3.6',u:'Ốc bươu vàng'}]},
+   {label:'Trừ cỏ tiền nảy mầm',items:[{n:'Diệt Mầm Mỹ (Tiêu Mầm)',u:'Cỏ tiền nảy mầm'}]},
+   {label:'Xử lý đất – gốc rạ',items:[{n:'10 Tỷ Vi Sinh',u:'Phân hủy rơm rạ, phá chai đất, hạ phèn, kích ra rễ'}]},
+  ]},
+ {code:'G1',name:'Mạ',d0:4,d1:15,
+  note:'Bén rễ – hồi xanh. Rễ đen/hôi là ngộ độc phèn: tháo nước, hạ phèn.',
+  covers:['rễ yếu – phèn','đẻ nhánh kém','ốc sót'],
+  groups:[
+   {label:'Ra rễ – hạ phèn',items:[{n:'Bio Ra Rễ Hạ Phèn Nở Bụi',u:'Rễ yếu, phèn, đẻ nhánh kém'},{n:'Hydrophos',u:'Ra rễ cám, xanh lá, hạ phèn'}]},
+   {label:'Kích rễ – cải tạo đất',items:[{n:'Humic Sihu New Đỏ',u:'Kích rễ, đẻ nhánh, cải tạo đất'}]},
+   {label:'Chống stress',items:[{n:'Ginseng Nyro',u:'Kích rễ đẻ nhánh, chống stress hạn–mặn–phèn–lạnh, giải độc thuốc'}]},
+   {label:'Ốc còn sót',items:[{n:'Siêu 3.6',u:'Ốc bươu vàng'}]},
+  ]},
+ {code:'G2',name:'Đẻ nhánh',d0:16,d1:40,
+  note:'Quyết định số bông, đừng thừa đạm. Mốc 22–30 ngày canh đạo ôn lá; sâu–rầy phun theo ngưỡng.',
+  covers:['nở bụi','đạo ôn lá','sâu–rầy','bạc lá'],
+  groups:[
+   {label:'Nở bụi – dưỡng cây',items:[{n:'Siêu Ra Rễ Nở Bụi',u:'Kích rễ, nở bụi, xanh lá'},{n:'Comcat',u:'Bén rễ, bung đọt'}]},
+   {label:'Đạo ôn lá',items:[{n:'X3 Vochiron',u:'Đạo ôn lá, cổ bông, cổ gié'},{n:'Đạo Ôn An Nông',u:'Đạo ôn lá, cổ bông'}]},
+   {label:'Sâu – rầy (theo ngưỡng)',items:[{n:'Sói Xám',u:'Rầy nâu, bọ trĩ, sâu đục thân'},{n:'Padan Ledan USA',u:'Sâu đục thân, cuốn lá, muỗi hành, rầy'}]},
+   {label:'Bạc lá (vi khuẩn)',items:[{n:'Khuẩn Nhật 3 hoạt chất',u:'Bạc lá, đốm sọc, thối gốc'}]},
+  ]},
+ {code:'G3',name:'Làm đòng',d0:41,d1:60,
+  note:'Đón đòng mốc vàng 40–45 ngày + hãm lóng; 50–55 ngày phòng khô vằn – đạo ôn – bạc lá.',
+  covers:['đón đòng','đổ ngã','khô vằn – lem lép','bạc lá'],
+  groups:[
+   {label:'Đón đòng – trổ đều',items:[{n:'Bloom Power',u:'Mập đòng, trổ đều'}]},
+   {label:'Chống đổ ngã',items:[{n:'Cứng Cây Chống Sập',u:'Chống đổ ngã'}]},
+   {label:'Nấm (khô vằn, lem lép, đạo ôn)',items:[{n:'Nativax',u:'Lem lép hạt, vàng lá, đạo ôn, khô vằn'},{n:'Topvil 50SC nano',u:'Khô vằn, lem lép, rỉ sắt, đốm nâu'}]},
+   {label:'Bạc lá (vi khuẩn)',items:[{n:'Antibac',u:'Đạo ôn + bạc lá cùng lúc'}]},
+  ]},
+ {code:'G4',name:'Trổ – Phơi màu',d0:61,d1:75,
+  note:'2 cữ BẮT BUỘC: cữ 1 trước trổ 5–7 ngày, cữ 2 khi trổ đều. KHÔNG phun lúc phơi màu (9–14h).',
+  covers:['đạo ôn cổ bông','lem lép hạt','bọ xít – rầy','nuôi hạt'],
+  groups:[
+   {label:'Đạo ôn cổ bông (cữ 1)',items:[{n:'X3 Vochiron',u:'Đạo ôn lá, cổ bông, cổ gié'},{n:'Katana Kiếm Nhật',u:'Đạo ôn nặng, tái đi tái lại'}]},
+   {label:'Lem lép – vàng lá (cữ 2)',items:[{n:'Nativax',u:'Lem lép hạt, vàng lá, đạo ôn, khô vằn'},{n:'Thần Y Pirastar',u:'Đạo ôn, vàng lá chín sớm, lem lép, nấm phổ rộng'}]},
+   {label:'Bọ xít hôi – rầy',items:[{n:'F21 xông hơi',u:'Sâu đục thân, cuốn lá, rầy nâu, bọ xít hôi'}]},
+   {label:'Nuôi hạt sau trổ',items:[{n:'Bio Nước Organic',u:'Hạt no, nặng, chín đẹp'}]},
+  ]},
+ {code:'G5',name:'Chín – Vào chắc',d0:76,d1:95,
+  note:'Dưỡng hạt lúc chín sữa; canh rầy nâu ở gốc cuối vụ; ngưng thuốc đúng cách ly trước gặt.',
+  covers:['dưỡng hạt','rầy nâu cuối vụ'],
+  groups:[
+   {label:'Dưỡng hạt',items:[{n:'Bio Nước Organic',u:'Hạt no, nặng, chín đẹp'}]},
+   {label:'Rầy nâu cuối vụ',items:[{n:'Sói Xám',u:'Rầy nâu, bọ trĩ, sâu đục thân'}]},
+  ]},
+];
+
+var chipsEl=document.getElementById('chips'), resEl=document.getElementById('result'), curIdx=-1;
+STAGES.forEach(function(s,i){
+  var c=document.createElement('button'); c.className='chip'; c.type='button';
+  c.textContent=s.name+' ('+s.d0+'–'+s.d1+' NSS)';
+  c.onclick=function(){show(i,true);}; c.dataset.i=i; chipsEl.appendChild(c);
+});
+document.getElementById('nss').addEventListener('input',function(){
+  var v=parseInt(this.value,10); if(isNaN(v)){return;}
+  var idx=STAGES.findIndex(function(s){return v>=s.d0 && v<=s.d1;});
+  if(idx<0){ idx = v<STAGES[0].d0 ? 0 : STAGES.length-1; }
+  show(idx,false);
+});
+document.getElementById('cong').addEventListener('input',renderToa);
+
+function show(i,scroll){
+  curIdx=i; var s=STAGES[i];
+  document.querySelectorAll('.chip').forEach(function(c){c.classList.toggle('on',+c.dataset.i===i);});
+  document.getElementById('stName').textContent='🌾 '+s.name;
+  document.getElementById('stNss').textContent='Khoảng '+s.d0+'–'+s.d1+' ngày sau sạ';
+  document.getElementById('stNote').textContent=s.note;
+  var cov=document.getElementById('stCovers'); cov.innerHTML='';
+  s.covers.forEach(function(x){var e=document.createElement('span');e.textContent='✓ '+x;cov.appendChild(e);});
+  var g=document.getElementById('groups'); g.innerHTML='';
+  s.groups.forEach(function(gr){
+    var wrap=document.createElement('div'); wrap.className='grp';
+    var h=document.createElement('div'); h.className='grp-h'; h.textContent=gr.label; wrap.appendChild(h);
+    gr.items.forEach(function(it){
+      var p=document.createElement('div'); p.className='prod';
+      p.innerHTML='<div style="flex:1"><div class="pn">'+it.n+'</div><div class="pu">'+it.u+'</div></div>'+
+        '<div class="qty" data-dose="'+(it.dose||'')+'">—<small>số lượng</small></div>';
+      wrap.appendChild(p);
+    });
+    g.appendChild(wrap);
+  });
+  resEl.style.display='block';
+  renderToa();
+  if(scroll){ resEl.scrollIntoView({behavior:'smooth',block:'start'}); }
+}
+function renderToa(){
+  var cong=parseFloat(document.getElementById('cong').value);
+  var hasCong=!isNaN(cong)&&cong>0, anyDose=false;
+  document.querySelectorAll('#groups .qty').forEach(function(q){
+    var dose=parseFloat(q.getAttribute('data-dose'));
+    if(hasCong && !isNaN(dose)){ anyDose=true; q.innerHTML=(Math.ceil(dose*cong*10)/10)+'<small>cho '+cong+' công</small>'; }
+    else { q.innerHTML='—<small>số lượng</small>'; }
+  });
+  var t=document.getElementById('toanote');
+  if(!hasCong){ t.innerHTML='Nhập số công để em ước lượng số lượng. <b>Liều theo sản phẩm đang cập nhật</b> — trong lúc chờ, bấm <b>Gọi kỹ sư 526</b> để ra toa đủ số lượng cho ruộng mình nghen.'; }
+  else if(!anyDose){ t.innerHTML='Ruộng <b>'+cong+' công</b> — gói trên cover đủ dịch hại giai đoạn này. <b>Số lượng từng chai/gói</b> tụi em chốt qua kỹ sư (liều tùy ruộng), bấm <b>Gọi kỹ sư 526</b> nghen.'; }
+  else { t.innerHTML='Số lượng ước lượng cho <b>'+cong+' công</b> ở cột phải. Muốn chắc theo ruộng mình thì gọi kỹ sư 526.'; }
+}
+</script>
+</body>
+</html>
