@@ -2531,7 +2531,7 @@ var BOTDATA={"issues": [{"q": "🌾 Đạo ôn lá / cổ bông", "a": "Đạo �
     W=Math.max(1,r.width); H=Math.max(1,r.height); c.width=W*dpr; c.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
   function build(){ strands=[]; var n=39; for(var i=0;i<n;i++){ strands.push({
       y:(i+0.5)/n, amp:22+Math.random()*34, wl:0.6+Math.random()*0.7, sp:0.18+Math.random()*0.28,
-      th:5+Math.random()*5, col:cols[i%cols.length], ph:Math.random()*6.28 }); } }
+      th:10+Math.random()*10, col:cols[i%cols.length], ph:Math.random()*6.28 }); } }
   function frame(){ ctx.clearRect(0,0,W,H); ctx.lineCap='round';
     for(var k=0;k<strands.length;k++){ var st=strands[k]; ctx.beginPath(); ctx.lineWidth=st.th; ctx.strokeStyle=st.col;
       for(var x=-30;x<=W+30;x+=14){ var yy=st.y*H
