@@ -2531,7 +2531,7 @@ var BOTDATA={"issues": [{"q": "🌾 Đạo ôn lá / cổ bông", "a": "Đạo �
     W=Math.max(1,r.width); H=Math.max(1,r.height); c.width=W*dpr; c.height=H*dpr; ctx.setTransform(dpr,0,0,dpr,0,0); }
   function build(){ strands=[]; var n=300; for(var i=0;i<n;i++){ strands.push({
       y:(i+0.5)/n, amp:22+Math.random()*34, wl:0.6+Math.random()*0.7, sp:0.18+Math.random()*0.28,
-      th:1+Math.random()*1.6, col:cols[i%cols.length], ph:Math.random()*6.28 }); } }
+      th:2+Math.random()*2.5, col:cols[i%cols.length], ph:Math.random()*6.28 }); } }
   function frame(){ ctx.clearRect(0,0,W,H); ctx.lineCap='round';
     for(var k=0;k<strands.length;k++){ var st=strands[k]; ctx.beginPath(); ctx.lineWidth=st.th; ctx.strokeStyle=st.col;
       for(var x=-30;x<=W+30;x+=14){ var yy=st.y*H
@@ -2539,7 +2539,7 @@ var BOTDATA={"issues": [{"q": "🌾 Đạo ôn lá / cổ bông", "a": "Đạo �
           + Math.sin((x/W)*12.9 + t*st.sp*0.6)*st.amp*0.28;
         if(x===-30) ctx.moveTo(x,yy); else ctx.lineTo(x,yy); }
       ctx.stroke(); }
-    t+=0.016; if(!reduce) raf=requestAnimationFrame(frame); }
+    t+=0.006; if(!reduce) raf=requestAnimationFrame(frame); }
   size(); build(); frame();
   var to; window.addEventListener('resize',function(){ clearTimeout(to); to=setTimeout(function(){ size(); build(); if(reduce) frame(); },150); });
 })();
