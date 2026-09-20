@@ -73,6 +73,20 @@ input[type=number]:focus{outline:none;border-color:var(--blue)}
 .btn.call{background:var(--green);color:#fff}
 .btn.zalo{background:var(--blue);color:#fff}
 .btn.web{background:#fff;color:var(--blue-d);border:1.5px solid var(--line)}
+.btn.order{background:var(--green);color:#fff;border:0;cursor:pointer}
+.btn.order:hover{filter:brightness(1.07)}
+input[type=text]{width:100%;font:600 16px var(--sans);padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;color:var(--ink);background:#fbfdff}
+input[type=text]:focus{outline:none;border-color:var(--blue)}
+.orderslip{background:#fff;border:1.5px dashed var(--blue);border-radius:14px;padding:14px 16px;margin-top:6px;font-size:14px;line-height:1.5;color:var(--ink);font-family:var(--sans)}
+.orderslip .osl-h{font-weight:800;color:var(--blue-d);font-size:15px;margin-bottom:8px}
+.orderslip .osl-meta{margin-bottom:8px}
+.orderslip .osl-meta div{padding:2px 0}
+.orderslip .osl-meta b{color:var(--green-d)}
+.orderslip .osl-list{border-top:1px solid var(--line);padding-top:8px}
+.orderslip .osl-row{display:flex;justify-content:space-between;gap:12px;padding:4px 0;border-bottom:1px dotted var(--line)}
+.orderslip .osl-row .q{flex:none;font-weight:800;color:var(--blue-d);white-space:nowrap}
+.orderslip .osl-empty{color:var(--muted)}
+.ordermsg{margin-top:10px;background:#eafbe6;border:1px solid #cfeec7;color:var(--green-d);border-radius:10px;padding:10px 12px;font-size:13.5px;font-weight:600}
 .disclaim{font-size:12px;color:var(--muted);margin-top:18px;text-align:center}
 .foot{text-align:center;font-size:12.5px;color:var(--muted);margin-top:22px}
 @media (max-width:520px){h1{font-size:22px}.prod .qty{min-width:64px}}
@@ -120,15 +134,23 @@ input[type=number]:focus{outline:none;border-color:var(--blue)}
         <label for="cong">Diện tích (công) — 1 công ≈ 1.000 m²</label>
         <input type="number" id="cong" min="0" step="0.5" inputmode="decimal" placeholder="Ví dụ: 10">
       </div>
+      <div class="field">
+        <label for="farmer">Tên bà con (để tụi em ghi đơn)</label>
+        <input type="text" id="farmer" inputmode="text" placeholder="VD: Anh Ba Tân Thạnh">
+      </div>
     </div>
     <div class="toanote" id="toanote"></div>
 
+    <div class="step-h" style="margin-top:20px"><span class="step-n">4</span><h2>Phiếu đặt hàng</h2></div>
+    <div class="orderslip" id="orderslip"></div>
+
     <div class="cta">
-      <a class="btn call" href="tel:0933526086">☎️ Gọi kỹ sư 526</a>
+      <button type="button" class="btn order" id="btnOrder">🛒 Đặt hàng qua Zalo</button>
+      <a class="btn call" href="tel:0933246086">☎️ Gọi đặt 0933 246 086</a>
       <a class="btn zalo" href="https://zalo.me/3719831189075390236" target="_blank" rel="noopener">💬 Chat Zalo OA</a>
-      <a class="btn web" href="/" >🛒 Xem bảng giá</a>
     </div>
-    <p class="disclaim">* Sản phẩm &amp; công dụng lấy từ dữ liệu VOCHIRON. Liều lượng &amp; số lượng cụ thể tùy ruộng (giai đoạn, mật độ, thời tiết) — kỹ sư 526 chốt cho trúng.</p>
+    <p id="orderMsg" class="ordermsg" hidden></p>
+    <p class="disclaim">* Sản phẩm &amp; công dụng lấy từ dữ liệu VOCHIRON. <b>Số lượng là ước lượng theo liều gốc</b> (liều/ha ÷ 10 = liều/công) để bà con tiện đặt — liều chính xác tùy ruộng (giai đoạn, mật độ, thời tiết), kỹ sư 526 chốt cho trúng.</p>
   </section>
 
   <p class="foot">VOCHIRON USA — Grow Easy · Protect Smart · <a href="/">vochironusa.com</a> · Zalo/Hotline 0933 526 086</p>
@@ -142,52 +164,52 @@ var STAGES=[
   note:'Diệt ốc TRƯỚC/ngay khi sạ · phun cỏ tiền nảy mầm 0–3 ngày · xử lý gốc rạ cho mục.',
   covers:['ốc bươu vàng','cỏ dại','rơm rạ – phèn'],
   groups:[
-   {label:'Trừ ốc',items:[{n:'Siêu 3.6',u:'Ốc bươu vàng'}]},
-   {label:'Trừ cỏ tiền nảy mầm',items:[{n:'Diệt Mầm Mỹ (Tiêu Mầm)',u:'Cỏ tiền nảy mầm'}]},
-   {label:'Xử lý đất – gốc rạ',items:[{n:'10 Tỷ Vi Sinh',u:'Phân hủy rơm rạ, phá chai đất, hạ phèn, kích ra rễ'}]},
+   {label:'Trừ ốc',items:[{n:'Siêu 3.6',u:'Ốc bươu vàng',dose:0.2,unit:'chai'}]},
+   {label:'Trừ cỏ tiền nảy mầm',items:[{n:'Diệt Mầm Mỹ (Tiêu Mầm)',u:'Cỏ tiền nảy mầm',dose:0.2,unit:'chai'}]},
+   {label:'Xử lý đất – gốc rạ',items:[{n:'10 Tỷ Vi Sinh',u:'Phân hủy rơm rạ, phá chai đất, hạ phèn, kích ra rễ',dose:0.1,unit:'chai'}]},
   ]},
  {code:'G1',name:'Mạ',d0:4,d1:15,
   note:'Bén rễ – hồi xanh. Rễ đen/hôi là ngộ độc phèn: tháo nước, hạ phèn.',
   covers:['rễ yếu – phèn','đẻ nhánh kém','ốc sót'],
   groups:[
-   {label:'Ra rễ – hạ phèn',items:[{n:'Bio Ra Rễ Hạ Phèn Nở Bụi',u:'Rễ yếu, phèn, đẻ nhánh kém'},{n:'Hydrophos',u:'Ra rễ cám, xanh lá, hạ phèn'}]},
-   {label:'Kích rễ – cải tạo đất',items:[{n:'Humic Sihu New Đỏ',u:'Kích rễ, đẻ nhánh, cải tạo đất'}]},
-   {label:'Chống stress',items:[{n:'Ginseng Nyro',u:'Kích rễ đẻ nhánh, chống stress hạn–mặn–phèn–lạnh, giải độc thuốc'}]},
-   {label:'Ốc còn sót',items:[{n:'Siêu 3.6',u:'Ốc bươu vàng'}]},
+   {label:'Ra rễ – hạ phèn',items:[{n:'Bio Ra Rễ Hạ Phèn Nở Bụi',u:'Rễ yếu, phèn, đẻ nhánh kém',dose:1,unit:'gói'},{n:'Hydrophos',u:'Ra rễ cám, xanh lá, hạ phèn',dose:0.1,unit:'chai'}]},
+   {label:'Kích rễ – cải tạo đất',items:[{n:'Humic Sihu New Đỏ',u:'Kích rễ, đẻ nhánh, cải tạo đất',dose:0.2,unit:'kg'}]},
+   {label:'Chống stress',items:[{n:'Ginseng Nyro',u:'Kích rễ đẻ nhánh, chống stress hạn–mặn–phèn–lạnh, giải độc thuốc',dose:0.2,unit:'chai'}]},
+   {label:'Ốc còn sót',items:[{n:'Siêu 3.6',u:'Ốc bươu vàng',dose:0.2,unit:'chai'}]},
   ]},
  {code:'G2',name:'Đẻ nhánh',d0:16,d1:40,
   note:'Quyết định số bông, đừng thừa đạm. Mốc 22–30 ngày canh đạo ôn lá; sâu–rầy phun theo ngưỡng.',
   covers:['nở bụi','đạo ôn lá','sâu–rầy','bạc lá'],
   groups:[
-   {label:'Nở bụi – dưỡng cây',items:[{n:'Siêu Ra Rễ Nở Bụi',u:'Kích rễ, nở bụi, xanh lá'},{n:'Comcat',u:'Bén rễ, bung đọt'}]},
-   {label:'Đạo ôn lá',items:[{n:'X3 Vochiron',u:'Đạo ôn lá, cổ bông, cổ gié'},{n:'Đạo Ôn An Nông',u:'Đạo ôn lá, cổ bông'}]},
-   {label:'Sâu – rầy (theo ngưỡng)',items:[{n:'Sói Xám',u:'Rầy nâu, bọ trĩ, sâu đục thân'},{n:'Padan Ledan USA',u:'Sâu đục thân, cuốn lá, muỗi hành, rầy'}]},
-   {label:'Bạc lá (vi khuẩn)',items:[{n:'Khuẩn Nhật 3 hoạt chất',u:'Bạc lá, đốm sọc, thối gốc'}]},
+   {label:'Nở bụi – dưỡng cây',items:[{n:'Siêu Ra Rễ Nở Bụi',u:'Kích rễ, nở bụi, xanh lá',dose:0.1,unit:'chai'},{n:'Comcat',u:'Bén rễ, bung đọt',dose:0.2,unit:'chai'}]},
+   {label:'Đạo ôn lá',items:[{n:'X3 Vochiron',u:'Đạo ôn lá, cổ bông, cổ gié',dose:0.2,unit:'chai'},{n:'Đạo Ôn An Nông',u:'Đạo ôn lá, cổ bông',dose:0.2,unit:'chai'}]},
+   {label:'Sâu – rầy (theo ngưỡng)',items:[{n:'Sói Xám',u:'Rầy nâu, bọ trĩ, sâu đục thân',dose:0.5,unit:'gói'},{n:'Padan Ledan USA',u:'Sâu đục thân, cuốn lá, muỗi hành, rầy',dose:1,unit:'gói'}]},
+   {label:'Bạc lá (vi khuẩn)',items:[{n:'Khuẩn Nhật 3 hoạt chất',u:'Bạc lá, đốm sọc, thối gốc',dose:0.4,unit:'gói'}]},
   ]},
  {code:'G3',name:'Làm đòng',d0:41,d1:60,
   note:'Đón đòng mốc vàng 40–45 ngày + hãm lóng; 50–55 ngày phòng khô vằn – đạo ôn – bạc lá.',
   covers:['đón đòng','đổ ngã','khô vằn – lem lép','bạc lá'],
   groups:[
-   {label:'Đón đòng – trổ đều',items:[{n:'Bloom Power',u:'Mập đòng, trổ đều'}]},
-   {label:'Chống đổ ngã',items:[{n:'Cứng Cây Chống Sập',u:'Chống đổ ngã'}]},
-   {label:'Nấm (khô vằn, lem lép, đạo ôn)',items:[{n:'Nativax',u:'Lem lép hạt, vàng lá, đạo ôn, khô vằn'},{n:'Topvil 50SC nano',u:'Khô vằn, lem lép, rỉ sắt, đốm nâu'}]},
-   {label:'Bạc lá (vi khuẩn)',items:[{n:'Antibac',u:'Đạo ôn + bạc lá cùng lúc'}]},
+   {label:'Đón đòng – trổ đều',items:[{n:'Bloom Power',u:'Mập đòng, trổ đều',dose:0.2,unit:'chai'}]},
+   {label:'Chống đổ ngã',items:[{n:'Cứng Cây Chống Sập',u:'Chống đổ ngã',dose:0.2,unit:'chai'}]},
+   {label:'Nấm (khô vằn, lem lép, đạo ôn)',items:[{n:'Nativax',u:'Lem lép hạt, vàng lá, đạo ôn, khô vằn',dose:0.2,unit:'gói'},{n:'Topvil 50SC nano',u:'Khô vằn, lem lép, rỉ sắt, đốm nâu',dose:0.1,unit:'chai'}]},
+   {label:'Bạc lá (vi khuẩn)',items:[{n:'Antibac',u:'Đạo ôn + bạc lá cùng lúc',dose:0.4,unit:'gói'}]},
   ]},
  {code:'G4',name:'Trổ – Phơi màu',d0:61,d1:75,
   note:'2 cữ BẮT BUỘC: cữ 1 trước trổ 5–7 ngày, cữ 2 khi trổ đều. KHÔNG phun lúc phơi màu (9–14h).',
   covers:['đạo ôn cổ bông','lem lép hạt','bọ xít – rầy','nuôi hạt'],
   groups:[
-   {label:'Đạo ôn cổ bông (cữ 1)',items:[{n:'X3 Vochiron',u:'Đạo ôn lá, cổ bông, cổ gié'},{n:'Katana Kiếm Nhật',u:'Đạo ôn nặng, tái đi tái lại'}]},
-   {label:'Lem lép – vàng lá (cữ 2)',items:[{n:'Nativax',u:'Lem lép hạt, vàng lá, đạo ôn, khô vằn'},{n:'Thần Y Pirastar',u:'Đạo ôn, vàng lá chín sớm, lem lép, nấm phổ rộng'}]},
-   {label:'Bọ xít hôi – rầy',items:[{n:'F21 xông hơi',u:'Sâu đục thân, cuốn lá, rầy nâu, bọ xít hôi'}]},
-   {label:'Nuôi hạt sau trổ',items:[{n:'Bio Nước Organic',u:'Hạt no, nặng, chín đẹp'}]},
+   {label:'Đạo ôn cổ bông (cữ 1)',items:[{n:'X3 Vochiron',u:'Đạo ôn lá, cổ bông, cổ gié',dose:0.2,unit:'chai'},{n:'Katana Kiếm Nhật',u:'Đạo ôn nặng, tái đi tái lại',dose:0.2,unit:'chai'}]},
+   {label:'Lem lép – vàng lá (cữ 2)',items:[{n:'Nativax',u:'Lem lép hạt, vàng lá, đạo ôn, khô vằn',dose:0.2,unit:'gói'},{n:'Thần Y Pirastar',u:'Đạo ôn, vàng lá chín sớm, lem lép, nấm phổ rộng',dose:0.2,unit:'chai'}]},
+   {label:'Bọ xít hôi – rầy',items:[{n:'F21 xông hơi',u:'Sâu đục thân, cuốn lá, rầy nâu, bọ xít hôi',dose:0.2,unit:'chai'}]},
+   {label:'Nuôi hạt sau trổ',items:[{n:'Bio Nước Organic',u:'Hạt no, nặng, chín đẹp',dose:0.2,unit:'chai'}]},
   ]},
  {code:'G5',name:'Chín – Vào chắc',d0:76,d1:95,
   note:'Dưỡng hạt lúc chín sữa; canh rầy nâu ở gốc cuối vụ; ngưng thuốc đúng cách ly trước gặt.',
   covers:['dưỡng hạt','rầy nâu cuối vụ'],
   groups:[
-   {label:'Dưỡng hạt',items:[{n:'Bio Nước Organic',u:'Hạt no, nặng, chín đẹp'}]},
-   {label:'Rầy nâu cuối vụ',items:[{n:'Sói Xám',u:'Rầy nâu, bọ trĩ, sâu đục thân'}]},
+   {label:'Dưỡng hạt',items:[{n:'Bio Nước Organic',u:'Hạt no, nặng, chín đẹp',dose:0.2,unit:'chai'}]},
+   {label:'Rầy nâu cuối vụ',items:[{n:'Sói Xám',u:'Rầy nâu, bọ trĩ, sâu đục thân',dose:0.5,unit:'gói'}]},
   ]},
 ];
 
@@ -220,7 +242,7 @@ function show(i,scroll){
     gr.items.forEach(function(it){
       var p=document.createElement('div'); p.className='prod';
       p.innerHTML='<div style="flex:1"><div class="pn">'+it.n+'</div><div class="pu">'+it.u+'</div></div>'+
-        '<div class="qty" data-dose="'+(it.dose||'')+'">—<small>số lượng</small></div>';
+        '<div class="qty" data-name="'+it.n.replace(/"/g,'&quot;')+'" data-dose="'+(it.dose||'')+'" data-unit="'+(it.unit||'')+'">—<small>số lượng</small></div>';
       wrap.appendChild(p);
     });
     g.appendChild(wrap);
@@ -229,19 +251,77 @@ function show(i,scroll){
   renderToa();
   if(scroll){ resEl.scrollIntoView({behavior:'smooth',block:'start'}); }
 }
+function esc(x){return String(x).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function currentStage(){ return curIdx>=0?STAGES[curIdx]:null; }
+function ageText(){
+  var nssv=parseInt(document.getElementById('nss').value,10); var s=currentStage(); var p=[];
+  if(!isNaN(nssv)) p.push(nssv+' ngày sau sạ');
+  if(s) p.push('giai đoạn '+s.name);
+  return p.join(' · ')||'(chưa chọn)';
+}
 function renderToa(){
   var cong=parseFloat(document.getElementById('cong').value);
-  var hasCong=!isNaN(cong)&&cong>0, anyDose=false;
+  var hasCong=!isNaN(cong)&&cong>0, lines=[];
   document.querySelectorAll('#groups .qty').forEach(function(q){
     var dose=parseFloat(q.getAttribute('data-dose'));
-    if(hasCong && !isNaN(dose)){ anyDose=true; q.innerHTML=(Math.ceil(dose*cong*10)/10)+'<small>cho '+cong+' công</small>'; }
-    else { q.innerHTML='—<small>số lượng</small>'; }
+    var unit=q.getAttribute('data-unit')||'', name=q.getAttribute('data-name')||'';
+    if(hasCong && !isNaN(dose)){
+      var qty=Math.max(1,Math.ceil(dose*cong));
+      q.innerHTML=qty+' '+unit+'<small>cho '+cong+' công</small>';
+      lines.push({name:name,qty:qty,unit:unit});
+    } else { q.innerHTML='—<small>số lượng</small>'; }
   });
   var t=document.getElementById('toanote');
-  if(!hasCong){ t.innerHTML='Nhập số công để em ước lượng số lượng. <b>Liều theo sản phẩm đang cập nhật</b> — trong lúc chờ, bấm <b>Gọi kỹ sư 526</b> để ra toa đủ số lượng cho ruộng mình nghen.'; }
-  else if(!anyDose){ t.innerHTML='Ruộng <b>'+cong+' công</b> — gói trên cover đủ dịch hại giai đoạn này. <b>Số lượng từng chai/gói</b> tụi em chốt qua kỹ sư (liều tùy ruộng), bấm <b>Gọi kỹ sư 526</b> nghen.'; }
-  else { t.innerHTML='Số lượng ước lượng cho <b>'+cong+' công</b> ở cột phải. Muốn chắc theo ruộng mình thì gọi kỹ sư 526.'; }
+  if(!hasCong){ t.innerHTML='Nhập <b>số công</b> để em tính số lượng chai/gói cho đủ ruộng mình nghen.'; }
+  else { t.innerHTML='Số lượng ước lượng cho <b>'+cong+' công</b> ở cột phải (theo liều gốc). Muốn chốt chính xác thì gọi kỹ sư 526.'; }
+  renderSlip(cong,hasCong,lines);
 }
+function renderSlip(cong,hasCong,lines){
+  var el=document.getElementById('orderslip'); var s=currentStage();
+  if(!s){ el.innerHTML='<span class="osl-empty">Chọn giai đoạn lúa để lên phiếu đặt hàng.</span>'; return; }
+  var farmer=(document.getElementById('farmer').value||'').trim();
+  var meta='<div class="osl-meta">'+
+    '<div>👤 Nông dân: <b>'+(farmer?esc(farmer):'(chưa nhập tên)')+'</b></div>'+
+    '<div>🌱 Tuổi lúa: <b>'+esc(ageText())+'</b></div>'+
+    '<div>⚠️ Vấn đề: <b>'+esc(s.covers.join(', '))+'</b></div>'+
+    '<div>📐 Diện tích: <b>'+(hasCong?cong+' công':'(chưa nhập)')+'</b></div></div>';
+  var list = (hasCong && lines.length)
+    ? '<div class="osl-list">'+lines.map(function(l){return '<div class="osl-row"><span>'+esc(l.name)+'</span><span class="q">'+l.qty+' '+esc(l.unit)+'</span></div>';}).join('')+'</div>'
+    : '<div class="osl-list osl-empty">Nhập số công để hiện số lượng đặt.</div>';
+  el.innerHTML='<div class="osl-h">🧾 '+esc(s.name)+' — gói toàn diện</div>'+meta+list;
+}
+function buildOrderText(){
+  var s=currentStage(); if(!s) return '';
+  var cong=parseFloat(document.getElementById('cong').value); var hasCong=!isNaN(cong)&&cong>0;
+  var farmer=(document.getElementById('farmer').value||'').trim();
+  var L=['🌾 ĐẶT HÀNG VOCHIRON','━━━━━━━━━━'];
+  L.push('👤 Nông dân: '+(farmer||'(chưa nhập)'));
+  L.push('🌱 Tuổi lúa: '+ageText());
+  L.push('⚠️ Vấn đề: '+s.covers.join(', '));
+  L.push('📐 Diện tích: '+(hasCong?cong+' công':'(chưa nhập)'));
+  L.push('━━━━━━━━━━');
+  L.push('🛒 ĐẶT (ước lượng theo liều gốc):');
+  var any=false;
+  document.querySelectorAll('#groups .qty').forEach(function(q){
+    var dose=parseFloat(q.getAttribute('data-dose'));
+    if(hasCong && !isNaN(dose)){ any=true; var qty=Math.max(1,Math.ceil(dose*cong));
+      L.push('• '+q.getAttribute('data-name')+': '+qty+' '+(q.getAttribute('data-unit')||'')); }
+  });
+  if(!any) L.push('(chưa nhập số công — nhờ kỹ sư chốt số lượng)');
+  L.push('━━━━━━━━━━');
+  L.push('Nhờ VOCHIRON báo giá & giao giúp. Cảm ơn!');
+  return L.join('\n');
+}
+document.getElementById('farmer').addEventListener('input',function(){ if(curIdx>=0) renderToa(); });
+document.getElementById('btnOrder').addEventListener('click',function(){
+  if(curIdx<0){ var m0=document.getElementById('orderMsg'); m0.hidden=false; m0.textContent='⚠️ Chọn giai đoạn lúa (bước 1) trước khi đặt nghen.'; return; }
+  var txt=buildOrderText();
+  var done=function(){ var m=document.getElementById('orderMsg'); m.hidden=false;
+    m.textContent='✅ Đã sao chép nội dung đơn — Zalo đang mở, bà con dán (giữ rồi bấm Dán) vào khung chat 0933 246 086 rồi gửi giúp em nghen!';
+    window.open('https://zalo.me/84933246086','_blank'); };
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done,done); }
+  else { try{var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();document.execCommand('copy');ta.remove();}catch(e){} done(); }
+});
 </script>
 </body>
 </html>
