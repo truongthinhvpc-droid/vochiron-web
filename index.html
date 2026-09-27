@@ -805,6 +805,14 @@ gtag('js',new Date());gtag('config','G-TL0S0RERYY');</script>
 .sc-btn:hover{transform:translateY(-2px);filter:brightness(1.1)}
 .sc-btn svg{width:18px;height:18px;flex:none;fill:currentColor}
 .sc-fb{background:#1877F2}.sc-oa{background:#0068FF}.sc-zalo{background:#0891ff}.sc-tt{background:#111}
+.rep-hide{display:inline-block;margin:2px 0}
+.rep-hide>summary{cursor:pointer;list-style:none;display:inline-flex;align-items:center;gap:6px;font-size:13px;color:#9ec3f5;border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:3px 12px;user-select:none}
+.rep-hide>summary::-webkit-details-marker{display:none}
+.rep-hide>summary::after{content:"▾";font-size:11px;transition:transform .15s}
+.rep-hide[open]>summary::after{transform:rotate(180deg)}
+.rep-hide[open]>summary{background:rgba(255,255,255,.08)}
+.rep-name{margin-top:6px;font-weight:700;color:#fff}
+.rep-hide[open] .rep-name{display:block}
 </style>
 <div class="px-band" aria-label="Giá lúa hôm nay">
   <div class="px-view"><div class="px-move" id="pxTicker"><a class="hero-alert price" href="gia-lua-gao.html"><span class="ha-tag">💵 GIÁ LÚA HÔM NAY</span><span class="ha-tx">Lúa tươi ĐBSCL: OM18 5.900-6.100đ · OM5451 5.900-6.000đ · IR50404 5.800-6.000đ/kg — Giá lúa gạo tại Đồng bằng sông Cửu Long </span><span class="ha-meta">Cập nhật 21/09/2026 · 8h sáng mỗi ngày →</span></a></div></div>
@@ -1991,7 +1999,8 @@ if(inp){ var saved=null; try{saved=localStorage.getItem('vcr_sow');}catch(e){}
       <div class="contact">
         <h3>Công ty &amp; Chính sách</h3>
         <div><b>Đơn vị chủ quản:</b> CÔNG TY TNHH VOCHIRON USA</div>
-        <div><b>MST:</b> 0318890837 · <b>Người đại diện:</b> Võ Thị Trường Thịnh</div>
+        <div><b>MST:</b> 0318890837</div>
+        <details class="rep-hide"><summary>Người đại diện</summary><span class="rep-name">Võ Thị Trường Thịnh</span></details>
         <div><b>Địa chỉ:</b> 91/1 Nguyên Hồng, phường Hạnh Thông, TP. Hồ Chí Minh</div>
         <div style="margin-top:8px">
           <a href="gioi-thieu.html">Giới thiệu</a> · <a href="chinh-sach-bao-mat.html">Bảo mật</a> · <a href="chinh-sach-doi-tra.html">Đổi trả</a> · <a href="chinh-sach-van-chuyen.html">Vận chuyển</a> · <a href="hinh-thuc-thanh-toan.html">Thanh toán</a> · <a href="ho-so-tmdt.html">Hồ sơ TMĐT</a> · <a href="tao-link-nv.html">Tạo link NV</a>
