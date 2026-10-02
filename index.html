@@ -2236,13 +2236,38 @@ renderCart();
 (function(){
   var inp=document.getElementById('search'); if(!inp)return;
   function norm(s){return s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
-  inp.addEventListener('input',function(){
+  function setSec(sec,hide){
+    if(hide){ if(sec.dataset.od===undefined) sec.dataset.od=sec.style.display||''; sec.style.display='none'; }
+    else if(sec.dataset.od!==undefined){ sec.style.display=sec.dataset.od; }
+  }
+  function sections(){ return document.querySelectorAll('main section, section.cat'); }
+  function run(){
     var q=norm(inp.value.trim());
     document.querySelectorAll('.fbtn').forEach(function(b){b.classList.toggle('active',!b.dataset.q&&!q);});
+    var shown=0, firstVis=null;
     document.querySelectorAll('.card').forEach(function(c){
-      c.classList.toggle('hidden', q && norm(c.textContent).indexOf(q)===-1);
+      var hide = q && norm(c.textContent).indexOf(q)===-1;
+      c.classList.toggle('hidden', hide);
+      if(q && !hide){ shown++; if(!firstVis) firstVis=c; }
     });
-  });
+    // ẩn mục không còn thẻ nào khớp khi đang tìm; khôi phục khi xoá
+    sections().forEach(function(sec){
+      var cards=sec.querySelectorAll('.card');
+      if(!cards.length) return;
+      var any=[].some.call(cards,function(c){return !c.classList.contains('hidden');});
+      setSec(sec, !!q && !any);
+    });
+    // thông báo không tìm thấy
+    var nr=document.getElementById('search-nores');
+    if(!nr){ nr=document.createElement('div'); nr.id='search-nores'; nr.style.cssText='display:none;max-width:1080px;margin:18px auto;padding:16px 18px;border:1px dashed var(--line,#dbe6f4);border-radius:14px;background:#fff;color:#5d6b7d;font-size:15px';
+      var m=document.querySelector('main'); if(m) m.insertBefore(nr, m.firstChild); }
+    if(q && shown===0){ nr.textContent='Không tìm thấy sản phẩm nào cho “'+inp.value.trim()+'”. Thử từ khác hoặc nhắn Zalo 0933 246 086 để được tư vấn.'; nr.style.display='block'; }
+    else { nr.style.display='none'; }
+    var target = (q && firstVis) ? firstVis : ((q && shown===0) ? nr : null);
+    if(target){ var y=target.getBoundingClientRect().top + window.pageYOffset - 90; window.scrollTo({top:Math.max(0,y), behavior:'smooth'}); }
+  }
+  inp.addEventListener('input',run);
+  inp.addEventListener('search',run);
 })();
 // disease/target filter buttons (exact Vietnamese, matched on data-target)
 (function(){
