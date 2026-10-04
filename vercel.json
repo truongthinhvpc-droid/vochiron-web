@@ -59,13 +59,28 @@
   "redirects": [
     {
       "source": "/68",
-      "destination": "/san-pham/senpai-jp-bo-doi-bao-ve-lua-2-cu-tro.html",
+      "destination": "/san-pham/bac-thay-68-bo-doi-tru-benh-lua.html",
       "permanent": false
     },
     {
       "source": "/68/",
-      "destination": "/san-pham/senpai-jp-bo-doi-bao-ve-lua-2-cu-tro.html",
+      "destination": "/san-pham/bac-thay-68-bo-doi-tru-benh-lua.html",
       "permanent": false
+    },
+    {
+      "source": "/san-pham/senpai-jp-bo-doi-bao-ve-lua-2-cu-tro.html",
+      "destination": "/san-pham/bac-thay-68-bo-doi-tru-benh-lua.html",
+      "statusCode": 301
+    },
+    {
+      "source": "/assets/senpai/bikin.webp",
+      "destination": "/assets/senpai/goi-xanh.webp",
+      "statusCode": 301
+    },
+    {
+      "source": "/assets/senpai/latimo.webp",
+      "destination": "/assets/senpai/goi-do.webp",
+      "statusCode": 301
     }
   ]
 }
