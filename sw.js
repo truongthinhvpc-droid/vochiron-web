@@ -22,6 +22,7 @@ self.addEventListener('fetch', (e) => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
   if (url.origin !== location.origin) return; // để trình duyệt tự lo tài nguyên ngoài
+  if (url.pathname.startsWith('/assets/video/')) return; // video: để trình duyệt tự xử lý range, không cache
   e.respondWith(
     fetch(req)
       .then((res) => {
