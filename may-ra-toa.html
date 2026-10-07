@@ -294,7 +294,7 @@ function buildOrderText(){
   var s=currentStage(); if(!s) return '';
   var cong=parseFloat(document.getElementById('cong').value); var hasCong=!isNaN(cong)&&cong>0;
   var farmer=(document.getElementById('farmer').value||'').trim();
-  var L=['🌾 ĐẶT HÀNG VOCHIRON','━━━━━━━━━━'];
+  var L=['🌾 ĐẶT HÀNG — '+BRAND.name,'━━━━━━━━━━'];
   L.push('👤 Nông dân: '+(farmer||'(chưa nhập)'));
   L.push('🌱 Tuổi lúa: '+ageText());
   L.push('⚠️ Vấn đề: '+s.covers.join(', '));
@@ -309,7 +309,7 @@ function buildOrderText(){
   });
   if(!any) L.push('(chưa nhập số công — nhờ kỹ sư chốt số lượng)');
   L.push('━━━━━━━━━━');
-  L.push('Nhờ VOCHIRON báo giá & giao giúp. Cảm ơn!');
+  L.push('Nhờ '+BRAND.name+' báo giá & giao giúp. Cảm ơn!');
   return L.join('\n');
 }
 document.getElementById('farmer').addEventListener('input',function(){ if(curIdx>=0) renderToa(); });
@@ -317,11 +317,38 @@ document.getElementById('btnOrder').addEventListener('click',function(){
   if(curIdx<0){ var m0=document.getElementById('orderMsg'); m0.hidden=false; m0.textContent='⚠️ Chọn giai đoạn lúa (bước 1) trước khi đặt nghen.'; return; }
   var txt=buildOrderText();
   var done=function(){ var m=document.getElementById('orderMsg'); m.hidden=false;
-    m.textContent='✅ Đã sao chép nội dung đơn — Zalo đang mở, bà con dán (giữ rồi bấm Dán) vào khung chat 0933 246 086 rồi gửi giúp em nghen!';
-    window.open('https://zalo.me/84933246086','_blank'); };
+    m.textContent='✅ Đã sao chép nội dung đơn — Zalo đang mở, bà con dán (giữ rồi bấm Dán) vào khung chat '+BRAND.phoneDisp+' rồi gửi giúp em nghen!';
+    window.open('https://zalo.me/'+BRAND.zalo,'_blank'); };
   if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(done,done); }
   else { try{var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.focus();ta.select();document.execCommand('copy');ta.remove();}catch(e){} done(); }
 });
+
+/* ===== Gắn thương hiệu đại lý (Growth Kit): may-ra-toa.html?dl=Tên tiệm&sdt=0909123456
+   Không có tham số -> giữ nguyên VOCHIRON. Đơn đặt hàng đi thẳng về Zalo của đại lý. ===== */
+var BRAND=(function(){
+  var p=new URLSearchParams(location.search);
+  var dl=(p.get('dl')||'').trim().slice(0,60);
+  var sdt=(p.get('sdt')||'').replace(/\D/g,'');
+  if(sdt.indexOf('84')===0) sdt='0'+sdt.slice(2);
+  if(!/^0\d{9,10}$/.test(sdt)) sdt='';
+  if(!dl||!sdt) return {dealer:false,name:'VOCHIRON',zalo:'84933246086',tel:'0933246086',phoneDisp:'0933 246 086'};
+  return {dealer:true,name:dl,zalo:'84'+sdt.slice(1),tel:sdt,phoneDisp:sdt.replace(/(\d{4})(\d{3})(\d+)/,'$1 $2 $3')};
+})();
+(function(){
+  if(!BRAND.dealer) return;
+  var b=document.querySelector('header .brand');
+  if(b){ b.textContent=''; var lg=document.createElement('span'); lg.className='logo'; lg.textContent=BRAND.name.replace(/^(đại lý|dai ly|tiệm|cửa hàng)\s+/i,'').charAt(0).toUpperCase()||'V';
+    b.appendChild(lg); b.appendChild(document.createTextNode(' '+BRAND.name+' · Đối tác VOCHIRON USA')); }
+  var sub=document.querySelector('header .sub');
+  if(sub){ sub.innerHTML='Nhập lúa mấy ngày sau sạ (hoặc chọn giai đoạn), tiệm gợi ý <b>gói toàn diện cover đủ dịch hại</b> của giai đoạn đó. Cần liều chính xác cho ruộng mình thì gọi <b>'+esc(BRAND.name)+' '+esc(BRAND.phoneDisp)+'</b>.'; }
+  var call=document.querySelector('.cta .btn.call');
+  if(call){ call.href='tel:'+BRAND.tel; call.textContent='☎️ Gọi '+BRAND.phoneDisp; }
+  var z=document.querySelector('.cta .btn.zalo');
+  if(z){ z.href='https://zalo.me/'+BRAND.zalo; z.textContent='💬 Zalo '+BRAND.name; }
+  var f=document.querySelector('.foot');
+  if(f){ f.textContent=BRAND.name+' — đối tác phân phối VOCHIRON USA · Zalo/Hotline '+BRAND.phoneDisp; }
+  document.title='Máy Ra Toa — '+BRAND.name;
+})();
 </script>
 </body>
 </html>
